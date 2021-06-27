@@ -1,3 +1,7 @@
+/**
+ * TODO: write reducers for properties, decide whether userdata should be kept here in global state
+ */
+
 import {
     ADD_PROPERTY,
     UPDATE_PROPERTY,
