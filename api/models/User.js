@@ -12,7 +12,14 @@ const userSchema = new Schema({
         required: true,
         unique: true,
         trim: true,
-
+    },
+    firstName: {
+        type: String,
+        required: true,
+    },
+    lastName: {
+        type: String,
+        required: true
     },
     password: {
         type: String,
@@ -51,9 +58,6 @@ const userSchema = new Schema({
         ref: 'Property'
         }
     ]
-    
-
-
 });
 
 userSchema.pre('save', async function (next) {
