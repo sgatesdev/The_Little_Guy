@@ -1,8 +1,13 @@
+import React from 'react';
+import StoreProvider from '../store';
+
 const App = () => {
   return (
-    <div>
-      <h1>Project 3!</h1>
-    </div>
+    <StoreProvider>
+      <div>
+        <h1>Project 3!</h1>
+      </div>
+    </StoreProvider>
   );
 }
 
