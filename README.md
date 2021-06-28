@@ -1,3 +1,3 @@
-# UNC Project #3
+# The Little Guy
 
-This repo will house the code for UNC Bootcamp Project 3, a collaboration between Zoe Chalk, Sam Gates and Juan Santiago. Please continue to check back for updates!
+This repo will house the code for The Little Guy, a property management app for landlords with a small portfolio. Please continue to check back for updates!
