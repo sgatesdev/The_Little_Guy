@@ -5,7 +5,12 @@
 import {
     ADD_PROPERTY,
     UPDATE_PROPERTY,
-    REMOVE_PROPERTY
+    REMOVE_PROPERTY,
+    ADD_USER,
+    REMOVE_USER,
+    UPDATE_USER,
+    LOG_IN,
+    LOG_OUT
 } from './actions';
 
 const initialState = {
@@ -15,7 +20,20 @@ const initialState = {
 
 export const reducer = (state = initialState, action) => {
     switch(action.type) {
+        case LOG_IN:
+            return { ...state, 
+                user: { ...action.payload }
+            };
         default: 
             return state;
     }
 };
+
+/**
+ * 
+ * Thought process:
+ * 1. user logs in, dispatch sends to redux store. We need access to user info throughout app (isLoggedIn, username, etc.)
+ * 2. Redux action also sets localstorage
+ * 3. Put auto-login code in header to detect if localstorage token exists on load, if it does, log user in and send info to state
+ * 4. redux actions, use thunk to do graphql requests
+ */
