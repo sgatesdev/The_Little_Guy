@@ -1,0 +1,1 @@
+// for seed file. needs to be created to start testing queries and mutations
