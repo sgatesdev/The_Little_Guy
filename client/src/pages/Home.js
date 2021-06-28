@@ -7,9 +7,9 @@ import { Header } from '../components/Header';
 
 export const Home = () => {
     return (
-        <div className="m-2">
+        <div>
             <Header />
-            <div>
+            <div className="uk-heading-medium uk-margin-left">
                 <h1>Home page!</h1>
             </div>
         </div>
