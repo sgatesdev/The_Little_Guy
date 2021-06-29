@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Header } from '../components/Header';
 import { useMutation } from '@apollo/client';
 
 // new stuff for redux 
@@ -63,7 +62,6 @@ export const Login = () => {
 
     return (
         <div>
-            <Header />
             <div uk-grid>
             <div class="uk-width-1-1 uk-flex uk-flex-center">
             <form className="uk-form-stacked uk-margin-left" onSubmit={handleForm}>
