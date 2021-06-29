@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { LOG_OUT } from '../store/actions';
 
@@ -8,14 +8,33 @@ import { useSelector, useDispatch } from 'react-redux';
 // use history to redirect user
 import history from '../config/history';
 
+// import localstorage actions
+import { expiredToken, getToken } from '../utils/token';
+
 export const Header = () => {
     const state = useSelector((state) => state);
     const dispatch = useDispatch();
 
+    // if user is logged out, check to see if token in local storage - then log them in automatically
+    // this prevents a hard refresh from logging user out!
+    useEffect(() => {
+        if(!state.user) {
+            const token = getToken();
+
+            if(token && !expiredToken(token)) {
+
+                // get user info using token and update state
+
+            }
+        }
+    }, []);
+
     const handleLogout = () => {
+        // TO DO: destroy token in local storage
+
         dispatch({
             type: LOG_OUT
-        })
+        });
 
         history.push('/login');
     }
