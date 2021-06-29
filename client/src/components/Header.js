@@ -2,7 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { LOG_OUT } from '../store/actions';
 
+// using redux hooks api
 import { useSelector, useDispatch } from 'react-redux';
+
+// use history to redirect user
+import history from '../config/history';
 
 export const Header = () => {
     const state = useSelector((state) => state);
@@ -12,6 +16,8 @@ export const Header = () => {
         dispatch({
             type: LOG_OUT
         })
+
+        history.push('/login');
     }
 
     return (

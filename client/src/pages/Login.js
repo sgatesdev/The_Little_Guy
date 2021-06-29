@@ -4,6 +4,9 @@ import { Header } from '../components/Header';
 // new stuff for redux 
 import { useDispatch, useSelector } from 'react-redux';
 
+// import history
+import history from '../config/history';
+
 export const Login = () => {
     // redux 
     const dispatch = useDispatch();
@@ -23,6 +26,8 @@ export const Login = () => {
             type: 'LOG_IN',
             payload: { username }
         });
+
+        history.push('/');
     }
 
     return (
