@@ -1,11 +1,19 @@
-/**
- * i used bootstrap just to get a page up, this is not permanent! lol
- */
-
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { LOG_OUT } from '../store/actions';
+
+import { useSelector, useDispatch } from 'react-redux';
 
 export const Header = () => {
+    const state = useSelector((state) => state);
+    const dispatch = useDispatch();
+
+    const handleLogout = () => {
+        dispatch({
+            type: LOG_OUT
+        })
+    }
+
     return (
         <>
         <nav className="uk-navbar-container" uk-navbar>
@@ -13,10 +21,15 @@ export const Header = () => {
                 <ul class="uk-navbar-nav">
                     <li className="uk-active"><Link to="/">The Little Guy</Link></li>
                     <li className="uk-active"><Link to="/">Home</Link></li>
-                    <li className="uk-parent"><Link to="/login">Login</Link></li>
+                    <li className="uk-parent">
+                    {
+                        state.user ? <a onClick={handleLogout}>Logout</a> :
+                        <Link to="/login">Login</Link>
+                    }
+                    </li>
                 </ul>
             </div>
         </nav>
-    </>
+        </>
     );
 }
