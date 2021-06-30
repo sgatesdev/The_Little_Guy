@@ -51,8 +51,6 @@ export const Home = () => {
         })
     }, [dispatch]);
 
-    console.log(state.properties)
-
     // apollo
     //const { loading, data } = useQuery(QUERY_ALL_PROPERTIES);
 
@@ -71,7 +69,7 @@ export const Home = () => {
         <>
         <h1 class="uk-heading-small uk-flex uk-flex-center">{ state.user ? `Welcome back, ${state.user.username}!` : null }</h1>
         <div className="uk-flex uk-flex-center uk-width-1-1 uk-margin-top">
-        <PropertyList />
+        <PropertyList properties={state.properties}/>
         </div>
         </>
     );

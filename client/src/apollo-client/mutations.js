@@ -42,39 +42,6 @@ export const DELETE_USER = gql`
 
 /** PROPERTY MUTATIONS */
 
-export const QUERY_ALL_PROPERTIES = gql`
-   {
-       properties {
-           _id
-           addressStreet
-           addressCity
-           addressState
-           addressZip
-           price
-           imageLink
-       }
-   }
-`;
-
-export const QUERY_MY_PROPERTIES = gql`
-   query getMyProperties($user: ID) {
-        properties(owner: $user) {
-            _id
-            addressStreet
-            addressCity
-            addressState
-            addressZip
-            tenant {
-                firstName
-                lastName
-                email
-            }
-            price
-            imageLink
-        }
-    }
-`;
-
 export const ADD_PROPERTY = gql`
 
 `;

@@ -6,6 +6,7 @@ import {
     ADD_PROPERTY,
     UPDATE_PROPERTY,
     UPDATE_PROPERTIES,
+    UPDATE_MY_PROPERTIES,
     REMOVE_PROPERTY,
     UPDATE_USER,
     LOG_IN,
@@ -14,11 +15,15 @@ import {
 
 const initialState = {
     properties: [],
+    my_propertie: [],
     user: null
 };
 
 export const reducer = (state = initialState, action) => {
     switch(action.type) {
+        case UPDATE_MY_PROPERTIES: 
+            return { ...state, 
+                my_properties: [ ...action.payload ] };
         case UPDATE_PROPERTIES: 
             return { ...state, 
                 properties: [ ...action.payload ] };
