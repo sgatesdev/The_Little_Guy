@@ -12,7 +12,8 @@ const typeDefs = gql`
     }
 
     type Query {
-        user: User,
+        user(_id:ID!): User,
+        me:User,
         property(address: String): Property, 
     }
 
