@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Header } from '../components/Header';
 import { useMutation } from '@apollo/client';
 
 // new stuff for redux 
@@ -9,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import history from '../config/history';
 
 // import apollo query
-import { LOGIN } from '../apollo-client/mutations';
+//import { LOGIN } from '../apollo-client/mutations';
 import { saveToken } from '../utils/token';
 
 /**
@@ -26,7 +25,7 @@ export const Login = () => {
     const [password, setPassword] = useState('');
 
     // apollo client
-    const [login, { error }] = useMutation(LOGIN);
+    //const [login, { error }] = useMutation(LOGIN);
 
     const handleForm = async (e) => {
         e.preventDefault();
@@ -34,17 +33,18 @@ export const Login = () => {
           
         // integrating graphQL
         try {
-            const userData = await login({
-                variables: {
-                    username,
-                    password
-                }
-            });
 
-            const token = userData.data.login.token;
+            //const userData = await login({
+            //    variables: {
+            //        username: username
+            //        password: password
+            //    }
+            //});
+
+            //const token = userData.data.login.token;
 
             // save token to LocalStorage
-            saveToken(token);
+            //saveToken(token);
 
             // send user data to redux so all components can see it
             dispatch({
@@ -62,9 +62,10 @@ export const Login = () => {
 
     return (
         <div>
-            <Header />
+            <div uk-grid>
+            <div class="uk-width-1-1 uk-flex uk-flex-center">
             <form className="uk-form-stacked uk-margin-left" onSubmit={handleForm}>
-
+            <legend class="uk-legend">Log In</legend>
             <div>
                 <label className="uk-form-label"></label>
                 <input 
@@ -88,7 +89,7 @@ export const Login = () => {
             </div>
 
             <div className="uk-margin">
-            <label className="uk-form-label">{ error ? 'Incorrect username or password' : null}</label>
+            <label className="uk-form-label">{ /**error ? 'Incorrect username or password' : null**/}</label>
                 <button     
                     type="submit" 
                     className="uk-button uk-button-default"
@@ -97,6 +98,8 @@ export const Login = () => {
 
             </form>
             <h1>{state.user ? state.user.username : null}</h1>
+        </div>
+        </div>
         </div>
     );
 }

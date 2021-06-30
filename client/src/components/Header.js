@@ -46,12 +46,34 @@ export const Header = () => {
                 <ul class="uk-navbar-nav">
                     <li className="uk-active"><Link to="/">The Little Guy</Link></li>
                     <li className="uk-active"><Link to="/">Home</Link></li>
-                    <li className="uk-parent">
+                    
                     {
-                        state.user ? <a onClick={handleLogout}>Logout</a> :
-                        <Link to="/login">Login</Link>
+                        state.user ? (
+                            <>
+                            <li className="uk-parent">
+                            <Link to="/signup">Properties</Link>
+                            </li>
+                            <li className="uk-parent">
+                            <Link to="/signup">Profile</Link>
+                            </li>                        
+                            <li className="uk-parent">
+                            <Link to="/signup">Messages</Link>
+                            </li>    
+                            <li className="uk-parent">
+                            <a onClick={handleLogout}>Logout</a> 
+                            </li>
+                            </>
+                        ) : (
+                            <>
+                            <li className="uk-parent">
+                            <Link to="/login">Login</Link>
+                            </li>
+                            <li className="uk-parent">
+                            <Link to="/signup">Sign Up</Link>
+                            </li>
+                            </>
+                        )
                     }
-                    </li>
                 </ul>
             </div>
         </nav>
