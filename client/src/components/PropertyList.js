@@ -7,7 +7,7 @@ const PropertyList = () => {
     const state = useSelector((state) => state);
 
     return state.properties.length ? (
-        <div class="uk-child-width-1-1 uk-text-center">
+        <div class="uk-child-width-1-1 uk-text-center uk-animation-fade">
             {
                 state.properties.map((property) => {
                     return <PropertyCard property={ property } />
