@@ -5,10 +5,21 @@ const propertySchema = new Schema({
         type: String,
         required: true,
     },
-    address: {
+    addressStreet: {
         type: String,
-        required: true,
-        unique: true,
+        required: true
+    },
+    addressCity: {
+        type: String,
+        required: true
+    },
+    addressState: {
+        type: String,
+        required: true
+    },
+    addressZip: {
+        type: String,
+        required: true
     },
     price: {
         type: Number,
@@ -21,6 +32,10 @@ const propertySchema = new Schema({
     tenant: {
         type: Schema.Types.ObjectId,
         ref: 'User',
+    },
+    imageLink: {
+        type: Schema.Types.ObjectId,
+        ref: 'Image'
     }
 });
 
@@ -28,26 +43,3 @@ const Property = model('Property', propertySchema);
 
 module.exports = Property;
 
-// const { Schema, model } = require('mongoose');
-
-// const propertySchema = new Schema({
-//     addressStreet: {
-//         type: String,
-//         required: true
-//     },
-//     addressCity: {
-//         type: String, 
-//         required: true
-//     },
-//     addressState: {
-//         type: String,
-//         required: true
-//     },
-//     addressZip: {
-//         type: String,
-//         required: true
-//     },
-
-// });
-
-// which values will we pull from API? 
