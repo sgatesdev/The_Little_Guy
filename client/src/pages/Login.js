@@ -36,8 +36,8 @@ export const Login = () => {
 
             //const userData = await login({
             //    variables: {
-            //        username,
-            //        password
+            //        username: username
+            //        password: password
             //    }
             //});
 
