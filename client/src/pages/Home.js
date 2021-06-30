@@ -19,7 +19,7 @@ const testData = [
         addressCity: "Raleigh",
         addressZip: 27615,
         price: 100000,
-        imageLink: 'localhost/no'
+        imageLink: 'https://via.placeholder.com/150'
     },
     {
         id: "123123123123",
@@ -27,7 +27,7 @@ const testData = [
         addressCity: "Raleigh",
         addressZip: 27614,
         price: 100100,
-        imageLink: 'localhost/no'
+        imageLink: 'https://via.placeholder.com/150'
     },
     {
         id: "123123123123",
@@ -35,7 +35,7 @@ const testData = [
         addressCity: "Raleigh",
         addressZip: 27613,
         price: 100300,
-        imageLink: 'localhost/no'
+        imageLink: 'https://via.placeholder.com/150'
     }
 ];
 
@@ -68,6 +68,8 @@ export const Home = () => {
     */ 
 
     return (
+        <div className="uk-flex uk-flex-center uk-width-1-1 uk-margin-top">
         <PropertyList />
+        </div>
     );
 }
