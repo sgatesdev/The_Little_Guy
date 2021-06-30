@@ -5,21 +5,23 @@
 import {
     ADD_PROPERTY,
     UPDATE_PROPERTY,
+    UPDATE_PROPERTIES,
     REMOVE_PROPERTY,
-    ADD_USER,
-    REMOVE_USER,
     UPDATE_USER,
     LOG_IN,
     LOG_OUT
 } from './actions';
 
 const initialState = {
-    properties: null,
+    properties: [],
     user: null
 };
 
 export const reducer = (state = initialState, action) => {
     switch(action.type) {
+        case UPDATE_PROPERTIES: 
+            return { ...state, 
+                properties: [ ...action.payload ] };
         case LOG_IN:
             return { ...state, 
                 user: { ...action.payload }

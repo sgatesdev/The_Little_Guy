@@ -110,8 +110,8 @@ export const Signup = () => {
     }
 
     return (
-        <div>
-            <div uk-grid>
+        <div className="uk-animation-fade">
+            <div className="uk-grid uk-margin-top">
             <div class="uk-width-1-1 uk-flex uk-flex-center">
             <form className="uk-form-stacked uk-margin-left" onSubmit={handleForm}>
             

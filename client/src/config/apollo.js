@@ -10,12 +10,14 @@ import {
 
 import { setContext } from '@apollo/client/link/context';
 
+import { getToken } from '../utils/token';
+
 const httpLink = createHttpLink({
     uri: '/graphql',
 });
   
 const authLink = setContext((_, { headers }) => {
-  const token = localStorage.getItem('little_guy_token');
+  const token = getToken();
   return {
     headers: {
         ...headers,
