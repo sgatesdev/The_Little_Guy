@@ -42,4 +42,3 @@ const propertySchema = new Schema({
 const Property = model('Property', propertySchema);
 
 module.exports = Property;
-
