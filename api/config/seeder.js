@@ -7,6 +7,9 @@ db.once('open', async () => {
     await User.deleteMany();
 
     const allUsers = await User.create(userData);
+    console.log('Users inserted! :)');
+
+    await Property.deleteMany();
 
     for (let i = 0; i < allUsers.length; i++) {
         const user = allUsers[i];
