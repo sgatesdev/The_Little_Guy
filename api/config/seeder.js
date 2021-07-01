@@ -6,10 +6,7 @@ const propertyData = require('./properties.json')
 db.once('open', async () => {
     await User.deleteMany();
 
-    const allUsers = await User.insertMany(userData);
-    console.log('Users inserted! :)');
-
-    await Property.deleteMany();
+    const allUsers = await User.create(userData);
 
     for (let i = 0; i < allUsers.length; i++) {
         const user = allUsers[i];
@@ -18,6 +15,11 @@ db.once('open', async () => {
         propertyData[11].tenant = user._id;
         propertyData[12].tenant = user._id;
     }
+
+    console.log('Users inserted! :)');
+
+    await Property.deleteMany();
+
     await Property.insertMany(propertyData);
     console.log('Properties Inserted! :)');
 
