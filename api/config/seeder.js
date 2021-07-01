@@ -18,6 +18,11 @@ db.once('open', async () => {
         propertyData[11].tenant = user._id;
         propertyData[12].tenant = user._id;
     }
+
+    console.log('Users inserted! :)');
+
+    await Property.deleteMany();
+
     await Property.insertMany(propertyData);
     console.log('Properties Inserted! :)');
 
