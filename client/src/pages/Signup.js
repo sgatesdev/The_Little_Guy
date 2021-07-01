@@ -74,7 +74,7 @@ export const Signup = () => {
                     email: email,
                     firstName: firstName,
                     lastName: lastName,
-                    username: 'test69'
+                    username: Date.now().toLocaleString()
                 }
             });
 
