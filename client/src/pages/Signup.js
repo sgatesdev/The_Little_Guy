@@ -93,8 +93,7 @@ export const Signup = () => {
             });
         }
         catch(err) {
-            console.log(err);
-            return setDisplayError('There was an error creating your account.');
+            return setDisplayError(`${err}`);
         }
 
         history.push('/');
