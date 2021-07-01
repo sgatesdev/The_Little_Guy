@@ -5,7 +5,7 @@ const { signToken } = require('../utils/auth');
 const resolvers = {
     Query: {
         user: async (id) => {
-            return await User.findByPk(id);
+            return await User.findOne({ _id: id });
         },
         property: async (parent, { address }) => {
             const params = {};
@@ -16,7 +16,7 @@ const resolvers = {
         },
         me: async (parent, args, context) => {
             if (context.user) {
-                const user = await User.findByPk(context.user._id).populate('Property').populate({
+                const user = await User.findOne({ _id: context.user._id }).populate('Property').populate({
                     path: 'Property.Images',
                     populate: 'Images'
                 })
