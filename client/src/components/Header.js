@@ -25,7 +25,7 @@ export const Header = () => {
     const dispatch = useDispatch();
 
     // hook to get user info (if redux store is empty AND token in local storage)
-    const [getMe, { data }] = useLazyQuery(QUERY_ME);
+    const [getMe, { data, called }] = useLazyQuery(QUERY_ME);
 
     // if user is logged out, check to see if token in local storage - then log them in automatically
     // this prevents a hard refresh from logging user out!
@@ -37,14 +37,17 @@ export const Header = () => {
                 // get user info using token and update state
                 getMe();
 
+                
+                if (called && data) {
                 //   send user data to redux so all components can see it
-                dispatch({
-                    type: 'LOG_IN',
-                    payload: { ...data }
-                });
+                    dispatch({
+                        type: 'LOG_IN',
+                        payload: { ...data.me }
+                    });
+                }
             }
         }
-    }, [getMe, data, state.user, dispatch]);
+    }, [getMe, data, called, state.user, dispatch]);
 
     /**
      * FOR DEBUGGING: 
@@ -61,7 +64,7 @@ export const Header = () => {
             type: LOG_OUT
         });
 
-        // redirect user to login page
+        // redirect user to login
         history.push('/login');
     }
 
