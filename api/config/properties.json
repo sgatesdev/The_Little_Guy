@@ -1,0 +1,170 @@
+[
+    {
+        "type": "personal",
+        "addressStreet": "660 Glenlake Street",
+        "addressCity": "Wilmington",
+        "addressState": "NC",
+        "addressZip": "28402",
+        "price": 950
+    },
+    {
+        "type": "personal",
+        "addressStreet": "8648 Cavern Drive",
+        "addressCity": "Reidsville",
+        "addressState": "NC",
+        "addressZip": "27322",
+        "price": 1200
+    },
+    {
+        "type": "commercial",
+        "addressStreet": "7257 Beachside Circle",
+        "addressCity": "Castle Hayne",
+        "addressState": "NC",
+        "addressZip": "28429",
+        "price": 1500
+    },
+    {
+        "type": "personal",
+        "addressStreet": "9106 Mountainview Lane",
+        "addressCity": "Newton Grove",
+        "addressState": "NC",
+        "addressZip": "28366",
+        "price": 1100
+    },
+    {
+        "type": "commercial",
+        "addressStreet": "8 York Court",
+        "addressCity": "Elizabeth City",
+        "addressState": "NC",
+        "addressZip": "27907",
+        "price": 980
+    },
+    {
+        "type": "personal",
+        "addressStreet": "701 Indian Spring Lane",
+        "addressCity": "Candler",
+        "addressState": "NC",
+        "addressZip": "28775",
+        "price": 850
+    },
+    {
+        "type": "industrial",
+        "addressStreet": "7257 Beachside Circle",
+        "addressCity": "Castle Hayne",
+        "addressState": "NC",
+        "addressZip": "28429",
+        "price": 1350
+    },
+    {
+        "type": "personal",
+        "addressStreet": "834 Champion Ave",
+        "addressCity": "Scaly Mountain",
+        "addressState": "NC",
+        "addressZip": "28775",
+        "price": 980
+    },
+    {
+        "type": "personal",
+        "addressStreet": "7346 Lawn Road",
+        "addressCity": "Cumberland",
+        "addressState": "NC",
+        "addressZip": "28331",
+        "price": 500
+    },
+    {
+        "type": "personal",
+        "addressStreet": "7404 Logan Ave",
+        "addressCity": "Lilesville",
+        "addressState": "NC",
+        "addressZip": "28091",
+        "price": 750
+    },
+    {
+        "type": "personal",
+        "addressStreet": "757 NW. Yukon St",
+        "addressCity": "Winston-Salem",
+        "addressState": "NC",
+        "addressZip": "27113",
+        "price": 1000
+    },
+    {
+        "type": "personal",
+        "addressStreet": "8477 NW. Windsor St",
+        "addressCity": "Ramseur",
+        "addressState": "NC",
+        "addressZip": "27316",
+        "price": 600
+    },
+    {
+        "type": "personal",
+        "addressStreet": "243 Catherine Ave",
+        "addressCity": "Marshville",
+        "addressState": "NC",
+        "addressZip": "28103",
+        "price": 950
+    },
+    {
+        "type": "personal",
+        "addressStreet": "61 Plumb Branch St",
+        "addressCity": "Raleigh",
+        "addressState": "NC",
+        "addressZip": "27697",
+        "price": 950
+    },
+    {
+        "type": "personal",
+        "addressStreet": "620 West Knight Drive",
+        "addressCity": "Charlotte",
+        "addressState": "NC",
+        "addressZip": "28281",
+        "price": 950
+    },
+    {
+        "type": "personal",
+        "addressStreet": "115 West Feathers Court",
+        "addressCity": "Grassy Creek",
+        "addressState": "NC",
+        "addressZip": "28631",
+        "price": 950
+    },
+    {
+        "type": "industrial",
+        "addressStreet": "788 Tunnel St",
+        "addressCity": "Charlotte",
+        "addressState": "NC",
+        "addressZip": "28230",
+        "price": 950
+    },
+    {
+        "type": "commercial",
+        "addressStreet": "913 Alton Ave",
+        "addressCity": "Clemmons",
+        "addressState": "NC",
+        "addressZip": "27012",
+        "price": 950
+    },
+    {
+        "type": "personal",
+        "addressStreet": "31 NW. Jewel Rd",
+        "addressCity": "Gold Hill",
+        "addressState": "NC",
+        "addressZip": "28071",
+        "price": 950
+    },
+    {
+        "type": "personal",
+        "addressStreet": "7708 Dogwood Circle",
+        "addressCity": "Mathews",
+        "addressState": "NC",
+        "addressZip": "28105",
+        "price": 950
+    },
+    {
+        "type": "personal",
+        "addressStreet": "48 Alderwood Drive",
+        "addressCity": "Raleigh",
+        "addressState": "NC",
+        "addressZip": "27624",
+        "price": 950
+    }
+]
