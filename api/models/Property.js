@@ -1,4 +1,4 @@
-const { Schema } = require('mongoose');
+const { Schema, model } = require('mongoose');
 
 const propertySchema = new Schema({
     type: {
@@ -36,7 +36,11 @@ const propertySchema = new Schema({
     imageLink: [{
         type: Schema.Types.ObjectId,
         ref: 'Image'
-    }]
+    }],
+    description: {
+        type: String,
+        default: ''
+    }
 });
 
 const Property = model('Property', propertySchema);
