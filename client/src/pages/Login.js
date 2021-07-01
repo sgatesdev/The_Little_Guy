@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import history from '../config/history';
 
 // import apollo query
-//import { LOGIN } from '../apollo-client/mutations';
+import { LOGIN } from '../apollo-client/mutations';
 import { saveToken } from '../utils/token';
 
 /**
@@ -21,40 +21,43 @@ export const Login = () => {
     const state = useSelector((state) => state);
   
     // local state
-    const [username, setUsername] = useState('');
+    const [email, setemail] = useState('');
     const [password, setPassword] = useState('');
+    const [displayError, setDisplayError] = useState(null);
 
     // apollo client
-    //const [login, { error }] = useMutation(LOGIN);
+    const [login, { error }] = useMutation(LOGIN);
 
     const handleForm = async (e) => {
         e.preventDefault();
-        console.log(`${username} ${password}`);
           
         // integrating graphQL
         try {
 
-            //const userData = await login({
-            //    variables: {
-            //        username: username
-            //        password: password
-            //    }
-            //});
-
-            //const token = userData.data.login.token;
-
-            // save token to LocalStorage
-            //saveToken(token);
-
-            // send user data to redux so all components can see it
-            dispatch({
-                type: 'LOG_IN',
-                payload: { username: username, isLandlord: true }
+            const userData = await login({
+                variables: {
+                    email, 
+                    password
+                }
             });
 
+            const token = userData.data.login.token;
+            const userDataRes = userData.data.login.user;
+
+            console.log(userDataRes);
+
+            // save token to LocalStorage
+            saveToken(token);
+
+            //  send user data to redux so all components can see it
+            dispatch({
+                type: 'LOG_IN',
+                payload: { ...userDataRes, email }
+            });
         }
         catch(err) {
-            console.log(err);
+            // if there's a problem keep user on page and display error
+            return setDisplayError('Incorrect username or password!');
         }
 
         history.push('/');
@@ -71,9 +74,9 @@ export const Login = () => {
                 <input 
                     className="uk-input uk-form-width-medium" 
                     type="text" 
-                    placeholder="Username" 
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
+                    placeholder="Email" 
+                    value={email}
+                    onChange={(e) => setemail(e.target.value)}
                 />
             </div>
 
@@ -89,7 +92,7 @@ export const Login = () => {
             </div>
 
             <div className="uk-margin">
-            <label className="uk-form-label">{ /**error ? 'Incorrect username or password' : null**/}</label>
+            <label className="uk-form-label">{ displayError ? displayError : null}</label>
                 <button     
                     type="submit" 
                     className="uk-button uk-button-default"
@@ -97,7 +100,7 @@ export const Login = () => {
             </div>
 
             </form>
-            <h1>{state.user ? state.user.username : null}</h1>
+            <h1>{state.user ? state.user.firstName : null}</h1>
         </div>
         </div>
         </div>

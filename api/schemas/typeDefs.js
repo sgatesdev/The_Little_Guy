@@ -8,12 +8,14 @@ const typeDefs = gql`
         firstName: String!
         lastName: String!
         password: String!
+        is_landlord: Boolean
     }
 
     type Property {
         _id: ID
         address: String
     }
+
     type Auth {
         token: ID
         user: User
@@ -36,7 +38,6 @@ const typeDefs = gql`
     type Mutation {
         login(email:String!, password:String!): Auth
         signUp(input: NewUserInput): Auth
-
     }
 
 `;

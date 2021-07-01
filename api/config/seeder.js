@@ -19,6 +19,15 @@ db.once('open', async () => {
         propertyData[12].tenant = user._id;
     }
 
+    // simple test case
+    await User.create(    {
+        "password": "password",
+        "firstName": "Sammy",
+        "lastName": "G",
+        "username": "samg",
+        "email": "sam@test.com"
+    });
+
     console.log('Users inserted! :)');
 
     await Property.deleteMany();

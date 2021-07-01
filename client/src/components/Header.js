@@ -24,9 +24,8 @@ export const Header = () => {
             const token = getToken();
 
             if(token && !expiredToken(token)) {
-
                 // get user info using token and update state
-
+                
             }
         }
     }, []);
@@ -48,7 +47,7 @@ export const Header = () => {
     }
 
     const renderMenu = () => {
-        if(state.user && state.user.isLandlord) {
+        if(state.user && state.user.is_landlord) {
             return(
                 <>
                 <LandlordMenu />
@@ -58,7 +57,7 @@ export const Header = () => {
                 </>
             );
         }
-        else if (state.user && !state.user.isLandlord) {
+        else if (state.user && !state.user.is_landlord) {
             return(
                 <>
                 <TenantMenu />
