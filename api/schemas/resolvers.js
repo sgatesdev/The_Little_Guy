@@ -4,6 +4,15 @@ const { ApolloError } = require('apollo-server-errors');
 const { User, Property } = require('../models');
 const { signToken } = require('../utils/auth');
 
+/**
+ * TODO: 
+ * 1. Properties resolver to pull 15 properties 
+ * 2. Update user resolver
+ * 3. Update property resolver
+ * 4. Add property
+ * 5. Remove property
+ */
+
 const resolvers = {
     Query: {
         user: async (id) => {
@@ -67,10 +76,10 @@ const resolvers = {
 
             // make sure username and email are unique 
 
-            const checkUser = await User.findOne({ username });
-            if(checkUser) {
-                throw new ApolloError('Username already exists!');
-            }
+            //const checkUser = await User.findOne({ username });
+            //if(checkUser) {
+            //    throw new ApolloError('Username already exists!');
+            //}
 
             const checkEmail = await User.findOne({ email });
             if(checkEmail) {

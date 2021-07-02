@@ -2,18 +2,21 @@
   "name": "unc_project_3",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node api/api.js",
+    "develop": "concurrently \"cd api && npm run watch\" \"cd client && npm start\"",
+    "install": "cd api && npm i && cd ../client && npm i",
+    "seed": "cd api && npm run seed",
+    "build": "cd client && npm run build"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/sg0703/UNC_Project_3.git"
-  },
+  "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/sg0703/UNC_Project_3/issues"
+  "devDependencies": {
+    "concurrently": "^5.1.0"
   },
-  "homepage": "https://github.com/sg0703/UNC_Project_3#readme"
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "react-redux": "^7.2.4"
+  }
 }

@@ -1,7 +1,7 @@
 export const Tenant = () => {
     return(
         <h1>
-            Tenant!
+            Tenant index!
         </h1>
     );
 }

@@ -5,16 +5,16 @@ const TenantMenu = () => {
     return(
         <>
         <li className="uk-parent">
-        <Link to="/signup">Tenant Portal</Link>
+        <Link to="/tenant">Tenant Portal</Link>
         </li>
         <li className="uk-parent">
-        <Link to="/signup">Saved Properties</Link>
+        <Link to="/tenant/saved">Saved Properties</Link>
         </li>
         <li className="uk-parent">
-        <Link to="/signup">Profile</Link>
+        <Link to="/tenant/profile">Profile</Link>
         </li>                        
         <li className="uk-parent">
-        <Link to="/signup">Messages</Link>
+        <Link to="/messages">Messages</Link>
         </li>    
         </>
     );
