@@ -28,6 +28,7 @@ const typeDefs = gql`
         myProperties: Property
         tenants(_id: ID!): Property
     }
+    
     input NewUserInput {
         firstName: String
         lastName: String
