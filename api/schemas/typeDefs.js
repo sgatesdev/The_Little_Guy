@@ -58,6 +58,8 @@ const typeDefs = gql`
         tenant: ID
         imageLink: [String]
         description: String
+    }
+    
     input NewUserInput {
         firstName: String
         lastName: String
