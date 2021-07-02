@@ -42,7 +42,7 @@ const resolvers = {
             }
             throw new AuthenticationError('Not logged In!');
         },
-        tenants: async (parent, args, context) => {
+        myTenants: async (parent, args, context) => {
             if (context.user) {
                 const userTenants = Property.find({ owner: context.user._id }).populate({
                     path: 'Property.tenant',
@@ -51,7 +51,16 @@ const resolvers = {
                 return userTenats;
             }
             throw new AuthenticationError('Not Logged In!');
+        },
+        allProperties: async (parent,) => {
+            try {
+                const allProperties = Property.find().populate('User');
+                return allProperties
+            } catch (error) {
+                throw new AuthenticationError('No Properties found');
+            }
         }
+
     },
 
     Mutation: {
@@ -91,6 +100,12 @@ const resolvers = {
             const token = signToken(user);
 
             return { token, user };
+        },
+        updateMyProperties: async (parent, args, context) => {
+            const property = await Property.updateOne({ owner: context.user._id },
+                {}
+            )
+
         }
     }
 };
