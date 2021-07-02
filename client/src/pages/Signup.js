@@ -29,14 +29,15 @@ export const Signup = () => {
         password: '',
         password_2: '',
         firstName: '',
-        lastName: ''
+        lastName: '',
+        is_landlord: false
     });
 
     const [displayError, setDisplayError] = useState(null);
 
     const handleForm = async (e) => {
         e.preventDefault();
-
+        console.log(formState)
         // check for for errors
         setDisplayError(null);
 
@@ -46,7 +47,8 @@ export const Signup = () => {
             password,
             password_2,
             firstName,
-            lastName
+            lastName,
+            is_landlord
         } = formState;
 
         // make sure values are filled in and valid
@@ -66,6 +68,8 @@ export const Signup = () => {
             return setDisplayError('Passwords don\'t match!');
         }
 
+        console.log(is_landlord);
+
         // if the input is valid, send it to server
         try {
             const userData = await signUp({
@@ -74,7 +78,8 @@ export const Signup = () => {
                     email: email,
                     firstName: firstName,
                     lastName: lastName,
-                    username: Date.now().toLocaleString()
+                    username: `test${Date.now()}`,
+                    is_landlord: is_landlord
                 }
             });
 
@@ -100,7 +105,11 @@ export const Signup = () => {
     }
 
     const handleInput = (e) => {
-        const { name, value } = e.target;
+        let { name, value } = e.target;
+
+        if(e.target.name === 'is_landlord') {
+            value = e.target.checked;
+        }
 
         setFormState({
             ...formState, 
@@ -174,6 +183,16 @@ export const Signup = () => {
                     value={formState.password_2}
                     onChange={handleInput}
                 />
+            </div>
+
+            <div className="uk-margin-top">
+            <label className="uk-form-label">
+                <input 
+                    type="checkbox" 
+                    name="is_landlord"
+                    value={formState.is_landlord}
+                    onChange={handleInput}
+                /> I am a landlord</label>
             </div>
 
 

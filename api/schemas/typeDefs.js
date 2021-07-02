@@ -34,6 +34,7 @@ const typeDefs = gql`
         email: String
         password: String
         username: String
+        is_landlord: Boolean
     }
 
     type Mutation {

@@ -59,6 +59,9 @@ const userSchema = new Schema({
         }
     ],
     rating: [Number]
+},
+{
+    timestamps: true
 });
 
 userSchema.pre('save', async function (next) {

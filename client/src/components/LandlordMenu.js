@@ -5,13 +5,13 @@ const LandlordMenu = () => {
     return(
         <>
         <li className="uk-parent">
-        <Link to="/signup">Landlord Portal</Link>
+        <Link to="/landlord">Landlord Portal</Link>
         </li>
         <li className="uk-parent">
-        <Link to="/signup">Profile</Link>
+        <Link to="/landlord/profile">Profile</Link>
         </li>                        
         <li className="uk-parent">
-        <Link to="/signup">Messages</Link>
+        <Link to="/messages">Messages</Link>
         </li>    
         </>
     );

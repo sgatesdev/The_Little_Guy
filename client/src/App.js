@@ -19,6 +19,7 @@ import { Messages } from './pages/Messages';
 
 import { LandlordProfile } from './pages/landlord/LandlordProfile';
 import { TenantProfile } from './pages/tenant/TenantProfile';
+import { TenantSaved } from './pages/tenant/TenantSaved';
 
 import { Header } from './components/Header';
 
@@ -37,9 +38,10 @@ const App = () => {
             <Route exact path="/login" component={Login} />
             <Route exact path="/signup" component={Signup} />
             <Route exact path="/landlord" component={Landlord} />
-            <Route exact path="/landlord/profile" component={LandlordProfile} />
+            <Route path="/landlord/profile" component={LandlordProfile} />
             <Route exact path="/tenant" component={Tenant} />
-            <Route exact path="/tenant/profile" component={TenantProfile} />
+            <Route path="/tenant/profile" component={TenantProfile} />
+            <Route path="/tenant/saved" component={TenantSaved} />
             <Route exact path="/messages" component={Messages} />
           </Switch>
         </Router>
