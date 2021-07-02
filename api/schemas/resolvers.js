@@ -1,4 +1,6 @@
 const { AuthenticationError } = require('apollo-server-express');
+const { ApolloError } = require('apollo-server-errors');
+
 const { User, Property } = require('../models');
 const { signToken } = require('../utils/auth');
 
@@ -70,8 +72,23 @@ const resolvers = {
             return { token, user };
         },
         signUp: async (parent, { input }) => {
-            const newUser = await User.create(input);
-            const token = await signToken(user);
+            const { username, email } = input;
+
+            // make sure username and email are unique 
+
+            const checkUser = await User.findOne({ username });
+            if(checkUser) {
+                throw new ApolloError('Username already exists!');
+            }
+
+            const checkEmail = await User.findOne({ email });
+            if(checkEmail) {
+                throw new ApolloError('Email already exists!');
+            }
+
+            // they are unique, so create the user
+            const user = await User.create(input);
+            const token = signToken(user);
 
             return { token, user };
         },
