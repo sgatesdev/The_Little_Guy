@@ -59,6 +59,9 @@ const userSchema = new Schema({
         }
     ],
     rating: [Number]
+},
+{
+    timestamps: true
 });
 
 userSchema.pre('save', async function (next) {
@@ -69,6 +72,7 @@ userSchema.pre('save', async function (next) {
   
     next();
   });
+  
   
   userSchema.methods.isCorrectPassword = async function (password) {
     return bcrypt.compare(password, this.password);

@@ -8,7 +8,7 @@ import { useDispatch } from 'react-redux';
 import history from '../config/history';
 
 // import apollo query
-//import { ADD_USER } from '../apollo-client/mutations';
+import { SIGN_UP } from '../apollo-client/mutations';
 import { saveToken } from '../utils/token';
 import { checkEmail, checkName } from '../utils/helpers';
 
@@ -21,7 +21,7 @@ export const Signup = () => {
     const dispatch = useDispatch();
 
     // apollo client
-    //const [addUser, { error }] = useMutation(ADD_USER);
+    const [signUp, { error }] = useMutation(SIGN_UP);
 
     // set initial values so react doesn't get mad at me
     const [formState, setFormState] = useState({
@@ -29,16 +29,17 @@ export const Signup = () => {
         password: '',
         password_2: '',
         firstName: '',
-        lastName: ''
+        lastName: '',
+        is_landlord: false
     });
 
-    const [formError, setFormError] = useState(null);
+    const [displayError, setDisplayError] = useState(null);
 
     const handleForm = async (e) => {
         e.preventDefault();
-
+        console.log(formState)
         // check for for errors
-        setFormError(null);
+        setDisplayError(null);
 
         // destructure state
         const {
@@ -46,47 +47,50 @@ export const Signup = () => {
             password,
             password_2,
             firstName,
-            lastName
+            lastName,
+            is_landlord
         } = formState;
 
         // make sure values are filled in and valid
         if(email === '' || password === '' || password_2 === '' || firstName === '' || lastName === '') {
-            return setFormError('Please enter all information!');
+            return setDisplayError('Please enter all information!');
         }
 
         if(!checkEmail(email)) {
-            return setFormError('Invalid email address!');
+            return setDisplayError('Invalid email address!');
         }
 
         if(!checkName(firstName) || !checkName(lastName)) {
-            return setFormError('Invalid first or last name!');
+            return setDisplayError('Invalid first or last name!');
         }
 
         if(password !== password_2) {
-            return setFormError('Passwords don\'t match!');
+            return setDisplayError('Passwords don\'t match!');
         }
+
+        console.log(is_landlord);
 
         // if the input is valid, send it to server
         try {
-            /** 
-            const userData = await addUser({
+            const userData = await signUp({
                 variables: {
                     password: password,
                     email: email,
                     firstName: firstName,
-                    lastName: lastName
+                    lastName: lastName,
+                    username: `test${Date.now()}`,
+                    is_landlord: is_landlord
                 }
             });
 
-            const token = userData.data.login.token;
+            const token = userData.data.signUp.token;
 
             // save token to LocalStorage
             saveToken(token);
-            */
 
             // send user data to redux so all components can see it
             // do not send password
-            const reduxData = { firstName, lastName, email };
+            const reduxData = { firstName, lastName, email, ...userData.data.signUp.user };
 
             dispatch({
                 type: 'LOG_IN',
@@ -94,14 +98,18 @@ export const Signup = () => {
             });
         }
         catch(err) {
-            console.log(err);
+            return setDisplayError(`${err}`);
         }
 
         history.push('/');
     }
 
     const handleInput = (e) => {
-        const { name, value } = e.target;
+        let { name, value } = e.target;
+
+        if(e.target.name === 'is_landlord') {
+            value = e.target.checked;
+        }
 
         setFormState({
             ...formState, 
@@ -177,11 +185,20 @@ export const Signup = () => {
                 />
             </div>
 
+            <div className="uk-margin-top">
+            <label className="uk-form-label">
+                <input 
+                    type="checkbox" 
+                    name="is_landlord"
+                    value={formState.is_landlord}
+                    onChange={handleInput}
+                /> I am a landlord</label>
+            </div>
+
 
             <div className="uk-margin">
             <label className="uk-form-label">
-                { /**error ? 'Error creating this account' : null **/}
-                { formError }
+                { displayError ? displayError : null }
             </label>
                 <button     
                     type="submit" 

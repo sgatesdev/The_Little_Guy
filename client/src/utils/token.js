@@ -5,7 +5,7 @@
 import decode from 'jwt-decode';
 
 export const expiredToken = (token) => {
-    return decode(token).exp < Date.now() / 1000;     
+    return decode(token).exp < (Date.now() / 1000);     
 }
 
 export const getToken = () => {

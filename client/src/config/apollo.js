@@ -12,11 +12,11 @@ import { setContext } from '@apollo/client/link/context';
 
 import { getToken } from '../utils/token';
 
-const httpLink = createHttpLink({
+export const httpLink = createHttpLink({
     uri: '/graphql',
 });
   
-const authLink = setContext((_, { headers }) => {
+export const authLink = setContext((_, { headers }) => {
   const token = getToken();
   return {
     headers: {

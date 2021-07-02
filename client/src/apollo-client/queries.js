@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client';
 
-// single property
+/**  single property
 export const QUERY_PROPERTY = gql`
 
 `;
@@ -9,6 +9,7 @@ export const QUERY_PROPERTY = gql`
 export const QUERY_PROPERTIES = gql`
 
 `;
+*/
 
 export const QUERY_ALL_PROPERTIES = gql`
    {
@@ -43,7 +44,21 @@ export const QUERY_MY_PROPERTIES = gql`
     }
 `;
 
-// single user
+// query me
+export const QUERY_ME = gql`
+{
+    me {
+        _id
+        username
+        firstName
+        lastName
+        email
+        is_landlord
+    }
+}
+`;
+
+/** single user
 export const QUERY_USER = gql`
     
 `;
@@ -52,6 +67,7 @@ export const QUERY_USER = gql`
 export const QUERY_USERS = gql`
     
 `;
+*/
 
 /**
  * 

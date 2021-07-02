@@ -13,6 +13,7 @@
     "license": "ISC",
     "dependencies": {
         "apollo-server": "^2.25.1",
+        "apollo-server-errors": "^2.5.0",
         "bcrypt": "^4.0.1",
         "cloudinary": "^1.26.1",
         "dotenv": "^10.0.0",
@@ -22,6 +23,6 @@
         "mongoose": "^5.9.10"
     },
     "devDependencies": {
-        "nodemon": "^2.0.3"
+        "nodemon": "^2.0.9"
     }
 }

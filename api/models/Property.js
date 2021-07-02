@@ -41,6 +41,9 @@ const propertySchema = new Schema({
         type: String,
         default: ''
     }
+},
+{
+    timestamps: true
 });
 
 const Property = model('Property', propertySchema);

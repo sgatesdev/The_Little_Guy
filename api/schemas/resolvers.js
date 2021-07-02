@@ -1,11 +1,22 @@
 const { AuthenticationError } = require('apollo-server-express');
+const { ApolloError } = require('apollo-server-errors');
+
 const { User, Property } = require('../models');
 const { signToken } = require('../utils/auth');
+
+/**
+ * TODO: 
+ * 1. Properties resolver to pull 15 properties 
+ * 2. Update user resolver
+ * 3. Update property resolver
+ * 4. Add property
+ * 5. Remove property
+ */
 
 const resolvers = {
     Query: {
         user: async (id) => {
-            return await User.findByPk(id);
+            return await User.findOne({ _id: id });
         },
         property: async (parent, { address }) => {
             const params = {};
@@ -16,7 +27,7 @@ const resolvers = {
         },
         me: async (parent, args, context) => {
             if (context.user) {
-                const user = await User.findByPk(context.user._id).populate('Property').populate({
+                const user = await User.findOne({ _id: context.user._id }).populate('Property').populate({
                     path: 'Property.Images',
                     populate: 'Images'
                 })
@@ -31,7 +42,7 @@ const resolvers = {
             }
             throw new AuthenticationError('Not logged In!');
         },
-        tenants: async (parent, args, context) => {
+        myTenants: async (parent, args, context) => {
             if (context.user) {
                 const userTenants = Property.find({ owner: context.user._id }).populate({
                     path: 'Property.tenant',
@@ -40,7 +51,16 @@ const resolvers = {
                 return userTenats;
             }
             throw new AuthenticationError('Not Logged In!');
+        },
+        allProperties: async (parent,) => {
+            try {
+                const allProperties = Property.find().populate('User');
+                return allProperties
+            } catch (error) {
+                throw new AuthenticationError('No Properties found');
+            }
         }
+
     },
 
     Mutation: {
@@ -48,23 +68,44 @@ const resolvers = {
             const user = await User.findOne({ email });
 
             if (!user) {
-                throw new AuthenticationError('Incorrect Credentials');
+                throw new AuthenticationError('user not found');
             };
 
             const passCheck = await user.isCorrectPassword(password);
 
             if (!passCheck) {
-                throw new AuthenticationError('Incorrect Credentials');
+                throw new AuthenticationError('password wrong');
             }
 
             const token = signToken(user);
             return { token, user };
         },
         signUp: async (parent, { input }) => {
-            const newUser = await User.create(input);
-            const token = await signToken(user);
+            const { username, email } = input;
+
+            // make sure username and email are unique 
+
+            //const checkUser = await User.findOne({ username });
+            //if(checkUser) {
+            //    throw new ApolloError('Username already exists!');
+            //}
+
+            const checkEmail = await User.findOne({ email });
+            if(checkEmail) {
+                throw new ApolloError('Email already exists!');
+            }
+
+            // they are unique, so create the user
+            const user = await User.create(input);
+            const token = signToken(user);
 
             return { token, user };
+        },
+        updateMyProperties: async (parent, args, context) => {
+            const property = await Property.updateOne({ owner: context.user._id },
+                {}
+            )
+
         }
     }
 };
