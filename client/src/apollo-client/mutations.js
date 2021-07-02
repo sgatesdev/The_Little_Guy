@@ -24,7 +24,8 @@ export const SIGN_UP = gql`
    $lastName: String!,
    $email: String!,
    $password: String!,
-   $username: String!
+   $username: String!,
+   $is_landlord: Boolean
    ){
     signUp(input: {
       firstName: $firstName,
@@ -32,6 +33,7 @@ export const SIGN_UP = gql`
       email: $email,
       password: $password,
       username: $username,
+      is_landlord: $is_landlord
     }) {
       token
       user {

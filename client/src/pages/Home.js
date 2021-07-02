@@ -5,8 +5,8 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-//import { useQuery } from '@apollo/client';
-//import { QUERY_ALL_PROPERTIES } from '../apollo-client/queries';
+import { useQuery } from '@apollo/client';
+import { QUERY_ALL_PROPERTIES } from '../apollo-client/queries';
 
 import { UPDATE_PROPERTIES } from '../store/actions';
 

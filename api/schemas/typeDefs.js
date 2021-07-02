@@ -58,6 +58,13 @@ const typeDefs = gql`
         tenant: ID
         imageLink: [String]
         description: String
+    input NewUserInput {
+        firstName: String
+        lastName: String
+        email: String
+        password: String
+        username: String
+        is_landlord: Boolean
     }
 # need to set up all new mutations tomorrow
     type Mutation {
