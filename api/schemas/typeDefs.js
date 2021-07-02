@@ -13,12 +13,30 @@ const typeDefs = gql`
 
     type Property {
         _id: ID
-        address: String
+        type: String!
+        addressStreet: String!
+        addressCity: String!
+        addressState: String!
+        addressZip: String!
+        price: Int
+        owner: User
+        tenant: User
+        imageLink: [Image]
+        description: String
+    }
+    type Image {
+        imageLink: String
     }
 
     type Auth {
         token: ID
         user: User
+    }
+    input NewUserInput {
+        firstName: String
+        lastName: String
+        email: String
+        password: String
     }
 
     type Query {
@@ -26,9 +44,23 @@ const typeDefs = gql`
         me:User
         property(address: String): Property
         myProperties: Property
-        tenants(_id: ID!): Property
+        myTenants: Property
+        allProperties: [Property]
     }
     
+    input UpdatePropertyInput {
+        type: String!
+        addressStreet: String!
+        addressCity: String!
+        addressState: String!
+        addressZip: String!
+        price: Int!
+        owner: ID
+        tenant: ID
+        imageLink: [String]
+        description: String
+    }
+
     input NewUserInput {
         firstName: String
         lastName: String
@@ -37,10 +69,16 @@ const typeDefs = gql`
         username: String
         is_landlord: Boolean
     }
-
+# need to set up all new mutations tomorrow
     type Mutation {
         login(email:String!, password:String!): Auth
-        signUp(input: NewUserInput): Auth
+        signUp(input: NewUserInput!): Auth
+        updateMyProperties(_id: ID!, input: UpdatePropertyInput!): Property
+        updateMySavedProperties: Property
+        findProperty(address: String!): Property
+        findLanlord: User
+        deleteProperty: User
+        deleteUser: Auth
     }
 
 `;
