@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "start": "node api/api.js",
+    "start": "node api/server.js",
     "develop": "concurrently \"cd api && npm run watch\" \"cd client && npm start\"",
     "install": "cd api && npm i && cd ../client && npm i",
     "seed": "cd api && npm run seed",

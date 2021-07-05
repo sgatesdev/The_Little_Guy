@@ -32,13 +32,6 @@ const typeDefs = gql`
         token: ID
         user: User
     }
-    input NewUserInput {
-        firstName: String
-        lastName: String
-        email: String
-        password: String
-    }
-
     type Query {
         user(_id:ID!): User
         me:User
