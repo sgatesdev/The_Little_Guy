@@ -40,6 +40,7 @@ const typeDefs = gql`
         myTenants: Property
         allProperties: [Property]
     }
+    
     input UpdatePropertyInput {
         type: String!
         addressStreet: String!

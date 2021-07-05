@@ -1,7 +1,7 @@
 {
-  "name": "unc_project_3",
+  "name": "the_little_guy",
   "version": "1.0.0",
-  "description": "",
+  "description": "An app for small landlords",
   "scripts": {
     "start": "node api/server.js",
     "develop": "concurrently \"cd api && npm run watch\" \"cd client && npm start\"",
