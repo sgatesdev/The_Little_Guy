@@ -10,3 +10,10 @@ export const checkName = (name) => {
     const regex = /^[a-z ,.'-]+$/i;
     return regex.test(name);
 }
+
+// format prices
+export const formatPrice = (price) => {
+    price = new Intl.NumberFormat('en-US', {style: 'currency', currency: 'USD', maximumFractionDigits: 2}).format(price);
+
+    return price;
+}

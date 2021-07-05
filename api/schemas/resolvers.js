@@ -4,19 +4,11 @@ const { ApolloError } = require('apollo-server-errors');
 const { User, Property } = require('../models');
 const { signToken } = require('../utils/auth');
 
-/**
- * TODO: 
- * 1. Properties resolver to pull 15 properties 
- * 2. Update user resolver
- * 3. Update property resolver
- * 4. Add property
- * 5. Remove property
- */
-
 const resolvers = {
     Query: {
-        user: async (id) => {
-            return await User.findOne({ _id: id });
+        user: async (parent, { args }) => {
+
+            return await User.findOne({ args });
         },
         property: async (parent, { address }) => {
             const params = {};
@@ -52,10 +44,10 @@ const resolvers = {
             }
             throw new AuthenticationError('Not Logged In!');
         },
-        allProperties: async (parent,) => {
+        allProperties: async (parent, args) => {
             try {
-                const allProperties = Property.find().populate('User');
-                return allProperties
+                const allProperties = Property.find().populate('User').limit(20);
+                return allProperties;
             } catch (error) {
                 throw new AuthenticationError('No Properties found');
             }
