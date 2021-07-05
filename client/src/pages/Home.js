@@ -62,7 +62,7 @@ export const Home = () => {
         if(data) {
             dispatch({
                 type: UPDATE_PROPERTIES,
-                payload: data.properties
+                payload: data.allProperties
             })
         }
     }, [data, loading, dispatch]); 
