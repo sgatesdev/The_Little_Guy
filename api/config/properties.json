@@ -5,7 +5,8 @@
         "addressCity": "Wilmington",
         "addressState": "NC",
         "addressZip": "28402",
-        "price": 950
+        "price": 950,
+        "description": "Curabitur mauris tortor, convallis ut rhoncus eget, facilisis ut nisi. Sed accumsan quam quis lorem luctus, eu interdum felis fermentum. Phasellus nec pharetra metus. Nunc sit amet massa ac risus bibendum vehicula. Aenean condimentum rutrum massa. Fusce in urna gravida, interdum mi ac, pharetra odio. Maecenas laoreet ac risus in porttitor. Aliquam eu sapien hendrerit, lobortis enim et, scelerisque est."
     },
     {
         "type": "personal",
@@ -13,7 +14,8 @@
         "addressCity": "Reidsville",
         "addressState": "NC",
         "addressZip": "27322",
-        "price": 1200
+        "price": 1200,
+        "description": "Curabitur mauris tortor, convallis ut rhoncus eget, facilisis ut nisi. Sed accumsan quam quis lorem luctus, eu interdum felis fermentum. Phasellus nec pharetra metus. Nunc sit amet massa ac risus bibendum vehicula. Aenean condimentum rutrum massa. Fusce in urna gravida, interdum mi ac, pharetra odio. Maecenas laoreet ac risus in porttitor. Aliquam eu sapien hendrerit, lobortis enim et, scelerisque est."
     },
     {
         "type": "commercial",
@@ -21,7 +23,8 @@
         "addressCity": "Castle Hayne",
         "addressState": "NC",
         "addressZip": "28429",
-        "price": 1500
+        "price": 1500,
+        "description": "Curabitur mauris tortor, convallis ut rhoncus eget, facilisis ut nisi. Sed accumsan quam quis lorem luctus, eu interdum felis fermentum. Phasellus nec pharetra metus. Nunc sit amet massa ac risus bibendum vehicula. Aenean condimentum rutrum massa. Fusce in urna gravida, interdum mi ac, pharetra odio. Maecenas laoreet ac risus in porttitor. Aliquam eu sapien hendrerit, lobortis enim et, scelerisque est."
     },
     {
         "type": "personal",
@@ -29,7 +32,8 @@
         "addressCity": "Newton Grove",
         "addressState": "NC",
         "addressZip": "28366",
-        "price": 1100
+        "price": 1100,
+        "description": "Curabitur mauris tortor, convallis ut rhoncus eget, facilisis ut nisi. Sed accumsan quam quis lorem luctus, eu interdum felis fermentum. Phasellus nec pharetra metus. Nunc sit amet massa ac risus bibendum vehicula. Aenean condimentum rutrum massa. Fusce in urna gravida, interdum mi ac, pharetra odio. Maecenas laoreet ac risus in porttitor. Aliquam eu sapien hendrerit, lobortis enim et, scelerisque est."
     },
     {
         "type": "commercial",
@@ -37,7 +41,8 @@
         "addressCity": "Elizabeth City",
         "addressState": "NC",
         "addressZip": "27907",
-        "price": 980
+        "price": 980,
+        "description": "Curabitur mauris tortor, convallis ut rhoncus eget, facilisis ut nisi. Sed accumsan quam quis lorem luctus, eu interdum felis fermentum. Phasellus nec pharetra metus. Nunc sit amet massa ac risus bibendum vehicula. Aenean condimentum rutrum massa. Fusce in urna gravida, interdum mi ac, pharetra odio. Maecenas laoreet ac risus in porttitor. Aliquam eu sapien hendrerit, lobortis enim et, scelerisque est."
     },
     {
         "type": "personal",
@@ -45,7 +50,8 @@
         "addressCity": "Candler",
         "addressState": "NC",
         "addressZip": "28775",
-        "price": 850
+        "price": 850,
+        "description": "Curabitur mauris tortor, convallis ut rhoncus eget, facilisis ut nisi. Sed accumsan quam quis lorem luctus, eu interdum felis fermentum. Phasellus nec pharetra metus. Nunc sit amet massa ac risus bibendum vehicula. Aenean condimentum rutrum massa. Fusce in urna gravida, interdum mi ac, pharetra odio. Maecenas laoreet ac risus in porttitor. Aliquam eu sapien hendrerit, lobortis enim et, scelerisque est."
     },
     {
         "type": "industrial",
@@ -53,7 +59,8 @@
         "addressCity": "Castle Hayne",
         "addressState": "NC",
         "addressZip": "28429",
-        "price": 1350
+        "price": 1350,
+        "description": "Curabitur mauris tortor, convallis ut rhoncus eget, facilisis ut nisi. Sed accumsan quam quis lorem luctus, eu interdum felis fermentum. Phasellus nec pharetra metus. Nunc sit amet massa ac risus bibendum vehicula. Aenean condimentum rutrum massa. Fusce in urna gravida, interdum mi ac, pharetra odio. Maecenas laoreet ac risus in porttitor. Aliquam eu sapien hendrerit, lobortis enim et, scelerisque est."
     },
     {
         "type": "personal",
@@ -61,7 +68,8 @@
         "addressCity": "Scaly Mountain",
         "addressState": "NC",
         "addressZip": "28775",
-        "price": 980
+        "price": 980,
+        "description": "Curabitur mauris tortor, convallis ut rhoncus eget, facilisis ut nisi. Sed accumsan quam quis lorem luctus, eu interdum felis fermentum. Phasellus nec pharetra metus. Nunc sit amet massa ac risus bibendum vehicula. Aenean condimentum rutrum massa. Fusce in urna gravida, interdum mi ac, pharetra odio. Maecenas laoreet ac risus in porttitor. Aliquam eu sapien hendrerit, lobortis enim et, scelerisque est."
     },
     {
         "type": "personal",
@@ -69,7 +77,8 @@
         "addressCity": "Cumberland",
         "addressState": "NC",
         "addressZip": "28331",
-        "price": 500
+        "price": 500,
+        "description": "Curabitur mauris tortor, convallis ut rhoncus eget, facilisis ut nisi. Sed accumsan quam quis lorem luctus, eu interdum felis fermentum. Phasellus nec pharetra metus. Nunc sit amet massa ac risus bibendum vehicula. Aenean condimentum rutrum massa. Fusce in urna gravida, interdum mi ac, pharetra odio. Maecenas laoreet ac risus in porttitor. Aliquam eu sapien hendrerit, lobortis enim et, scelerisque est."
     },
     {
         "type": "personal",
@@ -77,7 +86,8 @@
         "addressCity": "Lilesville",
         "addressState": "NC",
         "addressZip": "28091",
-        "price": 750
+        "price": 750,
+        "description": "Curabitur mauris tortor, convallis ut rhoncus eget, facilisis ut nisi. Sed accumsan quam quis lorem luctus, eu interdum felis fermentum. Phasellus nec pharetra metus. Nunc sit amet massa ac risus bibendum vehicula. Aenean condimentum rutrum massa. Fusce in urna gravida, interdum mi ac, pharetra odio. Maecenas laoreet ac risus in porttitor. Aliquam eu sapien hendrerit, lobortis enim et, scelerisque est."
     },
     {
         "type": "personal",
@@ -85,7 +95,8 @@
         "addressCity": "Winston-Salem",
         "addressState": "NC",
         "addressZip": "27113",
-        "price": 1000
+        "price": 1000,
+        "description": "Curabitur mauris tortor, convallis ut rhoncus eget, facilisis ut nisi. Sed accumsan quam quis lorem luctus, eu interdum felis fermentum. Phasellus nec pharetra metus. Nunc sit amet massa ac risus bibendum vehicula. Aenean condimentum rutrum massa. Fusce in urna gravida, interdum mi ac, pharetra odio. Maecenas laoreet ac risus in porttitor. Aliquam eu sapien hendrerit, lobortis enim et, scelerisque est."
     },
     {
         "type": "personal",
@@ -93,7 +104,8 @@
         "addressCity": "Ramseur",
         "addressState": "NC",
         "addressZip": "27316",
-        "price": 600
+        "price": 600,
+        "description": "Curabitur mauris tortor, convallis ut rhoncus eget, facilisis ut nisi. Sed accumsan quam quis lorem luctus, eu interdum felis fermentum. Phasellus nec pharetra metus. Nunc sit amet massa ac risus bibendum vehicula. Aenean condimentum rutrum massa. Fusce in urna gravida, interdum mi ac, pharetra odio. Maecenas laoreet ac risus in porttitor. Aliquam eu sapien hendrerit, lobortis enim et, scelerisque est."
     },
     {
         "type": "personal",
@@ -101,7 +113,8 @@
         "addressCity": "Marshville",
         "addressState": "NC",
         "addressZip": "28103",
-        "price": 950
+        "price": 950,
+        "description": "Curabitur mauris tortor, convallis ut rhoncus eget, facilisis ut nisi. Sed accumsan quam quis lorem luctus, eu interdum felis fermentum. Phasellus nec pharetra metus. Nunc sit amet massa ac risus bibendum vehicula. Aenean condimentum rutrum massa. Fusce in urna gravida, interdum mi ac, pharetra odio. Maecenas laoreet ac risus in porttitor. Aliquam eu sapien hendrerit, lobortis enim et, scelerisque est."
     },
     {
         "type": "personal",
@@ -109,7 +122,8 @@
         "addressCity": "Raleigh",
         "addressState": "NC",
         "addressZip": "27697",
-        "price": 950
+        "price": 950,
+        "description": "Curabitur mauris tortor, convallis ut rhoncus eget, facilisis ut nisi. Sed accumsan quam quis lorem luctus, eu interdum felis fermentum. Phasellus nec pharetra metus. Nunc sit amet massa ac risus bibendum vehicula. Aenean condimentum rutrum massa. Fusce in urna gravida, interdum mi ac, pharetra odio. Maecenas laoreet ac risus in porttitor. Aliquam eu sapien hendrerit, lobortis enim et, scelerisque est."
     },
     {
         "type": "personal",
@@ -117,7 +131,8 @@
         "addressCity": "Charlotte",
         "addressState": "NC",
         "addressZip": "28281",
-        "price": 950
+        "price": 950,
+        "description": "Curabitur mauris tortor, convallis ut rhoncus eget, facilisis ut nisi. Sed accumsan quam quis lorem luctus, eu interdum felis fermentum. Phasellus nec pharetra metus. Nunc sit amet massa ac risus bibendum vehicula. Aenean condimentum rutrum massa. Fusce in urna gravida, interdum mi ac, pharetra odio. Maecenas laoreet ac risus in porttitor. Aliquam eu sapien hendrerit, lobortis enim et, scelerisque est."
     },
     {
         "type": "personal",
@@ -125,7 +140,8 @@
         "addressCity": "Grassy Creek",
         "addressState": "NC",
         "addressZip": "28631",
-        "price": 950
+        "price": 950,
+        "description": "Curabitur mauris tortor, convallis ut rhoncus eget, facilisis ut nisi. Sed accumsan quam quis lorem luctus, eu interdum felis fermentum. Phasellus nec pharetra metus. Nunc sit amet massa ac risus bibendum vehicula. Aenean condimentum rutrum massa. Fusce in urna gravida, interdum mi ac, pharetra odio. Maecenas laoreet ac risus in porttitor. Aliquam eu sapien hendrerit, lobortis enim et, scelerisque est."
     },
     {
         "type": "industrial",
@@ -133,7 +149,8 @@
         "addressCity": "Charlotte",
         "addressState": "NC",
         "addressZip": "28230",
-        "price": 950
+        "price": 950,
+        "description": "Curabitur mauris tortor, convallis ut rhoncus eget, facilisis ut nisi. Sed accumsan quam quis lorem luctus, eu interdum felis fermentum. Phasellus nec pharetra metus. Nunc sit amet massa ac risus bibendum vehicula. Aenean condimentum rutrum massa. Fusce in urna gravida, interdum mi ac, pharetra odio. Maecenas laoreet ac risus in porttitor. Aliquam eu sapien hendrerit, lobortis enim et, scelerisque est."
     },
     {
         "type": "commercial",
@@ -141,7 +158,8 @@
         "addressCity": "Clemmons",
         "addressState": "NC",
         "addressZip": "27012",
-        "price": 950
+        "price": 950,
+        "description": "Curabitur mauris tortor, convallis ut rhoncus eget, facilisis ut nisi. Sed accumsan quam quis lorem luctus, eu interdum felis fermentum. Phasellus nec pharetra metus. Nunc sit amet massa ac risus bibendum vehicula. Aenean condimentum rutrum massa. Fusce in urna gravida, interdum mi ac, pharetra odio. Maecenas laoreet ac risus in porttitor. Aliquam eu sapien hendrerit, lobortis enim et, scelerisque est."
     },
     {
         "type": "personal",
@@ -149,7 +167,8 @@
         "addressCity": "Gold Hill",
         "addressState": "NC",
         "addressZip": "28071",
-        "price": 950
+        "price": 950,
+        "description": "Curabitur mauris tortor, convallis ut rhoncus eget, facilisis ut nisi. Sed accumsan quam quis lorem luctus, eu interdum felis fermentum. Phasellus nec pharetra metus. Nunc sit amet massa ac risus bibendum vehicula. Aenean condimentum rutrum massa. Fusce in urna gravida, interdum mi ac, pharetra odio. Maecenas laoreet ac risus in porttitor. Aliquam eu sapien hendrerit, lobortis enim et, scelerisque est."
     },
     {
         "type": "personal",
@@ -157,7 +176,8 @@
         "addressCity": "Mathews",
         "addressState": "NC",
         "addressZip": "28105",
-        "price": 950
+        "price": 950,
+        "description": "Curabitur mauris tortor, convallis ut rhoncus eget, facilisis ut nisi. Sed accumsan quam quis lorem luctus, eu interdum felis fermentum. Phasellus nec pharetra metus. Nunc sit amet massa ac risus bibendum vehicula. Aenean condimentum rutrum massa. Fusce in urna gravida, interdum mi ac, pharetra odio. Maecenas laoreet ac risus in porttitor. Aliquam eu sapien hendrerit, lobortis enim et, scelerisque est."
     },
     {
         "type": "personal",
@@ -165,6 +185,7 @@
         "addressCity": "Raleigh",
         "addressState": "NC",
         "addressZip": "27624",
-        "price": 950
+        "price": 950,
+        "description": "Curabitur mauris tortor, convallis ut rhoncus eget, facilisis ut nisi. Sed accumsan quam quis lorem luctus, eu interdum felis fermentum. Phasellus nec pharetra metus. Nunc sit amet massa ac risus bibendum vehicula. Aenean condimentum rutrum massa. Fusce in urna gravida, interdum mi ac, pharetra odio. Maecenas laoreet ac risus in porttitor. Aliquam eu sapien hendrerit, lobortis enim et, scelerisque est."
     }
 ]

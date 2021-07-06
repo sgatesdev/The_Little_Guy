@@ -13,14 +13,17 @@ export const QUERY_PROPERTIES = gql`
 
 export const QUERY_ALL_PROPERTIES = gql`
    {
-       properties {
-           _id
+       allProperties {
+            _id
            addressStreet
            addressCity
            addressState
            addressZip
            price
-           imageLink
+           description
+           imageLink {
+            imageLink
+          }
        }
    }
 `;

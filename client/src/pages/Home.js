@@ -44,26 +44,28 @@ export const Home = () => {
     const dispatch = useDispatch();
     const state = useSelector((state) => state);
 
+    /** 
     useEffect(() => {
         dispatch({
             type: UPDATE_PROPERTIES,
             payload: testData
         })
     }, [dispatch]);
+    **/
+
 
     // apollo
-    //const { loading, data } = useQuery(QUERY_ALL_PROPERTIES);
+    const { loading, data } = useQuery(QUERY_ALL_PROPERTIES);
 
-    /** pull property data on load, send to redux store
+    // pull property data on load, send to redux store
     useEffect(() => {
         if(data) {
             dispatch({
                 type: UPDATE_PROPERTIES,
-                payload: data.properties
+                payload: data.allProperties
             })
         }
-    }, [data, loading, dispatch]);
-    */ 
+    }, [data, loading, dispatch]); 
 
     return (
         <>

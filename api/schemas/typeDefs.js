@@ -45,6 +45,7 @@ const typeDefs = gql`
         getRating(id: ID!): User  
         findLandlord(input: UpdatePropertyInput!): User
     }
+    
     input UpdatePropertyInput {
         type: String
         addressStreet: String

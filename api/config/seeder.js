@@ -13,6 +13,7 @@ db.once('open', async () => {
 
     for (let i = 0; i < allUsers.length; i++) {
         const user = allUsers[i];
+        console.log(user._id);
         propertyData[i].owner = user._id;
         propertyData[10].tenant = user._id;
         propertyData[11].tenant = user._id;
@@ -22,15 +23,25 @@ db.once('open', async () => {
     // simple test case
     await User.create(    {
         "password": "password",
-        "firstName": "Sammy",
-        "lastName": "G",
-        "username": "samg",
-        "email": "sam@test.com"
+        "firstName": "Test",
+        "lastName": "Tenant",
+        "username": "testT",
+        "email": "testT@test.com"
+    },
+    {
+        "password": "password",
+        "firstName": "Test",
+        "lastName": "Landlord",
+        "username": "testL",
+        "email": "testL@test.com",
+        "is_landlord": true
     });
 
     console.log('Users inserted! :)');
 
     await Property.deleteMany();
+
+
 
     await Property.insertMany(propertyData);
     console.log('Properties Inserted! :)');
