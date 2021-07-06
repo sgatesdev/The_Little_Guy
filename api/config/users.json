@@ -11,7 +11,8 @@
         "firstName": "Jimmy",
         "lastName": "Dickinson",
         "username": "jimmy.dickinson",
-        "email": "jimmy.dickinson@email.com"
+        "email": "jimmy.dickinson@email.com",
+        "rating": [1,4,3,5,5,3]
     },
     {
         "password": "gDX5wP2IAc",
