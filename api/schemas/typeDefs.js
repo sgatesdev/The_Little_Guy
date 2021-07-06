@@ -9,6 +9,8 @@ const typeDefs = gql`
         lastName: String!
         password: String!
         is_landlord: Boolean
+        rating: [Int]
+        avarage: Int
     }
 
     type Property {
@@ -35,18 +37,21 @@ const typeDefs = gql`
     type Query {
         user(_id:ID!): User
         me:User
-        property(address: String): Property
-        myProperties: Property
-        myTenants: Property
+        property(input: UpdatePropertyInput!): Property
+        myProperties: [Property]
+        myTenants: [User]
         allProperties: [Property]
+        # use aggragete to avarage up rating array
+        getRating(id: ID!): User  
+        findLandlord(input: UpdatePropertyInput!): User
     }
     input UpdatePropertyInput {
-        type: String!
-        addressStreet: String!
-        addressCity: String!
-        addressState: String!
-        addressZip: String!
-        price: Int!
+        type: String
+        addressStreet: String
+        addressCity: String
+        addressState: String
+        addressZip: String
+        price: Int
         owner: ID
         tenant: ID
         imageLink: [String]
@@ -67,9 +72,7 @@ const typeDefs = gql`
         signUp(input: NewUserInput!): Auth
         updateMyProperties(_id: ID!, input: UpdatePropertyInput!): Property
         updateMySavedProperties: Property
-        findProperty(address: String!): Property
-        findLanlord: User
-        deleteProperty: User
+        deleteProperty(_id: ID!): Property
         deleteUser: Auth
     }
 
