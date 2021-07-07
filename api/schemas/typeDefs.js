@@ -11,6 +11,7 @@ const typeDefs = gql`
         is_landlord: Boolean
         rating: [Int]
         avarage: Int
+        current_property: Property
     }
 
     type Property {

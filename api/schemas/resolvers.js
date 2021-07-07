@@ -7,8 +7,10 @@ const { signToken } = require('../utils/auth');
 const resolvers = {
     Query: {
         user: async (parent, { args }) => {
-
-            return await User.findOne({ args });
+            return await User.findOne({ args }).populate({
+                path: 'current_property',
+                populate: 'Property'
+            });
         },
         property: async (parent, { input }) => {
             const property = await Property.findOne(
@@ -18,24 +20,30 @@ const resolvers = {
                     addressState: input.addressState,
                     addressZip: input.addressZip,
                    }
-            ).populate('User');
+            ).populate({
+                path: 'owner' ,
+                populate: 'User'
+            });
             if(!property) throw new AuthenticationError('No property found')
             return property
         },
         me: async (parent, args, context) => {
             if (context.user) {
-                const user = await User.findOne({ _id: context.user._id }).populate('Property').populate({
-                    path: 'Property.Images',
-                    populate: 'Images'
-                })
+                const user = await User.findOne({ _id: context.user._id }).populate({
+                    path: 'current_property',
+                    populate: {
+                        path: 'owner'
+                    }
+                });
                 return user;
             }
             throw new AuthenticationError('Not Logged In');
         },
         myProperties: async (parent, args, context) => {
             if (context.user) {
-                const userProperties = await Property.find({ owner: "60dd1d3d495bb208abc6ed0b"}).populate('Images')
-                return userProperties
+                const userProperties = await Property.find({ owner: context.user._id }).populate('Images')
+
+                return userProperties;
             }
             throw new AuthenticationError('Not logged In!');
         },
@@ -53,7 +61,10 @@ const resolvers = {
         },
         allProperties: async (parent, args) => {
             try {
-                const allProperties = Property.find().populate('User').limit(20);
+                const allProperties = Property.find().populate({
+                    path: 'owner',
+                    populate: 'User'
+                }).limit(20);
                 return allProperties;
             } catch (error) {
                 throw new AuthenticationError('No Properties found');

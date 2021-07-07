@@ -21,6 +21,10 @@ export const QUERY_ALL_PROPERTIES = gql`
            addressZip
            price
            description
+           owner {
+           		firstName
+            	lastName
+           }
            imageLink {
             imageLink
           }

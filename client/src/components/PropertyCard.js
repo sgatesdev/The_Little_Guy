@@ -12,9 +12,12 @@ const PropertyCard = ({ property }) => {
         imageLink,
         description   
     } = property;
+
+    const { firstName, lastName } = property.owner;
+
     return(
         <>
-        <div class="uk-card uk-card-default uk-grid-collapse uk-child-width-1-2@s uk-margin uk-grid">
+        <div class="uk-card uk-card-default uk-grid-collapse uk-child-width-1-2@s uk-margin uk-grid" key={`${_id}`}>
             <div class="uk-card-media-left uk-cover-container">
                 <img src={ imageLink } alt="" class="uk-cover" />
                 <canvas width="300" height="200"></canvas>
@@ -23,9 +26,9 @@ const PropertyCard = ({ property }) => {
                 <div class="uk-card-body">
                     <h3 class="uk-card-title uk-margin-remove">{ addressStreet }</h3>
                     {`${addressCity}, ${addressState} ${addressZip}`}
-                    <p className="uk-margin-remove">{ formatPrice(price) }</p>
+                    <p className="uk-margin-remove">{ formatPrice(price) } / month</p>
                     <p className="uk-text-left">{ description }</p>
-                    <p className="uk-text-left">{ `posted by ` }</p>
+                    <p className="uk-text-left">{ `posted by ${firstName} ${lastName}` }</p>
                 </div>
             </div>
         </div>
