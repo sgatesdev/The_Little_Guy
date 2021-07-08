@@ -32,18 +32,7 @@ const typeDefs = gql`
         token: ID
         user: User
     }
-    type Query {
-        user(_id:ID!): User
-        me:User
-        property(input: UpdatePropertyInput!): Property
-        myProperties: [Property]
-        myTenants: [User]
-        allProperties: [Property]
-        # use aggragete to avarage up rating array
-        getRating(id: ID!): User  
-        findLandlord(input: UpdatePropertyInput!): User
-    }
-    
+
     input UpdatePropertyInput {
         type: String
         addressStreet: String
@@ -64,14 +53,23 @@ const typeDefs = gql`
         username: String
         is_landlord: Boolean
     }
-# need to set up all new mutations tomorrow
+    type Query {
+        singleUser(id:ID!): User
+        me:User
+        property(input: UpdatePropertyInput!): Property
+        myProperties: [Property]
+        myTenants: [User]
+        allProperties: [Property]
+        # use aggragete to avarage up rating array
+        getRating(id: ID!): Float 
+        findLandlord(input: UpdatePropertyInput!): User
+    }
     type Mutation {
         login(email:String!, password:String!): Auth
         signUp(input: NewUserInput!): Auth
-        updateMyProperties(_id: ID!, input: UpdatePropertyInput!): Property
-        updateMySavedProperties: Property
         addUserImage( image: String): User
         addPropertyImages(_id: ID!, image: [String]): Property
+        updateProperties(_id: ID!, input: UpdatePropertyInput!): Property
         deleteProperty(_id: ID!): Property
         deleteUser: Auth
     }
