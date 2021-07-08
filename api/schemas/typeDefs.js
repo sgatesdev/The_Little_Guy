@@ -9,6 +9,7 @@ const typeDefs = gql`
         lastName: String!
         password: String!
         is_landlord: Boolean
+        image: String
         rating: [Int]
         avarage: Int
     }
@@ -23,11 +24,8 @@ const typeDefs = gql`
         price: Int
         owner: User
         tenant: User
-        imageLink: [Image]
+        images:[String]
         description: String
-    }
-    type Image {
-        imageLink: String
     }
 
     type Auth {
@@ -55,7 +53,6 @@ const typeDefs = gql`
         price: Int
         owner: ID
         tenant: ID
-        imageLink: [String]
         description: String
     }
 
@@ -73,6 +70,8 @@ const typeDefs = gql`
         signUp(input: NewUserInput!): Auth
         updateMyProperties(_id: ID!, input: UpdatePropertyInput!): Property
         updateMySavedProperties: Property
+        addUserImage( image: String): User
+        addPropertyImages(_id: ID!, image: [String]): Property
         deleteProperty(_id: ID!): Property
         deleteUser: Auth
     }

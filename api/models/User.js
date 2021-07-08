@@ -38,6 +38,10 @@ const userSchema = new Schema({
         type: Boolean,
         default: false
     },
+    bio: {
+        type: String,
+        required: true
+    },
     address: {
         type: String,
         default: '',
@@ -58,6 +62,10 @@ const userSchema = new Schema({
         ref: 'Property'
         }
     ],
+    image: 
+        {
+        type: String,
+        },
     rating: [Number]
 },
 {

@@ -11,6 +11,7 @@ import { QUERY_ALL_PROPERTIES } from '../apollo-client/queries';
 import { UPDATE_PROPERTIES } from '../store/actions';
 
 import PropertyList from '../components/PropertyList';
+import ImageCard from '../components/ImageCard';
 
 const testData = [
     {
@@ -69,6 +70,7 @@ export const Home = () => {
 
     return (
         <>
+        <ImageCard/>
         <h1 class="uk-heading-small uk-flex uk-flex-center">{ state.user ? `Welcome back, ${state.user.firstName}!` : null }</h1>
         <div className="uk-flex uk-flex-center uk-width-1-1 uk-margin-top">
         <PropertyList properties={state.properties}/>

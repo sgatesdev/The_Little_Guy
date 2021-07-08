@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 
-export const ImageUpload = () => {
+ const ImageUpload = () => {
     const [fileInput, setFileInput] = useState('');
     const [previewedFile, setPreviewedFile] = useState('');
 
@@ -50,3 +50,4 @@ export const ImageUpload = () => {
      </div>
  )
 }
+export default ImageUpload;
