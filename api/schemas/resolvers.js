@@ -9,7 +9,9 @@ const resolvers = {
         user: async (parent, { args }) => {
             return await User.findOne({ args }).populate({
                 path: 'current_property',
-                populate: 'Property'
+                populate: {
+                    path: 'owner'
+                }
             });
         },
         property: async (parent, { input }) => {
@@ -109,7 +111,12 @@ const resolvers = {
 
     Mutation: {
         login: async (parent, { email, password }) => {
-            const user = await User.findOne({ email });
+            const user = await User.findOne({ email }).populate({
+                path: 'current_property',
+                populate: {
+                    path: 'owner'
+                }
+            });
 
             if (!user) {
                 throw new AuthenticationError('user not found');

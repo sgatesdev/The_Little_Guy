@@ -61,6 +61,21 @@ export const QUERY_ME = gql`
         lastName
         email
         is_landlord
+        current_property {
+            owner {
+                firstName
+                lastName
+            }
+            addressStreet
+            addressCity
+            addressState
+            addressZip
+            price
+            imageLink {
+                imageLink
+            }
+            description
+        }
     }
 }
 `;
