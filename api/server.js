@@ -5,6 +5,7 @@ const path = require('path');
 const { typeDefs, resolvers } = require('./schemas/index');
 const { AuthMiddleware } = require('./utils/auth');
 const db = require('./config/config');
+const { cloudinary } = require('./utils/cloudinary');
 
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -25,6 +26,9 @@ if(process.env.NODE_ENV === 'production') {
 app.get('/', (req, res ) => {
     res.sendFile(path.join(publicPath, 'index.html'))
 });
+// app.get('/api/images/:id', async (req, res) => {
+//     const {resources} = await cloudinary.search.expression('public_id:' + req.params.id).execute();
+// })
 app.post('/api/uploadImage', async (req, res) => {
     try{
         const imageString = req.body.data;
@@ -32,6 +36,7 @@ app.post('/api/uploadImage', async (req, res) => {
         upload(imageString, {
             upload_preset: 'usydr1v1'
         })
+        console.log(uploadedResponse);
 
     } catch (err) {
         console.log(err);

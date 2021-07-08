@@ -43,6 +43,17 @@ export const SIGN_UP = gql`
   }
 `;
 
+export const ADD_USER_IMAGE = gql`
+mutation($image: String) {
+  addUserImage(image: $image) {
+    user {
+      _id
+    }
+  }
+}`;
+export const ADD_PROPERTY_IMAGES = gql`
+mutation($_id: ) {}`;
+
 /** 
 
 export const UPDATE_USER = gql`

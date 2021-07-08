@@ -93,10 +93,10 @@ export const Header = () => {
             return(
                 <>
                 <li className="uk-parent">
-                <Link to="/login">Login</Link>
+                <Link className="xyzLink" to="/login">Login</Link>
                 </li>
                 <li className="uk-parent">
-                <Link to="/signup">Sign Up</Link>
+                <Link className="xyzLink" to="/signup">Sign Up</Link>
                 </li>
                 </>
             );
@@ -105,11 +105,11 @@ export const Header = () => {
 
     return (
         <>
-        <nav className="uk-navbar-container" uk-navbar>
+        <nav className="uk-navbar-container xyzNav">
             <div className="uk-navbar-left">
                 <ul class="uk-navbar-nav uk-animation-fade">
-                    <li className="uk-active"><Link to="/">The Little Guy</Link></li>
-                    <li className="uk-active"><Link to="/">Home</Link></li>
+                    <li className="uk-active xyzLink"><Link className="xyzLink xyzLowercase" to="/">The Little Guy</Link></li>
+                    <li className="uk-active xyzLink"><Link className="xyzLink" to="/">Home</Link></li>
                     {
                         renderMenu()
                     }

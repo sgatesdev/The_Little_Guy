@@ -39,6 +39,12 @@ const userSchema = new Schema({
         type: Boolean,
         default: false
     },
+
+    bio: {
+        type: String,
+        required: true
+    },
+
     addressStreet: {
         type: String,
         required: true
@@ -71,6 +77,10 @@ const userSchema = new Schema({
             ref: 'Property'
         }
     ],
+    image: 
+        {
+        type: String,
+        },
     rating: [Number]
 },
     {
