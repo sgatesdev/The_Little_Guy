@@ -1,8 +1,8 @@
 import React, { useEffect, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { useLazyQuery } from '@apollo/client';
-import { Disclosure, Menu, Transition } from '@headlessui/react'
-import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
+import { Disclosure } from '@headlessui/react'
+import { MenuIcon, XIcon } from '@heroicons/react/outline'
 // using redux hooks api
 import { useSelector, useDispatch } from 'react-redux';
 
