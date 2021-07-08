@@ -36,7 +36,7 @@ app.post('/api/uploadImage', async (req, res) => {
         upload(imageString, {
             upload_preset: 'usydr1v1'
         })
-        console.log(uploadedResponse);
+        console.log(uploadedResponse.public_id);
 
     } catch (err) {
         console.log(err);

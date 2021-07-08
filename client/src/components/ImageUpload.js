@@ -1,8 +1,13 @@
 import React, {useState} from 'react';
+import {ADD_USER_IMAGE} from '../apollo-client/mutations';
+import {ADD_PROPERTY_IMAGES} from '../apollo-client/mutations';
+
 
  const ImageUpload = () => {
     const [fileInput, setFileInput] = useState('');
     const [previewedFile, setPreviewedFile] = useState('');
+    const [addUserImage, {error}] = useMutation(ADD_USER_IMAGE);
+    const [addPropertyImages, {error}] = useMutation(ADD_PROPERTY_IMAGES);
 
     const handleFileUpload = (event) => {
         const file = event.target.files[0];

@@ -51,8 +51,15 @@ mutation($image: String) {
     }
   }
 }`;
+
 export const ADD_PROPERTY_IMAGES = gql`
-mutation($_id: ) {}`;
+mutation($_id: ID!, $image: String) {
+  addPropertyImages(_id: $_id image: $image) {
+    property {
+      _id
+    }
+  }
+}`;
 
 /** 
 
