@@ -12,7 +12,7 @@ const resolvers = {
                 populate: {
                     path: 'owner'
                 }
-            });
+            }) 
         },
         property: async (parent, { input }) => {
             const property = await Property.findOne(
@@ -38,25 +38,24 @@ const resolvers = {
                     }
                 });
                 return user;
-            }
+            }``
             throw new AuthenticationError('Not Logged In');
         },
         myProperties: async (parent, args, context) => {
             if (context.user) {
-                const userProperties = await Property.find({ owner: context.user._id }).populate('Images')
-
-                return userProperties;
+                const userProperties = await Property.find({ owner: context.user._id })
+                return userProperties
             }
             throw new AuthenticationError('Not logged In!');
         },
         myTenants: async (parent, args, context) => {
             if (context.user) {
-                const userTenants = await Property.find({ owner: context.user._id}).populate({
+                const userTenants = await Property.find({ owner: context.user._id }).populate({
                     path: 'tenant',
                     populate: 'User'
                 });
                 let tenants = [];
-                userTenants.forEach((property) => tenants.push(property.tenant) )
+                userTenants.forEach((property) => tenants.push(property.tenant))
                 return tenants;
             }
             throw new AuthenticationError('Not Logged In!');
@@ -74,15 +73,11 @@ const resolvers = {
         },
         getRating: async (parent, { id }) => {
             try {
-                const userRating = await User.aggregate([{ $match: { _id: id } },
-                {
-                    $group: {
-                        _id: id,
-                        rating: { $avg: 'rating' }
-                    }
-                }]);
-                console.log(userRating)
-                return userRating
+                const userRating = await User.findById(id);
+                let rating = userRating.rating;
+                let total = rating.reduce((total, num) => num + total );
+                let avg = total / rating.length;
+                return avg
             } catch (error) {
                 console.log(error)
                 throw new AuthenticationError('There are no rating yet!')
@@ -92,15 +87,15 @@ const resolvers = {
             try {
                 const property = await Property.findOne(
                     {
-                     addressStreet: input.addressStreet,
-                     addressCity: input.addressCity,
-                     addressState: input.addressState,
-                     addressZip: input.addressZip,
+                        addressStreet: input.addressStreet,
+                        addressCity: input.addressCity,
+                        addressState: input.addressState,
+                        addressZip: input.addressZip,
                     }).populate({
-                    path: 'owner',
-                    populate: 'User'
-                });
-                const {owner} = property;
+                        path: 'owner',
+                        populate: 'User'
+                    });
+                const { owner } = property;
                 return owner
             } catch (error) {
                 throw new AuthenticationError('No property found')
@@ -152,23 +147,21 @@ const resolvers = {
 
             return { token, user };
         },
-        updateMyProperties: async (parent, args, context) => {
-            if(context.user) {
-            const property = await Property.updateOne({ owner: context.user._id })
+        updateProperties: async (parent, args, context) => {
+            if (context.user) {
+                const property = await Property.findOneAndUpdate({ _id: args.id }, { $set: args.input });
+                return property
             }
-            throw new AuthenticationError('Not Logged In');
+            throw new AuthenticationError('Not Logged In')
         },
-        updateMySavedProperties: async (parent, context) => {
-
-        },
-        deleteProperty: async (parent, {_id}, context) => {
+        deleteProperty: async (parent, { _id }, context) => {
             try {
-                if(context.user){
-                const user = await User.findOneDelete({owned_properties: context.user._id});
-                const property = await Property.deleteOne({_id:_id});
+                if (context.user) {
+                    const user = await User.findOneDelete({ owned_properties: context.user._id });
+                    const property = await Property.deleteOne({ _id: _id });
 
-                return property;
-                } 
+                    return property;
+                }
                 throw new AuthenticationError('Not Logged In')
             } catch (error) {
                 throw new AuthenticationError('No property was found');
@@ -176,11 +169,11 @@ const resolvers = {
         },
         deleteUser: async (parent, context) => {
             try {
-                if(context.user) {
-                const  user = await User.findByIdAndDelete(context.user._id);
-                const token = ''
-                return { token, user}
-                } 
+                if (context.user) {
+                    const user = await User.findByIdAndDelete(context.user._id);
+                    const token = ''
+                    return { token, user }
+                }
                 throw new AuthenticationError('Not Logged In')
             } catch (error) {
                 throw new AuthenticationError(error);

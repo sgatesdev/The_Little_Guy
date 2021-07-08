@@ -1,5 +1,6 @@
 const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
+const Property = require('./Property');
 
 const validEmail = (email) => {
     var re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
@@ -38,9 +39,21 @@ const userSchema = new Schema({
         type: Boolean,
         default: false
     },
-    address: {
+    addressStreet: {
         type: String,
-        default: '',
+        required: true
+    },
+    addressCity: {
+        type: String,
+        required: true
+    },
+    addressState: {
+        type: String,
+        required: true
+    },
+    addressZip: {
+        type: String,
+        required: true
     },
     saved_properties: [
         {
@@ -54,30 +67,35 @@ const userSchema = new Schema({
     },
     owned_properties: [
         {
-        type: Schema.Types.ObjectId,
-        ref: 'Property'
+            type: Schema.Types.ObjectId,
+            ref: 'Property'
         }
     ],
     rating: [Number]
 },
-{
-    timestamps: true
-});
+    {
+        timestamps: true
+    });
 
 userSchema.pre('save', async function (next) {
     if (this.isNew || this.isModified('password')) {
-      const saltRounds = 10;
-      this.password = await bcrypt.hash(this.password, saltRounds);
+        const saltRounds = 10;
+        this.password = await bcrypt.hash(this.password, saltRounds);
     }
-  
+
     next();
-  });
-  
-  
-  userSchema.methods.isCorrectPassword = async function (password) {
+});
+
+userSchema.pre('remove', async function (next) {
+    Property.remove({owner: this._id}.exec());
+    next()
+});
+
+
+userSchema.methods.isCorrectPassword = async function (password) {
     return bcrypt.compare(password, this.password);
-  };
-  
+};
+
 
 const User = model('User', userSchema);
 
