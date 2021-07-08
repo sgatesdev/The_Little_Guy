@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
+import { LockClosedIcon } from '@heroicons/react/solid'
 
 // new stuff for redux 
 import { useDispatch, useSelector } from 'react-redux';
@@ -106,7 +107,7 @@ export const Login = () => {
         </div>
     );
 }
-// import { LockClosedIcon } from '@heroicons/react/solid'
+
 
 // export default function Example() {
 //   return (
