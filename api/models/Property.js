@@ -33,10 +33,11 @@ const propertySchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'User',
     },
-    imageLink: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Image'
-    }],
+    images: [
+        {
+        type: String,
+        }
+    ],
     description: {
         type: String,
         default: ''

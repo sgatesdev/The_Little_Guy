@@ -1,0 +1,19 @@
+:root {
+    font-family: 'Fjalla One', sans-serif !important;
+
+}
+.xyzNav {
+    background: rgb(214,137,31) !important;
+    background: radial-gradient(circle, rgba(214,137,31,1) 0%, rgba(237,42,42,1) 100%) !important;
+}
+.xyzLink {
+    color:white !important;
+    text-shadow: 0 0 0.15em hsl(0, 0%, 100%);
+    filter: blur(0.007em);
+    /* font-family: 'Rubik Mono One', sans-serif !important; */
+    font-size: large !important;
+    
+}
+.xyzLowercase {
+text-transform: lowercase !important;
+}

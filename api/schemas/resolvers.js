@@ -31,12 +31,14 @@ const resolvers = {
         },
         me: async (parent, args, context) => {
             if (context.user) {
+
                 const user = await User.findOne({ _id: context.user._id }).populate({
                     path: 'current_property',
                     populate: {
                         path: 'owner'
                     }
                 });
+
                 return user;
             }``
             throw new AuthenticationError('Not Logged In');
@@ -154,7 +156,21 @@ const resolvers = {
             }
             throw new AuthenticationError('Not Logged In')
         },
+
+        addUserImage: async (parent, {image}, context) => {
+            if(context.user) {
+                const user = await User.updateOne({_id: context.user._id}, {image: image})
+                return {user};
+            } throw new AuthenticationError('Not Logged In');
+        },
+        addPropertyImages: async (parent, {_id, image}, context) => {
+            if (context.user) {
+            const property = await Property.updateOne({_id: _id}, {$push: {image}})
+            return property;
+            } throw new AuthenticationError('Not Logged In');
+        },
         deleteProperty: async (parent, { _id }, context) => {
+
             try {
                 if (context.user) {
                     const user = await User.findOneDelete({ owned_properties: context.user._id });

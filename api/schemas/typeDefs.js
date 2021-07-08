@@ -9,6 +9,7 @@ const typeDefs = gql`
         lastName: String!
         password: String!
         is_landlord: Boolean
+        image: String
         rating: [Int]
         avarage: Int
         current_property: Property
@@ -24,11 +25,8 @@ const typeDefs = gql`
         price: Int
         owner: User
         tenant: User
-        imageLink: [Image]
+        images:[String]
         description: String
-    }
-    type Image {
-        imageLink: String
     }
 
     type Auth {
@@ -45,7 +43,6 @@ const typeDefs = gql`
         price: Int
         owner: ID
         tenant: ID
-        imageLink: [String]
         description: String
     }
 
@@ -71,6 +68,8 @@ const typeDefs = gql`
     type Mutation {
         login(email:String!, password:String!): Auth
         signUp(input: NewUserInput!): Auth
+        addUserImage( image: String): User
+        addPropertyImages(_id: ID!, image: [String]): Property
         updateProperties(_id: ID!, input: UpdatePropertyInput!): Property
         deleteProperty(_id: ID!): Property
         deleteUser: Auth
