@@ -11,6 +11,21 @@ mutation login($email: String!, $password: String!) {
         lastName
         username
         is_landlord
+        current_property {
+            owner {
+                firstName
+                lastName
+            }
+            addressStreet
+            addressCity
+            addressState
+            addressZip
+            price
+            imageLink {
+                imageLink
+            }
+            description
+        }
       }
     }
   }
