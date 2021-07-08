@@ -165,7 +165,7 @@ const resolvers = {
         },
         addPropertyImages: async (parent, {_id, image}, context) => {
             if (context.user) {
-            const property = await Property.updateOne({_id: _id}, {$push: {image}})
+            const property = await Property.updateOne({_id: _id}, {$push: {images: image}})
             return property;
             } throw new AuthenticationError('Not Logged In');
         },
