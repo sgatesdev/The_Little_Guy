@@ -12,6 +12,7 @@ const typeDefs = gql`
         image: String
         rating: [Int]
         avarage: Int
+        current_property: Property
     }
 
     type Property {

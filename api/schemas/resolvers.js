@@ -6,9 +6,13 @@ const { signToken } = require('../utils/auth');
 
 const resolvers = {
     Query: {
-        singleUser: async (parent, { args }) => {
-            const user = await User.find({ _id: args.id })
-            return user;
+        user: async (parent, { args }) => {
+            return await User.findOne({ args }).populate({
+                path: 'current_property',
+                populate: {
+                    path: 'owner'
+                }
+            }) 
         },
         property: async (parent, { input }) => {
             const property = await Property.findOne(
@@ -17,17 +21,24 @@ const resolvers = {
                     addressCity: input.addressCity,
                     addressState: input.addressState,
                     addressZip: input.addressZip,
-                }
+                   }
             ).populate({
-                path: 'owner',
+                path: 'owner' ,
                 populate: 'User'
             });
-            if (!property) throw new AuthenticationError('No property found')
+            if(!property) throw new AuthenticationError('No property found')
             return property
         },
         me: async (parent, args, context) => {
             if (context.user) {
-                const user = await User.findOne({ _id: context.user._id })
+
+                const user = await User.findOne({ _id: context.user._id }).populate({
+                    path: 'current_property',
+                    populate: {
+                        path: 'owner'
+                    }
+                });
+
                 return user;
             }``
             throw new AuthenticationError('Not Logged In');
@@ -97,7 +108,12 @@ const resolvers = {
 
     Mutation: {
         login: async (parent, { email, password }) => {
-            const user = await User.findOne({ email });
+            const user = await User.findOne({ email }).populate({
+                path: 'current_property',
+                populate: {
+                    path: 'owner'
+                }
+            });
 
             if (!user) {
                 throw new AuthenticationError('user not found');

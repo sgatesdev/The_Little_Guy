@@ -1,7 +1,12 @@
+import React, { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+
+import PropertyCard from "../../components/PropertyCard";
+
 export const Tenant = () => {
-    return(
-        <h1>
-            Tenant index!
-        </h1>
-    );
+    const state = useSelector((state) => state);
+
+    return state.user && state.user.current_property ? 
+    (<PropertyCard property={state.user.current_property} />) :
+    (<h1>False</h1>);
 }

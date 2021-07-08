@@ -43,8 +43,8 @@ export const Login = () => {
 
             const token = userData.data.login.token;
             const userDataRes = userData.data.login.user;
-
-            console.log(userDataRes);
+            console.log(userData.data);
+            //console.log(userDataRes);
 
             // save token to LocalStorage
             saveToken(token);
