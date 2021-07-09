@@ -1,4 +1,4 @@
-import React, { useEffect, Fragment } from 'react';
+import React, { useEffect, useState, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { useLazyQuery } from '@apollo/client';
 import { Disclosure } from '@headlessui/react'
@@ -22,33 +22,32 @@ import { QUERY_ME } from '../apollo-client/queries';
 
 
 const menu = [
-  { name: 'Home', to: '/', current: true },
-  { name: 'About', to: '/about', current: false },
-  { name: 'SignUp', to: '/signup', current: false },
-  { name: 'Login', to: '/login', current: false },
+  { name: 'Home', to: '/' },
+  { name: 'About', to: '/about' },
+  { name: 'SignUp', to: '/signup' },
+  { name: 'Login', to: '/login' }
 ]
 const tenantMenu = [
-    { name: 'Home', to: '/', current: true },
-    { name: 'Tenant Portal', to: '/tenant', current: false },
-    {name: 'Saved Properties', to: '/tenant/saved', current: false },
-    {name: 'Profile', to: '/tenant/profile', current: false },
-    {name: 'Messages', to: '/messages', current: false },
-    { name: 'About', to: '/about', current: false },
-    { name: 'Logout', to: '/', current: false },
+    { name: 'Home', to: '/' },
+    { name: 'Tenant Portal', to: '/tenant' },
+    {name: 'Saved Properties', to: '/tenant/saved' },
+    {name: 'Profile', to: '/tenant/profile' },
+    {name: 'Messages', to: '/messages' },
+    { name: 'About', to: '/about' }
   ]
   const landlordMenu = [
-    { name: 'Home', to: '/', current: true },
-    { name: 'Landlord Portal', to: '/tenant', current: false },
-    {name: 'My Properties', to: '/tenant/saved', current: false },
-    {name: 'Profile', to: '/tenant/profile', current: false },
-    {name: 'Messages', to: '/messages', current: false },
-    { name: 'About', to: '/about', current: false },
-    { name: 'Logout', to: '/', current: false },
+    { name: 'Home', to: '/' },
+    { name: 'Landlord Portal', to: '/tenant' },
+    {name: 'My Properties', to: '/tenant/saved' },
+    {name: 'Profile', to: '/tenant/profile' },
+    {name: 'Messages', to: '/messages' },
+    { name: 'About', to: '/about' }
   ]
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
+
 
 
 export const Header = () => {
@@ -98,6 +97,7 @@ export const Header = () => {
         // redirect user to login
         history.push('/login');
     }
+    const [currentPage, setCurrentPage] = useState('Home')
 
     const renderMenu = () => {
         if(state.user && state.user.is_landlord) {
@@ -105,17 +105,18 @@ export const Header = () => {
                 <>
                 {landlordMenu.map((item) => (
                     <Link
+                      onClick={() => setCurrentPage(item.name)}
                       key={item.name}
                       to={item.to}
                       className={classNames(
-                        item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                        currentPage === item.name ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
                         'px-3 py-2 rounded-md text-sm font-medium'
                       )}
-                      aria-current={item.current ? 'page' : undefined}
                     >
                       {item.name}
                     </Link>
                   ))}
+                  <a onClick={handleLogout} className= 'text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium'></a>
                   </>
             );
         }
@@ -124,17 +125,18 @@ export const Header = () => {
                 <>
                 {tenantMenu.map((item) => (
                     <Link
+                      onClick={() => setCurrentPage(item.name)}
                       key={item.name}
                       to={item.to}
                       className={classNames(
                         item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
                         'px-3 py-2 rounded-md text-sm font-medium'
                       )}
-                      aria-current={item.current ? 'page' : undefined}
                     >
                       {item.name}
                     </Link>
                   ))}
+                  <a onClick={handleLogout} className= 'text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium'></a>
                   </>
             );
         }
@@ -143,13 +145,13 @@ export const Header = () => {
                 <>
                 {menu.map((item) => (
                     <Link
+                      onClick={() => setCurrentPage(item.name)}
                       key={item.name}
                       to={item.to}
                       className={classNames(
-                        item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                        currentPage === item.name ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
                         'px-3 py-2 rounded-md text-sm font-medium'
                       )}
-                      aria-current={item.current ? 'page' : undefined}
                     >
                       {item.name}
                     </Link>
@@ -179,7 +181,12 @@ export const Header = () => {
               </div>
               <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
                 <div className="flex-shrink-0 flex items-center">
-                  <a className=" text-white px-3 py-2 rounded-md text-sm font-medium">The Little Guy</a>
+                <img
+                    className="block h-10 w-auto"
+                    src={`${process.env.PUBLIC_URL}/assets/theLittleGuyCrop.png`}
+                    alt=""
+                  />
+                  <a href='/' className=" text-white px-3 py-2 rounded-md text-sm font-medium">The Little Guy</a>
                 </div>
                 <div className="hidden sm:block sm:ml-6">
                   <div className="flex space-x-4">
