@@ -18,3 +18,8 @@
 .xyzLowercase {
 text-transform: lowercase !important;
 }
+/* .wrapper{
+    display:grid;
+    height:100vh;
+    place-items:center
+  } */
