@@ -57,6 +57,7 @@ export const Login = () => {
         }
         catch(err) {
             // if there's a problem keep user on page and display error
+            console.log(err)
             return setDisplayError('Incorrect username or password!');
         }
 

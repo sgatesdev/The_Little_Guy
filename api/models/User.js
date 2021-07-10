@@ -42,24 +42,19 @@ const userSchema = new Schema({
 
     bio: {
         type: String,
-        required: true
     },
 
     addressStreet: {
         type: String,
-        required: true
     },
     addressCity: {
         type: String,
-        required: true
     },
     addressState: {
         type: String,
-        required: true
     },
     addressZip: {
         type: String,
-        required: true
     },
     saved_properties: [
         {

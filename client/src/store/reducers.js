@@ -15,8 +15,8 @@ import {
 
 const initialState = {
     properties: [],
-    my_propertie: [],
-    user: null
+    my_properties: [],
+    user: null,
 };
 
 export const reducer = (state = initialState, action) => {

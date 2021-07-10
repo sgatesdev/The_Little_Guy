@@ -15,15 +15,14 @@ mutation login($email: String!, $password: String!) {
             owner {
                 firstName
                 lastName
+                username
             }
             addressStreet
             addressCity
             addressState
             addressZip
             price
-            imageLink {
-                imageLink
-            }
+            images
             description
         }
       }
@@ -59,20 +58,16 @@ export const SIGN_UP = gql`
 `;
 
 export const ADD_USER_IMAGE = gql`
-mutation($image: String) {
-  addUserImage(image: $image) {
-    user {
-      _id
-    }
+mutation($id: ID!, $cloudinaryID: String! ) {
+  addUserImage( id: $id,cloudinaryID: $cloudinaryID) {
+    image 
   }
 }`;
 
-export const ADD_PROPERTY_IMAGES = gql`
-mutation($_id: ID!, $image: String) {
-  addPropertyImages(_id: $_id image: $image) {
-    property {
-      _id
-    }
+export const ADD_PROPERTY_IMAGE = gql`
+mutation($_id: ID!, $cloudinaryID: String) {
+  addPropertyImages(_id: $_id image: $cloudinaryID) {
+    image
   }
 }`;
 
