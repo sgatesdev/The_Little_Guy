@@ -63,7 +63,7 @@ const resolvers = {
         },
         allProperties: async (parent, args) => {
             try {
-                const allProperties = Property.find().populate({
+                const allProperties = await Property.find().populate({
                     path: 'owner',
                     populate: 'User'
                 }).limit(20);
