@@ -58,7 +58,7 @@ const typeDefs = gql`
         is_landlord: Boolean
     }
     type Query {
-        singleUser(id:ID!): User
+        user(id:ID!): User
         me:User
         property(input: UpdatePropertyInput!): Property
         myProperties: [Property]

@@ -9,8 +9,6 @@ db.once('open', async () => {
     const allUsers = await User.create(userData);
     console.log('Users inserted! :)');
 
-    await Property.deleteMany();
-
     for (let i = 0; i < allUsers.length; i++) {
         const user = allUsers[i];
         console.log(user._id);
@@ -39,7 +37,9 @@ db.once('open', async () => {
     });
     
     console.log('Users inserted! :)');
-    const allProperties = await Property.insertMany(propertyData);
+
+    await Property.insertMany(propertyData);
+    
     console.log('Properties Inserted! :)');
     await User.create( {
         "password": "pass123",

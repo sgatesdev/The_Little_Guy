@@ -25,7 +25,7 @@ export const QUERY_ALL_PROPERTIES = gql`
            		firstName
             	lastName
            }
-           
+           images
        }
    }
 `;
@@ -69,9 +69,7 @@ export const QUERY_ME = gql`
             addressState
             addressZip
             price
-            imageLink {
-                imageLink
-            }
+            images
             description
         }
     }

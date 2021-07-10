@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
+
+// tailwind
+import { LockClosedIcon } from '@heroicons/react/solid'
 
 // new stuff for redux 
 import { useDispatch } from 'react-redux';
@@ -118,97 +122,132 @@ export const Signup = () => {
     }
 
     return (
-        <div className="uk-animation-fade">
-            <div className="uk-grid uk-margin-top">
-            <div class="uk-width-1-1 uk-flex uk-flex-center">
-            <form className="uk-form-stacked uk-margin-left" onSubmit={handleForm}>
-            
-            <legend class="uk-legend">Sign Up</legend>
+    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-md w-full space-y-8">
+        <div>
+          <img
+            className="mx-auto h-64 w-auto"
+            src={`${process.env.PUBLIC_URL}/assets/theLittleGuyCrop.png`}
+            alt="TLG"
+          />
+          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">Sign up for an account</h2>
+          <p className="mt-2 text-center text-sm text-gray-600">
+            or{' '}
+            <Link to="/login" className="font-medium text-indigo-600 hover:text-indigo-500">
+              Log In
+            </Link>
+          </p>
+        </div>
+        <form className="mt-8 space-y-6" onSubmit={handleForm}>
+          <input type="hidden" name="remember" defaultValue="true" />
+
+          <div className="rounded-md shadow-sm -space-y-px">
+            <div>
+              <label htmlFor="email-address" className="sr-only">
+                Email address
+              </label>
+              <input
+                name="email"
+                type="text"
+                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                placeholder="Email address"
+                autoComplete="email"
+                value={formState.email}
+                onChange={handleInput}
+              />
+            </div>
+
+            <div className="rounded-md shadow-sm -space-y-px">
+            <div>
+              <label htmlFor="email-address" className="sr-only">
+                First Name 
+              </label>
+              <input
+                name="firstName"
+                type="text"
+                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                placeholder="First name"
+                autoComplete="firstName"
+                value={formState.firstName}
+                onChange={handleInput}
+              />
+            </div>
+
+            <div className="rounded-md shadow-sm -space-y-px">
+            <div>
+              <label htmlFor="email-address" className="sr-only">
+                Last Name
+              </label>
+              <input
+                name="lastName"
+                type="text"
+                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                placeholder="Last name"
+                autoComplete="lastName"
+                value={formState.lastName}
+                onChange={handleInput}
+              />
+            </div>
 
             <div>
-                <label className="uk-form-label"></label>
-                <input 
-                    className="uk-input uk-form-width-medium" 
-                    type="text" 
-                    placeholder="Email address" 
-                    name="email"
-                    value={formState.email}
-                    onChange={handleInput}
-                />
+              <label htmlFor="password" className="sr-only">
+                Password
+              </label>
+              <input
+                name="password"
+                type="password"
+                autoComplete="current-password"
+                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                placeholder="Password"
+                value={formState.password}
+                onChange={handleInput}
+              />
+            </div>
+
+
+            <div>
+              <label htmlFor="password" className="sr-only">
+                Confirm password
+              </label>
+              <input
+                name="password_2"
+                type="password"
+                autoComplete="current-password"
+                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                placeholder="Re-enter Password"
+                value={formState.password_2}
+                onChange={handleInput}
+              />
             </div>
 
             <div>
-                <label className="uk-form-label"></label>
                 <input 
-                    className="uk-input uk-form-width-medium" 
-                    type="text" 
-                    placeholder="First Name" 
-                    name="firstName"
-                    value={formState.firstName}
-                    onChange={handleInput}
+                          className="form-checkbox my-2"
+                          type="checkbox" 
+                          name="is_landlord"
+                          value={formState.is_landlord}
+                          onChange={handleInput}
                 />
+                <span class="m-2 text-sm">I am a landlord</span> 
             </div>
 
-            <div>
-                <label className="uk-form-label"></label>
-                <input 
-                    className="uk-input uk-form-width-medium" 
-                    type="text" 
-                    placeholder="Last Name" 
-                    name="lastName"
-                    value={formState.lastName}
-                    onChange={handleInput}
-                />
-            </div>
-
-            <div >
-                <label className="uk-form-label"></label>
-                <input 
-                    className="uk-input uk-form-width-medium" 
-                    type="password" 
-                    placeholder="Password" 
-                    name="password"
-                    value={formState.password}
-                    onChange={handleInput}
-                />
-            </div>
-
-            <div >
-                <label className="uk-form-label"></label>
-                <input 
-                    className="uk-input uk-form-width-medium" 
-                    type="password" 
-                    placeholder="Re-enter password" 
-                    name="password_2"
-                    value={formState.password_2}
-                    onChange={handleInput}
-                />
-            </div>
-
-            <div className="uk-margin-top">
-            <label className="uk-form-label">
-                <input 
-                    type="checkbox" 
-                    name="is_landlord"
-                    value={formState.is_landlord}
-                    onChange={handleInput}
-                /> I am a landlord</label>
-            </div>
-
-
-            <div className="uk-margin">
-            <label className="uk-form-label">
-                { displayError ? displayError : null }
-            </label>
-                <button     
-                    type="submit" 
-                    className="uk-button uk-button-default"
-                >Sign up!</button>
-            </div>
-
-            </form>
-        </div>
-        </div>
-        </div>
+          </div>
+          <div>
+          <label className="mt-2 text-center text-sm text-gray-600">{ displayError ? displayError : null}</label>
+            <button
+              type="submit"
+              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+            >
+              <span className="absolute left-0 inset-y-0 flex items-center pl-3">
+                <LockClosedIcon className="h-5 w-5 text-indigo-500 group-hover:text-indigo-400" aria-hidden="true" />
+              </span>
+              Sign up!
+            </button>
+          </div>
+          </div>
+          </div>
+        </form>
+      </div>
+      </div>
     );
 }

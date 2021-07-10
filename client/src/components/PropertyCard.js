@@ -18,9 +18,9 @@ const PropertyCard = ({ property }) => {
         <>
 <div class="wrapper bg-gray-400 antialiased text-gray-900" key= {`${_id}`}>
 <div> 
-    <img src={ '#'} class="w-full object-cover object-center rounded-lg shadow-md"/>      
  <div class="relative px-4 -mt-16  ">
    <div class="bg-white p-6 rounded-lg shadow-lg">
+   <img src='https://via.placeholder.com/150' class="object-cover object-center rounded-lg shadow-md" alt="property"/>  
     <div class="flex items-baseline">
       <span class="bg-teal-200 text-teal-800 text-xs px-2 inline-block rounded-full  uppercase font-semibold tracking-wide">
         {firstName}{lastName}
