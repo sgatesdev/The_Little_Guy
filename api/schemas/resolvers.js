@@ -6,7 +6,7 @@ const { signToken } = require('../utils/auth');
 
 const resolvers = {
     Query: {
-        user: async (parent, { args }) => {
+        singleUser: async (parent, { args }) => {
             return await User.findOne({ args }).populate({
                 path: 'current_property',
                 populate: {
