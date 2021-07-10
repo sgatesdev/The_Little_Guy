@@ -6,7 +6,7 @@ const { signToken } = require('../utils/auth');
 
 const resolvers = {
     Query: {
-        singleUser: async (parent, { args }) => {
+        user: async (parent, { args }) => {
             return await User.findOne({ args }).populate({
                 path: 'current_property',
                 populate: {
@@ -21,7 +21,7 @@ const resolvers = {
                     addressCity: input.addressCity,
                     addressState: input.addressState,
                     addressZip: input.addressZip,
-                   }
+                }
             ).populate({
                 path: 'owner',
                 populate: 'User'
@@ -73,6 +73,7 @@ const resolvers = {
                     path: 'owner',
                     populate: 'User'
                 }).limit(20);
+
                 console.log(allProperties)
                 return allProperties;
             } catch (error) {

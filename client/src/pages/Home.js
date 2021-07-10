@@ -11,49 +11,11 @@ import { QUERY_ALL_PROPERTIES } from '../apollo-client/queries';
 import { UPDATE_PROPERTIES } from '../store/actions';
 
 import PropertyList from '../components/PropertyList';
-import ImageCard from '../components/ImageCard';
-
-const testData = [
-    {
-        id: "123123123123",
-        addressStreet: "100 Elm St",
-        addressCity: "Raleigh",
-        addressZip: 27615,
-        price: 100000,
-        imageLink: 'https://via.placeholder.com/150'
-    },
-    {
-        id: "123123123123",
-        addressStreet: "101 Elm St",
-        addressCity: "Raleigh",
-        addressZip: 27614,
-        price: 100100,
-        imageLink: 'https://via.placeholder.com/150'
-    },
-    {
-        id: "123123123123",
-        addressStreet: "300 Elm St",
-        addressCity: "Raleigh",
-        addressZip: 27613,
-        price: 100300,
-        imageLink: 'https://via.placeholder.com/150'
-    }
-];
 
 export const Home = () => {
     // redux
     const dispatch = useDispatch();
     const state = useSelector((state) => state);
-
-    /** 
-    useEffect(() => {
-        dispatch({
-            type: UPDATE_PROPERTIES,
-            payload: testData
-        })
-    }, [dispatch]);
-    **/
-
 
     // apollo
     const { loading, data } = useQuery(QUERY_ALL_PROPERTIES);
@@ -70,7 +32,6 @@ export const Home = () => {
 
     return (
         <>
-        
         <h1 class="uk-heading-small uk-flex uk-flex-center">{ state.user ? `Welcome back, ${state.user.firstName}!` : null }</h1>
         <div className="uk-flex uk-flex-center uk-width-1-1 uk-margin-top">
         <PropertyList properties={state.properties}/>

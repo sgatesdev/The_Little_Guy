@@ -7,7 +7,9 @@ const PropertyList = ({ properties }) => {
     return properties.length ? (
         <div class="flex flex-wrap -mx-4">
             {
-                
+                properties.map((property) => {
+                    return <PropertyCard property={ property } />
+                })                
             }
         </div>
     ) : null;
@@ -15,6 +17,3 @@ const PropertyList = ({ properties }) => {
 
 export default PropertyList;
 
-//properties.map((property) => {
-//    return <PropertyCard property={ property } />
-//})
