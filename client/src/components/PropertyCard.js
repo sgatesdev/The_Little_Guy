@@ -1,6 +1,5 @@
 import React from 'react';
-import { formatPrice
- } from '../utils/helpers';
+import { formatPrice} from '../utils/helpers';
 const PropertyCard = ({ property }) => {
     const {
         _id,
@@ -9,7 +8,7 @@ const PropertyCard = ({ property }) => {
         addressState,
         addressZip,
         price,
-        imageLink,
+        images,
         description   
     } = property;
 
@@ -17,22 +16,31 @@ const PropertyCard = ({ property }) => {
 
     return(
         <>
-        <div class="uk-card uk-card-default uk-grid-collapse uk-child-width-1-2@s uk-margin uk-grid" key={`${_id}`}>
-            <div class="uk-card-media-left uk-cover-container">
-                <img src={ imageLink } alt="" class="uk-cover" />
-                <canvas width="300" height="200"></canvas>
-            </div>
-            <div>
-                <div class="uk-card-body">
-                    <h3 class="uk-card-title uk-margin-remove">{ addressStreet }</h3>
-                    {`${addressCity}, ${addressState} ${addressZip}`}
-                    <p className="uk-margin-remove">{ formatPrice(price) } / month</p>
-                    <p className="uk-text-left">{ description }</p>
-                    <p className="uk-text-left">{ `posted by ${firstName} ${lastName}` }</p>
-                </div>
-            </div>
-        </div>
-        </>
+<div class="wrapper bg-gray-400 antialiased text-gray-900" key= {`${_id}`}>
+<div> 
+    <img src={ images[0] } class="w-full object-cover object-center rounded-lg shadow-md"/>      
+ <div class="relative px-4 -mt-16  ">
+   <div class="bg-white p-6 rounded-lg shadow-lg">
+    <div class="flex items-baseline">
+      <span class="bg-teal-200 text-teal-800 text-xs px-2 inline-block rounded-full  uppercase font-semibold tracking-wide">
+        {firstName}{lastName}
+      </span>
+      <div class="ml-2 text-teal-600 uppercase text-xs font-semibold tracking-wider">
+    {formatPrice(price)}/month
+  </div>  
+    </div>
+    <h4 class="mt-1 text-l font-semibold uppercase leading-tight truncate">{ addressStreet}</h4>
+  <div class="mt-1">
+    <span class="text-gray-600 text-sm">{`${addressCity}, ${addressState} ${addressZip}`}</span>
+  </div>
+  <div class="mt-4">
+    <span class="text-sm text-gray-600">{description}</span>
+  </div>  
+  </div>
+ </div> 
+</div>
+  </div>
+</>
     );
 };
 
