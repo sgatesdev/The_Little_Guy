@@ -11,10 +11,10 @@ export const Landlord = () => {
 
     return(
         <>
-        <h1>
+        <h1 class="text-2xl m-2 text-center font-bold leading-tight">
             Landlord Portal!
         </h1>
-        <h1>
+        <h1 className="p-5">
             Display a list of landlord's properties each properties tenants, and edit button for each 
 
             Edit button will take them to a page where they can add a tenant who has applied 
@@ -31,8 +31,10 @@ export const Landlord = () => {
             <div class="border-b">
               
               <a href="#" class="px-6 py-3 hover:bg-gray-200 flex"> 
-                <div class="w-8 h-8 bg-blue-700 rounded-full text-center align-middle text-white text-lg content-center">
-                  House icon             
+                <div>
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
+                    </svg>        
                 </div>
                 <div class="pl-3">
                   <p class="text-sm font-semibold">
@@ -42,8 +44,10 @@ export const Landlord = () => {
               </a>
   
               <a href="#" class="px-6 py-3 hover:bg-gray-200 flex"> 
-                <div class="w-8 h-8 bg-blue-700 rounded-full text-center align-middle text-white text-lg content-center">
-                  Letter icon
+                <div>
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M2 6a2 2 0 012-2h5l2 2h5a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" />
+                    </svg>
                 </div>
                 <div class="pl-3">
                   <p class="text-sm font-semibold">

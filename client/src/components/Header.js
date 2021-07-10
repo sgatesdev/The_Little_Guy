@@ -28,16 +28,16 @@ const menu = [
 const tenantMenu = [
     { name: 'Home', to: '/' },
     { name: 'About', to: '/about' },
-    { name: 'Tenant Portal', to: '/tenant' },
+    { name: 'My Property', to: '/tenant' },
     {name: 'Saved Properties', to: '/tenant/saved' },
-    {name: 'Profile', to: '/tenant/profile' },
+    {name: 'Profile', to: '/profile' },
     {name: 'Messages', to: '/messages' }
   ]
   const landlordMenu = [
     { name: 'Home', to: '/' },
     { name: 'About', to: '/about' },
     { name: 'Manage Properties', to: '/landlord' },
-    {name: 'Profile', to: '/landlord/profile' },
+    {name: 'Profile', to: '/profile' },
     {name: 'Messages', to: '/messages' }
   ]
 

@@ -19,41 +19,23 @@ export const Tenant = () => {
             }
           </div>
           <div class="border-b">
-            
-            <a href="#" class="px-6 py-3 hover:bg-gray-200 flex"> 
-              <div class="w-8 h-8 bg-blue-700 rounded-full text-center align-middle text-white text-lg content-center">
-                House icon             
-              </div>
-              <div class="pl-3">
-                <p class="text-sm font-semibold">
-                  Apply for a property
-                </p>
-              </div>
-            </a>
-
-            <a href="#" class="px-6 py-3 hover:bg-gray-200 flex"> 
-              <div class="w-8 h-8 bg-blue-700 rounded-full text-center align-middle text-white text-lg content-center">
-                Money icon
-              </div>
-              <div class="pl-3">
-                <p class="text-sm font-semibold">
-                  Pay rent
-                </p>
-              </div>
-            </a>
-
-            <a href="#" class="px-6 py-3 hover:bg-gray-200 flex"> 
-              <div class="w-8 h-8 bg-blue-700 rounded-full text-center align-middle text-white text-lg content-center">
-                Envelope icon
-              </div>
-              <div class="pl-3">
-                <p class="text-sm font-semibold">
-                  Message landlord
-                </p>
-              </div>
-            </a>
-          </div>
-          <div class="border-b">
+          {
+                !state.user || !state.user.current_property ? 
+                null : (
+                  <a href="#" class="px-6 py-3 hover:bg-gray-200 flex"> 
+                  <div>
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                  <div class="pl-3">
+                    <p class="text-sm font-semibold">
+                      Pay rent
+                    </p>
+                  </div>
+                </a>
+              )
+          }
           </div>
         </div>
       </div>
