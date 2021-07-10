@@ -69,9 +69,7 @@ export const QUERY_ME = gql`
             addressState
             addressZip
             price
-            imageLink {
-                imageLink
-            }
+            images
             description
         }
     }

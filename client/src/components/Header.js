@@ -14,8 +14,6 @@ import history from '../config/history';
 
 // import localstorage actions
 import { expiredToken, getToken, removeToken } from '../utils/token';
-// import LandlordMenu from './LandlordMenu';
-// import TenantMenu from './TenantMenu';
 
 // import apollo query
 import { QUERY_ME } from '../apollo-client/queries';
@@ -29,26 +27,23 @@ const menu = [
 ]
 const tenantMenu = [
     { name: 'Home', to: '/' },
+    { name: 'About', to: '/about' },
     { name: 'Tenant Portal', to: '/tenant' },
     {name: 'Saved Properties', to: '/tenant/saved' },
     {name: 'Profile', to: '/tenant/profile' },
-    {name: 'Messages', to: '/messages' },
-    { name: 'About', to: '/about' }
+    {name: 'Messages', to: '/messages' }
   ]
   const landlordMenu = [
     { name: 'Home', to: '/' },
-    { name: 'Landlord Portal', to: '/tenant' },
-    {name: 'My Properties', to: '/tenant/saved' },
-    {name: 'Profile', to: '/tenant/profile' },
-    {name: 'Messages', to: '/messages' },
-    { name: 'About', to: '/about' }
+    { name: 'About', to: '/about' },
+    { name: 'Manage Properties', to: '/landlord' },
+    {name: 'Profile', to: '/landlord/profile' },
+    {name: 'Messages', to: '/messages' }
   ]
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
-
-
 
 export const Header = () => {
     // redux 
@@ -116,7 +111,7 @@ export const Header = () => {
                       {item.name}
                     </Link>
                   ))}
-                  <a onClick={handleLogout} className= 'text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium'></a>
+                  <Link onClick={handleLogout} className= 'text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium'>Log Out</Link>
                   </>
             );
         }
@@ -136,7 +131,7 @@ export const Header = () => {
                       {item.name}
                     </Link>
                   ))}
-                  <a onClick={handleLogout} className= 'text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium'></a>
+                  <Link onClick={handleLogout} className= 'text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium'>Log Out</Link>
                   </>
             );
         }

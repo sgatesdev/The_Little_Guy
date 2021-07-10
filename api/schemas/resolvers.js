@@ -73,7 +73,6 @@ const resolvers = {
                     populate: 'User'
                 }).limit(20);
 
-                console.log(allProperties)
                 return allProperties;
             } catch (error) {
                 throw new AuthenticationError('No Properties found');

@@ -32,10 +32,14 @@ export const Home = () => {
 
     return (
         <>
-        <h1 class="uk-heading-small uk-flex uk-flex-center">{ state.user ? `Welcome back, ${state.user.firstName}!` : null }</h1>
-        <div className="uk-flex uk-flex-center uk-width-1-1 uk-margin-top">
-        <PropertyList properties={state.properties}/>
+        <h1 className="flex items-center justify-center font-bold text-3xl my-4">{ state.user ? `Welcome back, ${state.user.firstName}!` : null }</h1>
+        <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+        <div>
+        <PropertyList properties={state.properties}/>                
+        </div>
         </div>
         </>
     );
 }
+
+
