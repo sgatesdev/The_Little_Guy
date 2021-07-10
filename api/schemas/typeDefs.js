@@ -14,6 +14,9 @@ const typeDefs = gql`
         avarage: Int
         current_property: Property
     }
+    type Image {
+        imageid: String!
+    }
 
     type Property {
         _id: ID
@@ -61,15 +64,14 @@ const typeDefs = gql`
         myProperties: [Property]
         myTenants: [User]
         allProperties: [Property]
-        # use aggragete to avarage up rating array
         getRating(id: ID!): Float 
         findLandlord(input: UpdatePropertyInput!): User
     }
     type Mutation {
         login(email:String!, password:String!): Auth
         signUp(input: NewUserInput!): Auth
-        addUserImage( image: String): User
-        addPropertyImages(_id: ID!, image: [String]): Property
+        addUserImage( id: ID!,cloudinaryId: ID!): Image
+        addPropertyImage(_id: ID!, cloudinaryId: [String]): Image
         updateProperties(_id: ID!, input: UpdatePropertyInput!): Property
         deleteProperty(_id: ID!): Property
         deleteUser: Auth

@@ -25,9 +25,7 @@ export const QUERY_ALL_PROPERTIES = gql`
            		firstName
             	lastName
            }
-           imageLink {
-            imageLink
-          }
+           
        }
    }
 `;

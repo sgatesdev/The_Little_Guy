@@ -1,6 +1,5 @@
 const { AuthenticationError } = require('apollo-server-express');
 const { ApolloError } = require('apollo-server-errors');
-
 const { User, Property } = require('../models');
 const { signToken } = require('../utils/auth');
 
@@ -108,10 +107,12 @@ const resolvers = {
 
     Mutation: {
         login: async (parent, { email, password }) => {
-            const user = await User.findOne({ email }).populate({
+            const user = await User.findOne({ email: email }).populate({
                 path: 'current_property',
+                populate: 'Property',
                 populate: {
-                    path: 'owner'
+                    path: 'owner',
+                    model: 'User'
                 }
             });
 
@@ -156,18 +157,32 @@ const resolvers = {
             }
             throw new AuthenticationError('Not Logged In')
         },
-
-        addUserImage: async (parent, {image}, context) => {
-            if(context.user) {
-                const user = await User.updateOne({_id: context.user._id}, {image: image})
-                return {user};
-            } throw new AuthenticationError('Not Logged In');
+        addUserImage: async (parent, {cloudinaryID , id}, context) => {
+            try {
+                if(context.user._id === id) {
+                    const image = await User.findOneAndUpdate({_id: context.user._id}, {image: cloudinaryID});
+                    if(!image) {
+                        throw new ApolloError('We could not Process your request at this time!')
+                    }
+                    return {cloudinaryID}
+                }
+                throw new AuthenticationError('You must be logged in to edit this profile!')
+                
+            } catch (error) {
+                console.log(error)
+            }
         },
-        addPropertyImages: async (parent, {_id, image}, context) => {
-            if (context.user) {
-            const property = await Property.updateOne({_id: _id}, {$push: {images: image}})
-            return property;
-            } throw new AuthenticationError('Not Logged In');
+        addPropertyImage: async (parent, {cloudinaryID , id}) => {
+            try {
+                const image = await Property.findOneAndUpdate({ _id: id}, {$push: {images: cloudinaryID}});
+                if(!image) {
+                    throw new ApolloError('We could not Process your request at this time!')
+                }
+                    return {cloudinaryID}
+                
+            } catch (error) {
+                console.log(error)
+            }
         },
         deleteProperty: async (parent, { _id }, context) => {
 
