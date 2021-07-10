@@ -23,7 +23,7 @@ const resolvers = {
                     addressZip: input.addressZip,
                    }
             ).populate({
-                path: 'owner' ,
+                path: 'owner',
                 populate: 'User'
             });
             if(!property) throw new AuthenticationError('No property found')
@@ -45,8 +45,13 @@ const resolvers = {
         },
         myProperties: async (parent, args, context) => {
             if (context.user) {
-                const userProperties = await Property.find({ owner: context.user._id })
-                return userProperties
+                const userProperties = await Property.find({ owner: context.user._id }).populate({
+                    path: 'tenant',
+                    populate: 'User'
+                });
+                
+                return userProperties;
+
             }
             throw new AuthenticationError('Not logged In!');
         },
@@ -64,10 +69,11 @@ const resolvers = {
         },
         allProperties: async (parent, args) => {
             try {
-                const allProperties = Property.find().populate({
+                const allProperties = await Property.find().populate({
                     path: 'owner',
                     populate: 'User'
                 }).limit(20);
+                console.log(allProperties)
                 return allProperties;
             } catch (error) {
                 throw new AuthenticationError('No Properties found');
