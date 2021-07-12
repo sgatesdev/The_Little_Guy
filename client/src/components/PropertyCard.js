@@ -23,7 +23,7 @@ const PropertyCard = ({ property }) => {
    <img src='https://via.placeholder.com/150' class="object-cover object-center rounded-lg shadow-md" alt="property"/>  
     <div class="flex items-baseline">
       <span class="bg-teal-200 text-teal-800 text-xs px-2 inline-block rounded-full  uppercase font-semibold tracking-wide">
-        {firstName}{lastName}
+        {`${firstName} ${lastName}` }
       </span>
       <div class="ml-2 text-teal-600 uppercase text-xs font-semibold tracking-wider">
     {formatPrice(price)}/month

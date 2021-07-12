@@ -4,7 +4,8 @@ const userData = require('./users.json');
 const propertyData = require('./properties.json')
 
 db.once('open', async () => {
-    await User.deleteMany();
+    await User.deleteMany({});
+    await Property.deleteMany({});
 
     const allUsers = await User.create(userData);
     console.log('Users inserted! :)');
@@ -18,24 +19,7 @@ db.once('open', async () => {
         propertyData[12].tenant = user._id;
         propertyData[0].owner = allUsers[0]._id;
     }
-
-    // simple test case
-    await User.create(    {
-        "password": "password",
-        "firstName": "Test",
-        "lastName": "Tenant",
-        "username": "testT",
-        "email": "testT@test.com"
-    },
-    {
-        "password": "password",
-        "firstName": "Test",
-        "lastName": "Landlord",
-        "username": "testL",
-        "email": "testL@test.com",
-        "is_landlord": true
-    });
-    
+   
     console.log('Users inserted! :)');
 
     await Property.insertMany(propertyData);
@@ -46,9 +30,29 @@ db.once('open', async () => {
         "firstName": "testing",
         "lastName": "login",
         "username": "loginUsername",
-        "email": "testingLogin@email.com",
-        "current_property": allProperties[0]._id
+        "email": "testingLogin@email.com"
     })
     
+    const sampleProperty = await Property.find({});
+
+    // simple test case
+    await User.create(    {
+        "password": "password",
+        "firstName": "Test",
+        "lastName": "Tenant",
+        "username": "testT",
+        "email": "testT@test.com",
+        "current_property": sampleProperty[0]._id
+    },
+    {
+        "password": "password",
+        "firstName": "Test",
+        "lastName": "Landlord",
+        "username": "testL",
+        "email": "testL@test.com",
+        "is_landlord": true,
+        "current_property": sampleProperty[0]._id
+    });
+
     process.exit();
 })
