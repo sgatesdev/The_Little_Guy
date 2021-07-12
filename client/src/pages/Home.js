@@ -1,7 +1,3 @@
-/**
- * very basic home page working
- */
-
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 

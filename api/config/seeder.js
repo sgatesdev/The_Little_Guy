@@ -25,6 +25,7 @@ db.once('open', async () => {
     await Property.insertMany(propertyData);
     
     console.log('Properties Inserted! :)');
+
     await User.create( {
         "password": "pass123",
         "firstName": "testing",
@@ -33,6 +34,7 @@ db.once('open', async () => {
         "email": "testingLogin@email.com"
     })
     
+    // grab all properties 
     const sampleProperty = await Property.find({});
 
     // simple test case
@@ -42,15 +44,6 @@ db.once('open', async () => {
         "lastName": "Tenant",
         "username": "testT",
         "email": "testT@test.com",
-        "current_property": sampleProperty[0]._id
-    },
-    {
-        "password": "password",
-        "firstName": "Test",
-        "lastName": "Landlord",
-        "username": "testL",
-        "email": "testL@test.com",
-        "is_landlord": true,
         "current_property": sampleProperty[0]._id
     });
 

@@ -1,5 +1,5 @@
 /**
- * our store of global action names 
+ * TheLittleGuy store of global action names
  */
 
 /* USER ACTIONS */
