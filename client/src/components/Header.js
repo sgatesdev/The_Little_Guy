@@ -57,7 +57,6 @@ export const Header = () => {
     // this prevents a hard refresh from logging user out!
     useEffect(() => {
         if(!state.user) {
-            console.log('here')
             const token = getToken();
 
             if(token && !expiredToken(token)) {
@@ -75,9 +74,9 @@ export const Header = () => {
         }
     }, [getMe, data, called, state.user, dispatch]);
 
-    /**
+    /************************************
      * FOR DEBUGGING: 
-     */
+     ************************************/
     console.log(state)
 
     const handleLogout = () => {
@@ -205,6 +204,4 @@ export const Header = () => {
       )}
     </Disclosure>
   )
-        // </>
-    // );
 }

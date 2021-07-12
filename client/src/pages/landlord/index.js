@@ -1,12 +1,35 @@
+// react imports
 import React, { useEffect } from 'react';
-import { useSelector } from 'react-redux';
 
-import PropertyCard from "../../components/PropertyCard";
+// redux imports 
+import { useDispatch, useSelector } from 'react-redux';
+
+// apollo imports
+import { useQuery } from '@apollo/client';
+import { QUERY_MY_PROPERTIES } from '../../apollo-client/queries';
+
+// get redux action def 
+import { FETCH_MY_PROPERTIES } from '../../store/actions';
+
+// component imports
+import PropertyList from '../../components/PropertyList';
 
 export const Landlord = () => {
-    const state = useSelector((state) => state);
+    const properties = useSelector((state) => Object.values(state.landlord));
+    const dispatch = useDispatch();
 
-    console.log(state)
+    // apollo
+    const { loading, data } = useQuery(QUERY_MY_PROPERTIES);
+
+    // pull property data on load, send to redux store
+    useEffect(() => {
+        if(data) {
+            dispatch({
+                type: FETCH_MY_PROPERTIES,
+                payload: data.myProperties
+            })
+        }
+    }, [data, loading, dispatch]); 
 
 
     return(
@@ -63,8 +86,9 @@ export const Landlord = () => {
 
           <div class="text-center p-6  border-b">
               {
-                  state.user && state.user.current_property ? 
-                  <PropertyCard property={state.user.current_property} /> : (<h1>You don't have any properties to manage yet!</h1>)
+                  /** <PropertyList properties={properties} />  */
+                  properties && !loading ? 
+                  <h1>Property list will go here! Data is loading properly</h1> : (<h1>You don't have any properties to manage yet!</h1>)
               }
             </div>
 

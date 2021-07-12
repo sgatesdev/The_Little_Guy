@@ -31,8 +31,8 @@ export const QUERY_ALL_PROPERTIES = gql`
 `;
 
 export const QUERY_MY_PROPERTIES = gql`
-   query getMyProperties($user: ID) {
-        properties(owner: $user) {
+{
+   myProperties {
             _id
             addressStreet
             addressCity
@@ -44,9 +44,9 @@ export const QUERY_MY_PROPERTIES = gql`
                 email
             }
             price
-            imageLink
-        }
+            images
     }
+}
 `;
 
 // query me
