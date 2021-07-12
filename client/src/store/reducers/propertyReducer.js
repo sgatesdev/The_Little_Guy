@@ -1,5 +1,5 @@
-/** ALL properties reducer */
-// post reducer
+/** ALL PROPERTIES reducer functions */
+
 import _ from 'lodash';
 
 import {
@@ -15,17 +15,14 @@ const propertyReducer = (state = {}, action) => {
         case FETCH_ALL_PROPERTIES: 
             return { ...state, ..._.mapKeys(action.payload, '_id') };
         case EDIT_PROPERTY:
-            return state; // TODO
+            return { ...state, [action.payload._id]: action.payload }
         case DELETE_PROPERTY:
-            return state; // TODO
+            return _.omit(...state, action.payload);
         case ADD_PROPERTY:
-            return state; // TODO
+            return { ...state, [action.payload._id]: action.payload }
         default: 
             return state;
     }
 };
 
 export default propertyReducer;
-
-// foregoing edit functions for now, because i will just force a re-fetch if landlord updates any properties (to save time)
-// if i have time, i will add in actions for editing all properties so that they re-render without a hard refresh

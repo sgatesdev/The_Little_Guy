@@ -1,4 +1,6 @@
-/** LANDLORD functions - CRUD for properties */
+/** LANDLORD PROPERTIES reducer functions */
+
+import _ from 'lodash';
 
 import {
     FETCH_MY_PROPERTIES,
@@ -7,16 +9,16 @@ import {
     DELETE_MY_PROPERTY
 } from '../actions';
 
-const propertyReducer = (state = [], action) => {
+const propertyReducer = (state = {}, action) => {
     switch(action.type) {
         case FETCH_MY_PROPERTIES: 
-            return { ...state, my_properties: [ ...action.payload ] };
+            return { ...state, ..._.mapKeys(action.payload, '_id') };
         case ADD_MY_PROPERTY:
-            return state; // TODO
+            return { ...state, [action.payload._id]: action.payload }
         case EDIT_MY_PROPERTY:
-            return state; // TODO
+            return { ...state, [action.payload._id]: action.payload }
         case DELETE_MY_PROPERTY:
-            return state; // TODO
+            return _.omit(...state, action.payload);
         default: 
             return state;
     }

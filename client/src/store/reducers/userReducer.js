@@ -1,4 +1,5 @@
-/** user reducer **/
+/** USER REDUCER functions **/
+
 import { 
     LOG_IN, 
     LOG_OUT, 
@@ -8,7 +9,7 @@ import {
 const userReducer = (state = null, action) => {
     switch(action.type) {
         case UPDATE_USER:
-            return state; // TODO
+            return { ...state, ...action.payload }; 
         case LOG_IN:
             return { ...state, ...action.payload };
         case LOG_OUT: 
