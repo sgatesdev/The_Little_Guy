@@ -8,7 +8,7 @@ import { FETCH_ALL_PROPERTIES } from '../store/actions';
 
 import PropertyList from '../components/PropertyList';
 
-export const Home = () => {
+const Home = () => {
     // redux
     const dispatch = useDispatch();
     const user = useSelector((state) => state.user);
@@ -39,4 +39,4 @@ export const Home = () => {
     );
 }
 
-
+export default Home;

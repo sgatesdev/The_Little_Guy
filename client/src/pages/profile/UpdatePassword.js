@@ -2,10 +2,12 @@ import React from 'react'
 
 // password not stored in redux 
 
-export const Password = () => {
+const Password = () => {
     return (
         <div>
-            
+            This form will update your password
         </div>
     )
 }
+
+export default Password;

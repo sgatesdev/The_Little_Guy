@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
-import PropertyCard from "../../components/PropertyCard";
+import UserPropertyCard from "../../components/UserPropertyCard";
 
-export const Tenant = () => {
+const Tenant = () => {
     const state = useSelector((state) => state);
 
     console.log(state)
@@ -15,7 +15,7 @@ export const Tenant = () => {
           <div class="text-center p-6  border-b">
             {
                 state.user && state.user.current_property ? 
-                <PropertyCard property={state.user.current_property} /> : (<h1>You don't have a home yet!</h1>)
+                <UserPropertyCard property={state.user.current_property} /> : (<h1>You don't have a home yet!</h1>)
             }
           </div>
           <div class="border-b">
@@ -43,6 +43,7 @@ export const Tenant = () => {
 
 }
 
+export default Tenant;
 
 //<PropertyCard property={state.user.current_property} />
 //    return state.user && state.user.current_property ? 
