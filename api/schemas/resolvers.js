@@ -2,6 +2,7 @@ const { AuthenticationError } = require('apollo-server-express');
 const { ApolloError } = require('apollo-server-errors');
 const { User, Property } = require('../models');
 const { signToken } = require('../utils/auth');
+const { cloudinary } = require('../utils/cloudinary');
 
 const resolvers = {
     Query: {
@@ -11,7 +12,7 @@ const resolvers = {
                 populate: {
                     path: 'owner'
                 }
-            }) 
+            })
         },
         property: async (parent, { input }) => {
             const property = await Property.findOne(
@@ -20,12 +21,12 @@ const resolvers = {
                     addressCity: input.addressCity,
                     addressState: input.addressState,
                     addressZip: input.addressZip,
-                   }
+                }
             ).populate({
-                path: 'owner' ,
+                path: 'owner',
                 populate: 'User'
             });
-            if(!property) throw new AuthenticationError('No property found')
+            if (!property) throw new AuthenticationError('No property found')
             return property
         },
         me: async (parent, args, context) => {
@@ -39,7 +40,7 @@ const resolvers = {
                 });
 
                 return user;
-            }``
+            } 
             throw new AuthenticationError('Not Logged In');
         },
         myProperties: async (parent, args, context) => {
@@ -76,7 +77,7 @@ const resolvers = {
             try {
                 const userRating = await User.findById(id);
                 let rating = userRating.rating;
-                let total = rating.reduce((total, num) => num + total );
+                let total = rating.reduce((total, num) => num + total);
                 let avg = total / rating.length;
                 return avg
             } catch (error) {
@@ -157,29 +158,43 @@ const resolvers = {
             }
             throw new AuthenticationError('Not Logged In')
         },
-        addUserImage: async (parent, {cloudinaryID , id}, context) => {
+        uploadImage: async (parent, args) => {
             try {
-                if(context.user._id === id) {
-                    const image = await User.findOneAndUpdate({_id: context.user._id}, {image: cloudinaryID});
-                    if(!image) {
+                const imageString = args.image;
+                const uploadedResponse = await cloudinary.uploader.
+                    upload(imageString, {
+                        upload_preset: 'usydr1v1'
+                    });
+                const publicId = uploadedResponse.public_id;
+                return publicId
+            } catch (error) {
+                console.log(error)
+            }
+
+        },
+        addUserImage: async (parent, { cloudinaryId}, context) => {
+            try {
+                if (context.user) {
+                    const image = await User.findOneAndUpdate({ _id: context.user._id }, { image: cloudinaryId });
+                    if (!image) {
                         throw new ApolloError('We could not Process your request at this time!')
                     }
-                    return {cloudinaryID}
+                    return cloudinaryId
                 }
                 throw new AuthenticationError('You must be logged in to edit this profile!')
-                
+
             } catch (error) {
                 console.log(error)
             }
         },
-        addPropertyImage: async (parent, {cloudinaryID , id}) => {
+        addPropertyImage: async (parent, { cloudinaryId, id }) => {
             try {
-                const image = await Property.findOneAndUpdate({ _id: id}, {$push: {images: cloudinaryID}});
-                if(!image) {
+                const image = await Property.findOneAndUpdate({ _id: id }, { $push: { images: cloudinaryId } });
+                if (!image) {
                     throw new ApolloError('We could not Process your request at this time!')
                 }
-                    return {cloudinaryID}
-                
+                return cloudinaryId
+
             } catch (error) {
                 console.log(error)
             }
