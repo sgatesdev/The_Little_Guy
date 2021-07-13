@@ -14,10 +14,6 @@ const typeDefs = gql`
         avarage: Int
         current_property: Property
     }
-    type Image {
-        imageid: String!
-    }
-
     type Property {
         _id: ID
         type: String!
@@ -70,8 +66,9 @@ const typeDefs = gql`
     type Mutation {
         login(email:String!, password:String!): Auth
         signUp(input: NewUserInput!): Auth
-        addUserImage( id: ID!,cloudinaryId: ID!): Image
-        addPropertyImage(_id: ID!, cloudinaryId: [String]): Image
+        uploadImage(image:String!):ID
+        addUserImage(cloudinaryId: String): String
+        addPropertyImage(_id: ID!, cloudinaryId: String): String
         updateProperties(_id: ID!, input: UpdatePropertyInput!): Property
         deleteProperty(_id: ID!): Property
         deleteUser: Auth
