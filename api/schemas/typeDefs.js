@@ -49,6 +49,19 @@ const typeDefs = gql`
         description: String
     }
 
+    input NewPropertyInput {
+        type: String
+        addressStreet: String
+        addressCity: String
+        addressState: String
+        addressZip: String
+        price: Int
+        owner: ID
+        tenant: ID
+        description: String
+        images: [String]
+    }
+
     input NewUserInput {
         firstName: String
         lastName: String
@@ -70,6 +83,7 @@ const typeDefs = gql`
     type Mutation {
         login(email:String!, password:String!): Auth
         signUp(input: NewUserInput!): Auth
+        addProperty(input: NewPropertyInput!): Property
         addUserImage( id: ID!,cloudinaryId: ID!): Image
         addPropertyImage(_id: ID!, cloudinaryId: [String]): Image
         updateProperties(_id: ID!, input: UpdatePropertyInput!): Property
