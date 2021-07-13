@@ -18,7 +18,7 @@ import { saveToken } from '../utils/token';
  * SEP OF CONCERNS - SHIFT SOME FUNCTIONS TO EXTERNAL FILE AFTER THIS IS WORKING (actions folder?)
  */
 
-export const Login = () => {
+const Login = () => {
     // redux / global state
     const dispatch = useDispatch();
     const state = useSelector((state) => state);
@@ -133,3 +133,5 @@ export const Login = () => {
     </div>
   )
 }
+
+export default Login;

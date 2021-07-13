@@ -20,7 +20,7 @@ import { checkEmail, checkName } from '../utils/helpers';
  * SEP OF CONCERNS - SHIFT SOME FUNCTIONS TO EXTERNAL FILE AFTER THIS IS WORKING (actions folder?)
  */
 
-export const Signup = () => {
+const Signup = () => {
     // redux / global state
     const dispatch = useDispatch();
 
@@ -251,3 +251,5 @@ export const Signup = () => {
       </div>
     );
 }
+
+export default Signup;

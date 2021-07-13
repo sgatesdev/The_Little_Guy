@@ -19,6 +19,8 @@ import { expiredToken, getToken, removeToken } from '../utils/token';
 import { QUERY_ME } from '../apollo-client/queries';
 
 
+//    {name: 'Saved Properties', to: '/tenant/saved' },
+
 const menu = [
   { name: 'Home', to: '/' },
   { name: 'About', to: '/about' },
@@ -29,7 +31,6 @@ const tenantMenu = [
     { name: 'Home', to: '/' },
     { name: 'About', to: '/about' },
     { name: 'My Property', to: '/tenant' },
-    {name: 'Saved Properties', to: '/tenant/saved' },
     {name: 'Profile', to: '/profile' },
     {name: 'Messages', to: '/messages' }
   ]
@@ -45,7 +46,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export const Header = () => {
+const Header = () => {
     // redux 
     const state = useSelector((state) => state);
     const dispatch = useDispatch();
@@ -205,3 +206,5 @@ export const Header = () => {
     </Disclosure>
   )
 }
+
+export default Header;

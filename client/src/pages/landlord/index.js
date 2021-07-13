@@ -1,5 +1,6 @@
 // react imports
 import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 // redux imports 
 import { useDispatch, useSelector } from 'react-redux';
@@ -14,7 +15,7 @@ import { FETCH_MY_PROPERTIES } from '../../store/actions';
 // component imports
 import PropertyList from '../../components/PropertyList';
 
-export const Landlord = () => {
+const Landlord = () => {
     const properties = useSelector((state) => Object.values(state.landlord));
     const dispatch = useDispatch();
 
@@ -31,29 +32,20 @@ export const Landlord = () => {
         }
     }, [data, loading, dispatch]); 
 
-
     return(
         <>
         <h1 class="text-2xl m-2 text-center font-bold leading-tight">
-            Landlord Portal!
+            Manage Properties
         </h1>
         <h1 className="p-5">
-            Display a list of landlord's properties each properties tenants, and edit button for each 
-
-            Edit button will take them to a page where they can add a tenant who has applied 
-
-            This can be done by using createUserForProp mutation to create credentials and "send" them to the user and immediately associate user with that property
-
-            OR
-
-            make users apply to the property, then associate them 
+            You can add a new property that you own, review applications for properties already on The Little Guy, or manage your properties below. 
         </h1>
           <div>
 
           <div class="bg-white sm:max-w-full max-w-md rounded overflow-hidden shadow-lg">
             <div class="border-b">
               
-              <a href="#" class="px-6 py-3 hover:bg-gray-200 flex"> 
+              <Link to="/landlord/add" class="px-6 py-3 hover:bg-gray-200 flex"> 
                 <div>
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7" viewBox="0 0 20 20" fill="currentColor">
                     <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
@@ -64,9 +56,9 @@ export const Landlord = () => {
                     Add property
                   </p>
                 </div>
-              </a>
+              </Link>
   
-              <a href="#" class="px-6 py-3 hover:bg-gray-200 flex"> 
+              <Link to="/landlord/applications" class="px-6 py-3 hover:bg-gray-200 flex"> 
                 <div>
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7" viewBox="0 0 20 20" fill="currentColor">
                     <path d="M2 6a2 2 0 012-2h5l2 2h5a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" />
@@ -77,7 +69,7 @@ export const Landlord = () => {
                     Review applications
                   </p>
                 </div>
-              </a>
+              </Link>
   
             </div>
             <div class="border-b">
@@ -88,7 +80,7 @@ export const Landlord = () => {
               {
                   /** <PropertyList properties={properties} />  */
                   properties && !loading ? 
-                  <h1>Property list will go here! Data is loading properly</h1> : (<h1>You don't have any properties to manage yet!</h1>)
+                  <PropertyList properties={properties} isLandlord={true}/>  : (<h1>You don't have any properties to manage yet!</h1>)
               }
             </div>
 
@@ -96,3 +88,5 @@ export const Landlord = () => {
         </>
     );
 }
+
+export default Landlord;

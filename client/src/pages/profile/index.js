@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-export const Profile = () => {
+const Profile = () => {
     const state = useSelector((state) => state);
 
     return(
@@ -10,7 +10,7 @@ export const Profile = () => {
 
         <div class="bg-white sm:max-w-full max-w-md rounded overflow-hidden shadow-lg">
           <div class="text-center p-6  border-b">
-            <img class="h-24 w-24 rounded-full mx-auto" src="https://randomuser.me/api/portraits/men/24.jpg" alt="Randy Robertson" />
+            <img class="h-24 w-24 rounded-full mx-auto" src="https://randomuser.me/api/portraits/men/24.jpg" alt="User Picture" />
             <p class="pt-2 text-lg font-semibold">
               {state.user.firstName + ' ' + state.user.lastName}
             </p>
@@ -79,3 +79,5 @@ export const Profile = () => {
       </div>
     );
 }
+
+export default Profile;
