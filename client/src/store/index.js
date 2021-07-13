@@ -4,12 +4,11 @@
 
 import React from 'react';
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
-import thunk from 'redux-thunk';
+import { createStore } from 'redux';
 
-import { reducer } from './reducers';
+import reducers from './reducers';
 
-const store = createStore(reducer, applyMiddleware(thunk));
+const store = createStore(reducers);
 
 export default function StoreProvider(props) {
   return <Provider store={store} {...props} />;

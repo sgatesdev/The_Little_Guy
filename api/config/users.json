@@ -1,5 +1,13 @@
 [
     {
+        "password": "password",
+        "firstName": "Test",
+        "lastName": "Landlord",
+        "username": "testL",
+        "email": "testL@test.com",
+        "is_landlord": true
+    },
+    {
         "password": "kR2hXFITdU",
         "firstName": "Kandi",
         "lastName": "Schultz",

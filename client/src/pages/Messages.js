@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import MessageList from '../components/MessageList';
 
-export const Messages = () => {
+const Messages = () => {
     // socketio
     const state = useSelector((state) => state);
     return (
@@ -17,3 +17,5 @@ export const Messages = () => {
 
     )
 }
+
+export default Messages;

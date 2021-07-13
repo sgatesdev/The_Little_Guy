@@ -1,13 +1,14 @@
 import React from 'react';
-import PropertyCard from './PropertyCard';
+import UserPropertyCard from './UserPropertyCard';
+import LandlordPropertyCard from './LandlordPropertyCard';
 
-const PropertyList = ({ properties }) => {
+const PropertyList = ({ properties, isLandlord }) => {
     return properties.length ? (
         <div class="flex flex-wrap -mx-4">
             {
                 properties.map((property) => {
-                    return <PropertyCard property={ property } />
-                })
+                    return isLandlord ? <LandlordPropertyCard property={ property } /> : <UserPropertyCard property={ property } />
+                })                
             }
         </div>
     ) : null;

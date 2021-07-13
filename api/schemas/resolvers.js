@@ -6,7 +6,7 @@ const { cloudinary } = require('../utils/cloudinary');
 
 const resolvers = {
     Query: {
-        singleUser: async (parent, { args }) => {
+        user: async (parent, { args }) => {
             return await User.findOne({ args }).populate({
                 path: 'current_property',
                 populate: {
@@ -45,8 +45,13 @@ const resolvers = {
         },
         myProperties: async (parent, args, context) => {
             if (context.user) {
-                const userProperties = await Property.find({ owner: context.user._id })
-                return userProperties
+                const userProperties = await Property.find({ owner: context.user._id }).populate({
+                    path: 'tenant',
+                    populate: 'User'
+                });
+                
+                return userProperties;
+
             }
             throw new AuthenticationError('Not logged In!');
         },
@@ -68,6 +73,7 @@ const resolvers = {
                     path: 'owner',
                     populate: 'User'
                 }).limit(20);
+
                 return allProperties;
             } catch (error) {
                 throw new AuthenticationError('No Properties found');
