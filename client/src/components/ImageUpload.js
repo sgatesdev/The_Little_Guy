@@ -19,7 +19,6 @@ const ImageUpload = ({ imageTargetId, typeOfImage }) => {
     const previewUploadedFile = (file) => {
         const reader = new FileReader();
         reader.readAsDataURL(file);
-
         reader.onload = () => {
             setPreviewSource(reader.result);
             console.log(previewSource);
