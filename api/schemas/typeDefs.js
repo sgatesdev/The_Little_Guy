@@ -72,6 +72,7 @@ const typeDefs = gql`
         updateProperties(_id: ID!, input: UpdatePropertyInput!): Property
         deleteProperty(_id: ID!): Property
         deleteUser: Auth
+        addProperty(input: UpdatePropertyInput!): Property
     }
 
 `;
