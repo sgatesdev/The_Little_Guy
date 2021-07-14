@@ -230,6 +230,14 @@ const resolvers = {
             } catch (error) {
                 throw new AuthenticationError(error);
             }
+        },
+        addProperty: async (parent, {input}, context) => {
+            try {
+                const property = await Property.create({input});
+                return property
+            } catch (error) {
+                throw new AuthenticationError('add property not working')
+            }
         }
 
     }
