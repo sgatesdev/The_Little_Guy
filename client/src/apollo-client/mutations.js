@@ -58,18 +58,19 @@ export const SIGN_UP = gql`
 `;
 
 export const ADD_USER_IMAGE = gql`
-mutation($id: ID!, $cloudinaryID: String! ) {
-  addUserImage( id: $id,cloudinaryID: $cloudinaryID) {
-    image 
-  }
+mutation( $cloudinaryId: String) {
+  addUserImage(cloudinaryId: $cloudinaryId)
 }`;
 
 export const ADD_PROPERTY_IMAGE = gql`
-mutation($_id: ID!, $cloudinaryID: String) {
-  addPropertyImages(_id: $_id image: $cloudinaryID) {
-    image
-  }
+mutation($_id: ID!, $cloudinaryId: String) {
+  addPropertyImages(_id: $_id image: $cloudinaryId)
 }`;
+
+export const UPLOAD_IMAGE = gql`
+  mutation($image:String!){
+    uploadImage(image: $image)
+  }`;
 
 /** 
 

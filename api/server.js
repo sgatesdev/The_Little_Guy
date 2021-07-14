@@ -1,6 +1,8 @@
 const express = require('express');
 const { ApolloServer } = require('apollo-server-express');
 const path = require('path');
+const {User, Property} = require('./models/index')
+const bodyParser = require('body-parser')
 
 const { typeDefs, resolvers } = require('./schemas/index');
 const { AuthMiddleware } = require('./utils/auth');
@@ -15,33 +17,19 @@ const server = new ApolloServer({
     context: AuthMiddleware
 });
 
-server.applyMiddleware({ app });
+server.applyMiddleware({ app, 
+bodyParserConfig: {limit: '50mb'} });
 
 app.use(express.urlencoded({ limit: '50mb', extended: true }));
-app.use(express.json({ limit: '50mb'}));
+app.use(express.json({ limit: '50mb', parameterLimit: 50000, extended: true}));
 
-if(process.env.NODE_ENV === 'production') {
-    app.use(express.static(path.join(__dirname, '../client/build' )))
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static(path.join(__dirname, '../client/build')))
 }
-app.get('/', (req, res ) => {
+app.get('/', (req, res) => {
     res.sendFile(path.join(publicPath, 'index.html'))
 });
-// app.get('/api/images/:id', async (req, res) => {
-//     const {resources} = await cloudinary.search.expression('public_id:' + req.params.id).execute();
-// })
-app.post('/api/uploadImage', async (req, res) => {
-    try{
-        const imageString = req.body.data;
-        const uploadedResponse = await cloudinary.uploader.
-        upload(imageString, {
-            upload_preset: 'usydr1v1'
-        })
-        console.log(uploadedResponse.public_id);
 
-    } catch (err) {
-        console.log(err);
-    }
-})
 
 db.once('open', () => {
     app.listen(PORT, () => {
