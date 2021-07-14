@@ -43,6 +43,7 @@ const typeDefs = gql`
         owner: ID
         tenant: ID
         description: String
+        images: [String]
     }
 
     input NewUserInput {

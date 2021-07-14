@@ -160,7 +160,7 @@ const resolvers = {
         updateProperties: async (parent, args, context) => {
             if (context.user) {
                 const property = await Property.findOneAndUpdate({ _id: args.id }, { $set: args.input });
-                return property
+                return property;
             }
             throw new AuthenticationError('Not Logged In')
         },
@@ -231,6 +231,11 @@ const resolvers = {
                 throw new AuthenticationError(error);
             }
         },
+<<<<<<< HEAD
+        addProperty: async (parent, { input }, context) => {
+            if(context.user) {            
+                const property = await Property.create({...input, ['owner']: context.user._id});
+=======
         addProperty: async (parent, {input}, context) => {
             try {
                 const property = await Property.create({input});
@@ -239,7 +244,13 @@ const resolvers = {
                 throw new AuthenticationError('add property not working')
             }
         }
+>>>>>>> 6d3c650ac4e418cd6f3f955d1407c5680daa4b53
 
+                return property;
+            }
+            
+            throw new AuthenticationError('Not Logged In');
+        }
     }
 };
 
