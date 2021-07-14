@@ -14,10 +14,6 @@ const typeDefs = gql`
         avarage: Int
         current_property: Property
     }
-    type Image {
-        imageid: String!
-    }
-
     type Property {
         _id: ID
         type: String!
@@ -38,18 +34,6 @@ const typeDefs = gql`
     }
 
     input UpdatePropertyInput {
-        type: String
-        addressStreet: String
-        addressCity: String
-        addressState: String
-        addressZip: String
-        price: Int
-        owner: ID
-        tenant: ID
-        description: String
-    }
-
-    input NewPropertyInput {
         type: String
         addressStreet: String
         addressCity: String
@@ -83,12 +67,13 @@ const typeDefs = gql`
     type Mutation {
         login(email:String!, password:String!): Auth
         signUp(input: NewUserInput!): Auth
-        addProperty(input: NewPropertyInput!): Property
-        addUserImage( id: ID!,cloudinaryId: ID!): Image
-        addPropertyImage(_id: ID!, cloudinaryId: [String]): Image
+        uploadImage(image:String!):ID
+        addUserImage(cloudinaryId: String): String
+        addPropertyImage(_id: ID!, cloudinaryId: String): String
         updateProperties(_id: ID!, input: UpdatePropertyInput!): Property
         deleteProperty(_id: ID!): Property
         deleteUser: Auth
+        addProperty(input: UpdatePropertyInput!): Property
     }
 
 `;
