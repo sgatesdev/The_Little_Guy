@@ -157,9 +157,9 @@ const resolvers = {
 
             return { token, user };
         },
-        updateProperties: async (parent, args, context) => {
+        updateProperty: async (parent, args, context) => {
             if (context.user) {
-                const property = await Property.findOneAndUpdate({ _id: args.id }, { $set: args.input });
+                const property = await Property.findOneAndUpdate({ _id: args._id }, { $set: args.input });
                 return property;
             }
             throw new AuthenticationError('Not Logged In')

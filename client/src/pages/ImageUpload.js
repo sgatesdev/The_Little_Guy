@@ -99,7 +99,7 @@ const ImageUpload = (props) => {
                     // dispatch cloudinary URL to redux
                     // FOR NOW: replacing the entire array, IN THE FUTURE would update to account for adding multiple images - this is a FUTURE feature
                     dispatch({
-                        type: 'EDIT_MY_PROPERTY',
+                        type: EDIT_MY_PROPERTY,
                         payload: { _id: imageTargetId, images: [imageString] }
                     });
                 }

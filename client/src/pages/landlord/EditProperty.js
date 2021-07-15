@@ -6,29 +6,33 @@ import { useMutation } from '@apollo/client';
 import { LockClosedIcon } from '@heroicons/react/solid'
 
 // new stuff for redux 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 // import history
 import history from '../../config/history';
 
 // import apollo query
-import { ADD_PROPERTY } from '../../apollo-client/mutations';
+// called EDIT_PROPERTY on client side updateProperties server side
+import { EDIT_PROPERTY } from '../../apollo-client/mutations';
+import { EDIT_MY_PROPERTY } from '../../store/actions';
 
-const EditProperty = () => {
-
+const EditProperty = (props) => {
+    // get dispatcher for redux 
     const dispatch = useDispatch();
+    const oldInfo = useSelector((state) => state.properties[props.match.params.id]);
+    console.log(oldInfo)
 
     // apollo client
-    const [addProperty, { error }] = useMutation(ADD_PROPERTY);
+    const [editProperty, { error }] = useMutation(EDIT_PROPERTY);
 
     // set initial values so react doesn't get mad at me
     const [formState, setFormState] = useState({
-        addressStreet: '',
-        addressCity: '',
-        addressState: '',
-        addressZip: '',
-        rent: 0,
-        description: ''
+        addressStreet: oldInfo.addressStreet,
+        addressCity: oldInfo.addressCity,
+        addressState: oldInfo.addressState,
+        addressZip: oldInfo.addressZip,
+        rent: oldInfo.price,
+        description: oldInfo.description
     });
 
     const [displayError, setDisplayError] = useState(null);
@@ -54,6 +58,7 @@ const EditProperty = () => {
             return setDisplayError('Please enter all information!');
         }
 
+        /** make sure price is used when sending - that's what data field is in database */
         const buildInput = {
           addressStreet: addressStreet,
           addressCity: addressCity,
@@ -64,16 +69,18 @@ const EditProperty = () => {
         };
 
         // if the input is valid, send it to server
+        // server side takes two args _id and input
         try {
-          const propertyData = await addProperty({
-              variables: buildInput
+          const propertyData = await editProperty({
+              variables: {
+                  _id: oldInfo._id,
+                  input: buildInput
+              }
           });
-          
-          const propertyId = propertyData.data.addProperty._id;
 
           // update redux store, add in property ID to object          
           dispatch({
-              type: 'ADD_MY_PROPERTY',
+              type: 'EDIT_MY_PROPERTY',
               payload: { ...buildInput, ['_id']: propertyId }
           });
     
@@ -97,7 +104,12 @@ const EditProperty = () => {
         <div className=" flex items-center justify-center bg-gray-50 px-4 sm:px-6 lg:px-8">
           <div className="max-w-md w-full space-y-8">
             <div>
-              <h2 className="text-center mt-6 text-3xl font-extrabold text-gray-900">Edit [property address]</h2>
+              <h2 className="text-center mt-6 text-3xl font-extrabold text-gray-900">
+                  {oldInfo.addressStreet}
+              </h2>
+              <h6 className="text-center mt-6 text-xl font-extrabold text-gray-900">
+                  {`${oldInfo.addressCity}, ${oldInfo.addressState} ${oldInfo.addressZip}`}
+              </h6>
             </div>
             <form className="mt-8 space-y-6" onSubmit={handleForm}>
               <input type="hidden" name="remember" defaultValue="true" />
