@@ -1,23 +1,32 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useMutation } from '@apollo/client';
+
 import { UPLOAD_IMAGE, ADD_USER_IMAGE, ADD_PROPERTY_IMAGE } from '../apollo-client/mutations'
 
-//{ imageTargetId, typeOfImage }
+// bring in redux action
+import { EDIT_MY_PROPERTY } from '../store/actions';
 
 const ImageUpload = (props) => {
+    // initialize state variables for handling data/upload
     const [fileInputState, setFileInputState] = useState('');
-    const [selectedFile, setSelectedFile] = useState('')
-    const [previewSource, setPreviewSource] = useState('')
+    const [selectedFile, setSelectedFile] = useState('');
+    const [previewSource, setPreviewSource] = useState('');
+
+    // set up mutations for graphQL
     const [uploadImage] = useMutation(UPLOAD_IMAGE);
     const [addUserImage] = useMutation(ADD_USER_IMAGE);
     const [addPropertyImage] = useMutation(ADD_PROPERTY_IMAGE);
 
+    // get route variables to determine if this is property or user image
     const imageTargetId = props.match.params.id;
     const typeOfImage = props.match.params.type;
 
+    // for debugging
     console.log(imageTargetId);
     console.log(typeOfImage);
 
+    // calls previewUploadedFile, sets state var to prepare file to be uploaded
     const handleFileUpload = (event) => {
         const file = event.target.files[0];
         console.log(file)
@@ -26,6 +35,7 @@ const ImageUpload = (props) => {
         previewUploadedFile(file);
     }
 
+    // renders preview of image on page below form
     const previewUploadedFile = (file) => {
         const reader = new FileReader();
         reader.readAsDataURL(file);
@@ -35,6 +45,7 @@ const ImageUpload = (props) => {
         }
     }
 
+    // event handler for clicking "UPLOAD IMAGE" - sends image to cloudinary
     const handleSubmitFile = (event) => {
         event.preventDefault();
         
@@ -42,13 +53,20 @@ const ImageUpload = (props) => {
         uploadImageToCloudinary(previewSource, typeOfImage, imageTargetId);
     }
     
+    // function to handle mechanics of uploading file to Cloudinary
     const uploadImageToCloudinary = async (base64EncodedImage) => {
         try {
+            // upload image and pull data from response
             const { data } = await uploadImage({
                 variables: { image: base64EncodedImage }
             });
+
+            // get cloudinary URL for stored image, log for debugging
             const imageString = data.uploadImage;
             console.log(imageString);
+
+            // once we have the cloudinary URL, look at route variables (url string for this page) to see where we want to store ref to image in our database
+            // once we know if it's user or property, send the cloudinary URL string to graphQL to store it in our database with the correct user or property record!
             if (imageString) {
                 setFileInputState('');
                 setPreviewSource('');
@@ -57,8 +75,6 @@ const ImageUpload = (props) => {
                     console.log(data)
                     return;
                 }
-
-                console.log('here')
 
                 await addPropertyImage({
                     variables: { _id: imageTargetId, cloudinaryId: imageString }

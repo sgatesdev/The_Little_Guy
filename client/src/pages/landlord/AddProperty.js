@@ -54,30 +54,29 @@ const AddProperty = () => {
             return setDisplayError('Please enter all information!');
         }
 
+        const buildInput = {
+          addressStreet: addressStreet,
+          addressCity: addressCity,
+          addressState: addressState,
+          addressZip: addressZip,
+          price: parseInt(rent),
+          description: description
+        };
+
         // if the input is valid, send it to server
         try {
           const propertyData = await addProperty({
-              variables: {
-                  addressStreet: addressStreet,
-                  addressCity: addressCity,
-                  addressState: addressState,
-                  addressZip: addressZip,
-                  price: rent,
-                  description: description
-              }
+              variables: buildInput
           });
           
           const propertyId = propertyData.data.addProperty._id;
 
-          // send user data to redux so all components can see it
-          // do not send password
-          //const reduxData = { firstName, lastName, email, ...userData.data.signUp.user };
-
+          // update redux store, add in property ID to object          
           dispatch({
-              type: 'LOG_IN',
-              payload: { ...reduxData }
+              type: 'ADD_MY_PROPERTY',
+              payload: { ...buildInput, ['_id']: propertyId }
           });
-
+    
           history.push(`/image/property/${propertyId}`);
       }
       catch(err) {
@@ -87,10 +86,6 @@ const AddProperty = () => {
 
     const handleInput = (e) => {
         let { name, value } = e.target;
-
-        if(name === 'rent') {
-            value = parseInt(value);
-        }
 
         setFormState({
             ...formState, 
