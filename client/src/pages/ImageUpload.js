@@ -2,20 +2,30 @@ import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { UPLOAD_IMAGE, ADD_USER_IMAGE, ADD_PROPERTY_IMAGE } from '../apollo-client/mutations'
 
+//{ imageTargetId, typeOfImage }
 
-const ImageUpload = ({ imageTargetId, typeOfImage }) => {
+const ImageUpload = (props) => {
     const [fileInputState, setFileInputState] = useState('');
     const [selectedFile, setSelectedFile] = useState('')
     const [previewSource, setPreviewSource] = useState('')
     const [uploadImage] = useMutation(UPLOAD_IMAGE);
     const [addUserImage] = useMutation(ADD_USER_IMAGE);
     const [addPropertyImage] = useMutation(ADD_PROPERTY_IMAGE);
+
+    const imageTargetId = props.match.params.id;
+    const typeOfImage = props.match.params.type;
+
+    console.log(imageTargetId);
+    console.log(typeOfImage);
+
     const handleFileUpload = (event) => {
         const file = event.target.files[0];
+        console.log(file)
         setFileInputState(event.target.value);
         setSelectedFile(file);
         previewUploadedFile(file);
     }
+
     const previewUploadedFile = (file) => {
         const reader = new FileReader();
         reader.readAsDataURL(file);
@@ -24,12 +34,14 @@ const ImageUpload = ({ imageTargetId, typeOfImage }) => {
             console.log(previewSource);
         }
     }
+
     const handleSubmitFile = (event) => {
         event.preventDefault();
         
         if (!previewSource) return;
         uploadImageToCloudinary(previewSource, typeOfImage, imageTargetId);
     }
+    
     const uploadImageToCloudinary = async (base64EncodedImage) => {
         try {
             const { data } = await uploadImage({
@@ -43,8 +55,11 @@ const ImageUpload = ({ imageTargetId, typeOfImage }) => {
                 if (typeOfImage === 'user') {
                     const { data } = await addUserImage({ variables: { cloudinaryId: imageString } });
                     console.log(data)
-                    return
+                    return;
                 }
+
+                console.log('here')
+
                 await addPropertyImage({
                     variables: { _id: imageTargetId, cloudinaryId: imageString }
                 })
@@ -55,19 +70,33 @@ const ImageUpload = ({ imageTargetId, typeOfImage }) => {
     };
 
     return (
-        <div className="uk-card uk-card-default uk-width-1-2@m">
-            <form onSubmit={handleSubmitFile}>
-                <div class="uk-margin" uk-margin>
-                    <div uk-form-custom="target: true">
-                        <input type="file" onChange={handleFileUpload} value={fileInputState} />
-                        <input class="uk-input uk-form-width-medium" type="text" placeholder="Select file" disabled />
-                    </div>
-                    <button class="uk-button uk-button-default" type='submit'>Submit</button>
-                </div>
-            </form>
-            {previewSource && (
-                <img src={previewSource} alt='preview' />
-            )}
+        <div className=" flex items-center justify-center bg-gray-50 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-md w-full space-y-8">
+        <div>
+            <h2 className="text-center mt-6 text-3xl font-extrabold text-gray-900">Upload an Image!</h2>
+        </div>
+        <form className="mt-8 space-y-6" onSubmit={handleSubmitFile}>
+            <input type="hidden" name="remember" defaultValue="true" />
+
+            <div className="rounded-md shadow-sm -space-y-px">
+            <div>
+                <input type="file" onChange={handleFileUpload} value={fileInputState} />
+            </div>
+            </div>
+            <div>
+            <label className="mt-2 text-center text-sm text-gray-600">{ /** TODO: ERROR HANDLING HERE */}</label>
+            <button
+                type="submit"
+                className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+            >
+                Upload Image
+            </button>
+            </div>
+        </form>
+        {previewSource && (
+                        <img src={previewSource} alt='preview' />
+        )}
+        </div>
         </div>
     )
 }

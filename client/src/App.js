@@ -33,6 +33,8 @@ import Update from './pages/profile/UpdateProfile';
 
 // testing application page styling
 import Application from './pages/Application';
+/* IMAGE UPLOADER */
+import ImageUpload from './pages/ImageUpload';
 
 // header
 import Header from './components/Header';
@@ -52,6 +54,7 @@ const App = () => {
             <Route exact path="/login" component={Login} />
             <Route exact path="/signup" component={Signup} />
             <Route exact path="/messages" component={Messages} />
+            <Route path="/image/:type/:id" component={ImageUpload} />
             { /* LANDLORD PATHS */ }
             <Route exact path="/landlord" component={Landlord} />
             <Route exact path="/landlord/add" component={AddProperty} />
