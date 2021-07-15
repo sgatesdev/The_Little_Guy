@@ -64,7 +64,7 @@ mutation( $cloudinaryId: String) {
 
 export const ADD_PROPERTY_IMAGE = gql`
 mutation($_id: ID!, $cloudinaryId: String) {
-  addPropertyImages(_id: $_id image: $cloudinaryId)
+  addPropertyImage(_id: $_id, cloudinaryId: $cloudinaryId)
 }`;
 
 export const UPLOAD_IMAGE = gql`
@@ -83,12 +83,31 @@ export const DELETE_USER = gql`
 `;
 **/
 
-/** PROPERTY MUTATIONS
+/** PROPERTY MUTATIONS **/
 
 export const ADD_PROPERTY = gql`
-
+mutation(
+    $addressStreet: String,
+    $addressCity: String,
+    $addressState: String,
+    $addressZip: String,
+    $price: Int,
+    $description: String,
+) {
+  addProperty(input: {
+    addressStreet: $addressStreet,
+    addressCity: $addressCity,
+    addressState: $addressState,
+    addressZip: $addressZip,
+    price: $price,
+    description: $description
+  }) {
+    _id
+  }
+}
 `;
 
+/** 
 export const UPDATE_PROPERTY = gql`
 
 `;
@@ -96,4 +115,4 @@ export const UPDATE_PROPERTY = gql`
 export const DELETE_PROPERTY = gql`
 
 `;
-**/
+*/

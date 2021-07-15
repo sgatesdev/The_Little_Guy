@@ -12,15 +12,14 @@ import { useDispatch } from 'react-redux';
 import history from '../../config/history';
 
 // import apollo query
-import { SIGN_UP } from '../../apollo-client/mutations';
-import { saveToken } from '../../utils/token';
+import { ADD_PROPERTY } from '../../apollo-client/mutations';
 
 const AddProperty = () => {
 
     const dispatch = useDispatch();
 
     // apollo client
-    const [signUp, { error }] = useMutation(SIGN_UP);
+    const [addProperty, { error }] = useMutation(ADD_PROPERTY);
 
     // set initial values so react doesn't get mad at me
     const [formState, setFormState] = useState({
@@ -55,14 +54,42 @@ const AddProperty = () => {
             return setDisplayError('Please enter all information!');
         }
 
-        history.push('/');
+        // if the input is valid, send it to server
+        try {
+          const propertyData = await addProperty({
+              variables: {
+                  addressStreet: addressStreet,
+                  addressCity: addressCity,
+                  addressState: addressState,
+                  addressZip: addressZip,
+                  price: rent,
+                  description: description
+              }
+          });
+          
+          const propertyId = propertyData.data.addProperty._id;
+
+          // send user data to redux so all components can see it
+          // do not send password
+          //const reduxData = { firstName, lastName, email, ...userData.data.signUp.user };
+
+          dispatch({
+              type: 'LOG_IN',
+              payload: { ...reduxData }
+          });
+
+          history.push(`/image/property/${propertyId}`);
+      }
+      catch(err) {
+          return setDisplayError(`${err}`);
+      }
     }
 
     const handleInput = (e) => {
         let { name, value } = e.target;
 
-        if(e.target.name === 'is_landlord') {
-            value = e.target.checked;
+        if(name === 'rent') {
+            value = parseInt(value);
         }
 
         setFormState({
@@ -197,7 +224,7 @@ const AddProperty = () => {
                   <span className="absolute left-0 inset-y-0 flex items-center pl-3">
                     <LockClosedIcon className="h-5 w-5 text-indigo-500 group-hover:text-indigo-400" aria-hidden="true" />
                   </span>
-                  Sign up!
+                  Add Property
                 </button>
               </div>
             </form>
