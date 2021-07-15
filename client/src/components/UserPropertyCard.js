@@ -1,4 +1,6 @@
 import React from 'react';
+import {Image} from 'cloudinary-react';
+
 import { formatPrice} from '../utils/helpers';
 const UserPropertyCard = ({ property }) => {
     const {
@@ -15,25 +17,25 @@ const UserPropertyCard = ({ property }) => {
     const { firstName, lastName } = property.owner;
       
     return(
-<div class="width-100 mt-10 wrapper bg-gray-400 antialiased text-gray-900" key= {`${_id}`}>
+<div className="width-100 mt-10 wrapper bg-gray-400 antialiased text-gray-900" key= {`${_id}`}>
 <div> 
- <div class="relative px-4 -mt-16  ">
-   <div class="bg-white p-6 rounded-lg shadow-lg">
-   <img src='https://via.placeholder.com/150' class="object-cover object-center rounded-lg shadow-md" alt="property"/>  
-    <div class="flex items-baseline">
-      <span class="bg-teal-200 text-teal-800 text-xs px-2 inline-block rounded-full  uppercase font-semibold tracking-wide">
+ <div className="relative px-4 -mt-16  ">
+   <div className="bg-white p-6 rounded-lg shadow-lg">
+   <Image cloudName="drcmojwwk" publicId={images[0]} width="150" height="150" />
+    <div className="flex items-baseline">
+      <span className="bg-teal-200 text-teal-800 text-xs px-2 inline-block rounded-full  uppercase font-semibold tracking-wide">
         {!firstName ? null : `${firstName} ${lastName}` }
       </span>
-      <div class="ml-2 text-teal-600 uppercase text-xs font-semibold tracking-wider">
+      <div className="ml-2 text-teal-600 uppercase text-xs font-semibold tracking-wider">
     {formatPrice(price)}/month
   </div>  
     </div>
-    <h4 class="mt-1 text-l font-semibold uppercase leading-tight truncate">{ addressStreet}</h4>
-  <div class="mt-1">
-    <span class="text-gray-600 text-sm">{`${addressCity}, ${addressState} ${addressZip}`}</span>
+    <h4 className="mt-1 text-l font-semibold uppercase leading-tight truncate">{ addressStreet}</h4>
+  <div className="mt-1">
+    <span className="text-gray-600 text-sm">{`${addressCity}, ${addressState} ${addressZip}`}</span>
   </div>
-  <div class="mt-4">
-    <span class="text-sm text-gray-600">{description}</span>
+  <div className="mt-4">
+    <span className="text-sm text-gray-600">{description}</span>
   </div>  
   </div>
  </div> 
