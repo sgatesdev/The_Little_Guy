@@ -193,9 +193,9 @@ const resolvers = {
                 console.log(error)
             }
         },
-        addPropertyImage: async (parent, { cloudinaryId, id }) => {
+        addPropertyImage: async (parent, { cloudinaryId, _id }) => {
             try {
-                const image = await Property.findOneAndUpdate({ _id: id }, { $push: { images: cloudinaryId } });
+                const image = await Property.findOneAndUpdate({ _id: _id }, { $push: { images: cloudinaryId } });
                 if (!image) {
                     throw new ApolloError('We could not Process your request at this time!')
                 }
