@@ -193,9 +193,9 @@ const resolvers = {
                 console.log(error)
             }
         },
-        addPropertyImage: async (parent, { cloudinaryId, id }) => {
+        addPropertyImage: async (parent, { cloudinaryId, _id }) => {
             try {
-                const image = await Property.findOneAndUpdate({ _id: id }, { $push: { images: cloudinaryId } });
+                const image = await Property.findOneAndUpdate({ _id: _id }, { $push: { images: cloudinaryId } });
                 if (!image) {
                     throw new ApolloError('We could not Process your request at this time!')
                 }
@@ -231,20 +231,9 @@ const resolvers = {
                 throw new AuthenticationError(error);
             }
         },
-<<<<<<< HEAD
         addProperty: async (parent, { input }, context) => {
             if(context.user) {            
                 const property = await Property.create({...input, ['owner']: context.user._id});
-=======
-        addProperty: async (parent, {input}, context) => {
-            try {
-                const property = await Property.create({input});
-                return property
-            } catch (error) {
-                throw new AuthenticationError('add property not working')
-            }
-        }
->>>>>>> 6d3c650ac4e418cd6f3f955d1407c5680daa4b53
 
                 return property;
             }
