@@ -58,9 +58,9 @@ const App = () => {
             { /* LANDLORD PATHS */ }
             <Route exact path="/landlord" component={Landlord} />
             <Route exact path="/landlord/add" component={AddProperty} />
-            <Route exact path="/landlord/delete" component={EditProperty} />
-            <Route exact path="/landlord/edit" component={DeleteProperty} />
-            <Route exact path="/landlord/applications" component={ReviewApplications} />
+            <Route exact path="/landlord/delete/:id" component={DeleteProperty} />
+            <Route exact path="/landlord/edit/:id" component={EditProperty} />
+            <Route exact path="/landlord/applications/:id" component={ReviewApplications} />
             { /* USER PATHS */ }
             <Route exact path="/profile" component={Profile} />
             <Route exact path="/profile/update" component={Update} />

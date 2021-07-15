@@ -111,7 +111,7 @@ const Header = () => {
                       {item.name}
                     </Link>
                   ))}
-                  <Link onClick={handleLogout} className= 'text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium'>Log Out</Link>
+                  <Link to="#" onClick={handleLogout} className= 'text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium'>Log Out</Link>
                   </>
             );
         }
@@ -131,7 +131,7 @@ const Header = () => {
                       {item.name}
                     </Link>
                   ))}
-                  <Link onClick={handleLogout} className= 'text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium'>Log Out</Link>
+                  <Link to="#" onClick={handleLogout} className= 'text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium'>Log Out</Link>
                   </>
             );
         }

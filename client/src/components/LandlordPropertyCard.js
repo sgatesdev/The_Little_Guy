@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import {Image} from 'cloudinary-react';
 
 import { formatPrice} from '../utils/helpers';
 const LandlordPropertyCard = ({ property }) => {
@@ -15,11 +16,11 @@ const LandlordPropertyCard = ({ property }) => {
     } = property;
       
     return(
-<div class="width-100 mt-10 wrapper bg-gray-400 antialiased text-gray-900" key= {`${_id}`}>
+<div class="mt-10 wrapper bg-gray-400 antialiased text-gray-900">
 <div> 
  <div class="relative px-4 -mt-16  ">
    <div class="bg-white p-6 rounded-lg shadow-lg">
-   <img src='https://via.placeholder.com/150' class="object-cover object-center rounded-lg shadow-md" alt="property"/>  
+   <Image cloudName="drcmojwwk" publicId={images[0]} width="150" height="150" />
     <div class="flex items-baseline">
       <div class="ml-2 text-teal-600 uppercase text-xs font-semibold tracking-wider">
     {formatPrice(price)}/month

@@ -11,6 +11,7 @@ mutation login($email: String!, $password: String!) {
         lastName
         username
         is_landlord
+        image
         current_property {
             owner {
                 firstName
@@ -107,11 +108,29 @@ mutation(
 }
 `;
 
-/** 
-export const UPDATE_PROPERTY = gql`
 
+export const UPDATE_PROPERTY = gql`
+mutation(
+    $addressStreet: String,
+    $addressCity: String,
+    $addressState: String,
+    $addressZip: String,
+    $price: Int,
+    $description: String,
+) {
+  updateProperty(input: {
+    addressStreet: $addressStreet,
+    addressCity: $addressCity,
+    addressState: $addressState,
+    addressZip: $addressZip,
+    price: $price,
+    description: $description
+  }) {
+    _id
+  }
 `;
 
+/** 
 export const DELETE_PROPERTY = gql`
 
 `;

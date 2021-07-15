@@ -1,10 +1,4 @@
-const { AuthenticationError } = require('apollo-server-express');
-const { ApolloError } = require('apollo-server-errors');
-const { User, Property, Application } = require('../models');
-const { signToken } = require('../utils/auth');
-const { cloudinary } = require('../utils/cloudinary');
-
-const resolvers = {
+module.exports = {
     Query: {
         user: async (parent, { id }) => {
             return await User.findOne({_id: id}).populate({
@@ -13,21 +7,6 @@ const resolvers = {
                     path: 'owner'
                 }
             })
-        },
-        property: async (parent, { input }) => {
-            const property = await Property.findOne(
-                {
-                    addressStreet: input.addressStreet,
-                    addressCity: input.addressCity,
-                    addressState: input.addressState,
-                    addressZip: input.addressZip,
-                }
-            ).populate({
-                path: 'owner',
-                populate: 'User'
-            });
-            if (!property) throw new AuthenticationError('No property found')
-            return property
         },
         me: async (parent, args, context) => {
             if (context.user) {
@@ -67,18 +46,6 @@ const resolvers = {
             }
             throw new AuthenticationError('Not Logged In!');
         },
-        allProperties: async (parent, args) => {
-            try {
-                const allProperties = await Property.find().populate({
-                    path: 'owner',
-                    populate: 'User'
-                }).limit(20);
-
-                return allProperties;
-            } catch (error) {
-                throw new AuthenticationError('No Properties found');
-            }
-        },
         getRating: async (parent, { id }) => {
             try {
                 const userRating = await User.findById(id);
@@ -109,9 +76,7 @@ const resolvers = {
                 throw new AuthenticationError('No property found')
             }
         },
-
     },
-
     Mutation: {
         login: async (parent, { email, password }) => {
             const user = await User.findOne({ email: email }).populate({
@@ -157,70 +122,6 @@ const resolvers = {
 
             return { token, user };
         },
-        updateProperty: async (parent, args, context) => {
-            if (context.user) {
-                const property = await Property.findOneAndUpdate({ _id: args._id }, { $set: args.input });
-                return property;
-            }
-            throw new AuthenticationError('Not Logged In')
-        },
-        uploadImage: async (parent, args) => {
-            try {
-                const imageString = args.image;
-                const uploadedResponse = await cloudinary.uploader.
-                    upload(imageString, {
-                        upload_preset: 'usydr1v1'
-                    });
-                const publicId = uploadedResponse.public_id;
-                return publicId
-            } catch (error) {
-                console.log(error)
-            }
-
-        },
-        addUserImage: async (parent, { cloudinaryId}, context) => {
-            try {
-                if (context.user) {
-                    const image = await User.findOneAndUpdate({ _id: context.user._id }, { image: cloudinaryId });
-                    if (!image) {
-                        throw new ApolloError('We could not Process your request at this time!')
-                    }
-                    return cloudinaryId
-                }
-                throw new AuthenticationError('You must be logged in to edit this profile!')
-
-            } catch (error) {
-                console.log(error)
-            }
-        },
-        addPropertyImage: async (parent, { cloudinaryId, _id }) => {
-            try {
-                /** TEMPORARILY ZERO OUT ARRAY, WILL IMPLEMENT MULTIPLE PICS AT A LATER DATE */
-                await Property.findOneAndUpdate({ _id: _id }, { images: [] } );
-                
-                const image = await Property.findOneAndUpdate({ _id: _id }, { $push: { images: cloudinaryId } });
-                if (!image) {
-                    throw new ApolloError('We could not Process your request at this time!')
-                }
-                return cloudinaryId
-
-            } catch (error) {
-                console.log(error)
-            }
-        },
-        deleteProperty: async (parent, { _id }, context) => {
-            try {
-                if (context.user) {
-                    const user = await User.findOneDelete({ owned_properties: context.user._id });
-                    const property = await Property.deleteOne({ _id: _id });
-
-                    return property;
-                }
-                throw new AuthenticationError('Not Logged In')
-            } catch (error) {
-                throw new AuthenticationError('No property was found');
-            }
-        },
         deleteUser: async (parent, context) => {
             try {
                 if (context.user) {
@@ -233,22 +134,5 @@ const resolvers = {
                 throw new AuthenticationError(error);
             }
         },
-        addProperty: async (parent, { input }, context) => {
-            if(context.user) {
-                const property = await Property.create({...input, ['owner']: context.user._id});
-                return property;
-            }
-            throw new AuthenticationError('Not Logged In');
-        },
-        newApplication: async (parent, { input}, context) => {
-            try {
-                const application = await Application.create({...input});
-                return application
-            } catch (error) {
-                throw new Error
-            }
-        },
     }
-};
-
-module.exports = resolvers;
+}

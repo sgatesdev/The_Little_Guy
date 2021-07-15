@@ -54,30 +54,29 @@ const AddProperty = () => {
             return setDisplayError('Please enter all information!');
         }
 
+        const buildInput = {
+          addressStreet: addressStreet,
+          addressCity: addressCity,
+          addressState: addressState,
+          addressZip: addressZip,
+          price: parseInt(rent),
+          description: description
+        };
+
         // if the input is valid, send it to server
         try {
           const propertyData = await addProperty({
-              variables: {
-                  addressStreet: addressStreet,
-                  addressCity: addressCity,
-                  addressState: addressState,
-                  addressZip: addressZip,
-                  price: rent,
-                  description: description
-              }
+              variables: buildInput
           });
           
           const propertyId = propertyData.data.addProperty._id;
 
-          // send user data to redux so all components can see it
-          // do not send password
-          //const reduxData = { firstName, lastName, email, ...userData.data.signUp.user };
-
+          // update redux store, add in property ID to object          
           dispatch({
-              type: 'LOG_IN',
-              payload: { ...reduxData }
+              type: 'ADD_MY_PROPERTY',
+              payload: { ...buildInput, ['_id']: propertyId }
           });
-
+    
           history.push(`/image/property/${propertyId}`);
       }
       catch(err) {
@@ -87,10 +86,6 @@ const AddProperty = () => {
 
     const handleInput = (e) => {
         let { name, value } = e.target;
-
-        if(name === 'rent') {
-            value = parseInt(value);
-        }
 
         setFormState({
             ...formState, 
@@ -209,22 +204,15 @@ const AddProperty = () => {
                   </textarea>
                 </div>
                 </div>
-
-                <div className="mt-5">
-                    <span class="mx-2 text-sm">Cloudinary goes here!</span> 
-                </div>
-    
               </div>
+              <div className="mb-10 text-center text-sm text-red-600">
+                { displayError ? displayError : null}</div>
               <div>
-              <label className="mt-2 text-center text-sm text-gray-600">{ displayError ? displayError : null}</label>
                 <button
                   type="submit"
                   className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                 >
-                  <span className="absolute left-0 inset-y-0 flex items-center pl-3">
-                    <LockClosedIcon className="h-5 w-5 text-indigo-500 group-hover:text-indigo-400" aria-hidden="true" />
-                  </span>
-                  Add Property
+                  Next 
                 </button>
               </div>
             </form>
