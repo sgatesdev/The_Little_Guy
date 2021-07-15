@@ -1,13 +1,13 @@
 const { AuthenticationError } = require('apollo-server-express');
 const { ApolloError } = require('apollo-server-errors');
-const { User, Property } = require('../models');
+const { User, Property, Application } = require('../models');
 const { signToken } = require('../utils/auth');
 const { cloudinary } = require('../utils/cloudinary');
 
 const resolvers = {
     Query: {
-        user: async (parent, { args }) => {
-            return await User.findOne({ args }).populate({
+        user: async (parent, { id }) => {
+            return await User.findOne({_id: id}).populate({
                 path: 'current_property',
                 populate: {
                     path: 'owner'
@@ -231,12 +231,19 @@ const resolvers = {
                 throw new AuthenticationError(error);
             }
         },
-        addProperty: async (parent, {input}, context) => {
+        addProperty: async (parent, { input }, context) => {
+            if(context.user) {
+                const property = await Property.create({...input, ['owner']: context.user._id});
+                return property;
+            }
+            throw new AuthenticationError('Not Logged In');
+        },
+        newApplication: async (parent, { input}, context) => {
             try {
-                const property = await Property.create({input});
-                return property
+                const application = await Application.create({...input});
+                return application
             } catch (error) {
-                throw new AuthenticationError('add property not working')
+                throw new Error
             }
         }
 
