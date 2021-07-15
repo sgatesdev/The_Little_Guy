@@ -27,10 +27,31 @@ const typeDefs = gql`
         images:[String]
         description: String
     }
+    type Address {
+        addressStreet: String
+        addressCity: String
+        addressState: String
+        addressZip: String
+    }
 
     type Auth {
         token: ID
         user: User
+    }
+
+    type TenantApplication {
+        _id: ID
+        applicantFirstName: String
+        applicantMiddleInitial: String
+        applicantLastName: String
+        grossAnnualIncome: Int,
+        applicantCurrentAddress: User
+        applicantNewAddress: [Address]
+        otherTenants: [String]
+        creditScore: Int
+        employer: String
+        typeOfEmployment: String
+        pets: [String]
     }
 
     input UpdatePropertyInput {
@@ -53,6 +74,19 @@ const typeDefs = gql`
         username: String
         is_landlord: Boolean
     }
+    input NewApplicationInput {
+        applicantFirstName: String!
+        applicantMiddleInitial: String!
+        applicantLastName: String!
+        grossAnnualIncome: Int,!
+        applicantCurrentAddress: String
+        # applicantNewAddress: [String]
+        otherTenants: [String]
+        creditScore: Int!
+        employer: String
+        typeOfEmployment: String
+        pets: [String]
+    }
     type Query {
         user(id:ID!): User
         me:User
@@ -73,6 +107,7 @@ const typeDefs = gql`
         deleteProperty(_id: ID!): Property
         deleteUser: Auth
         addProperty(input: UpdatePropertyInput!): Property
+        newApplication(input: NewApplicationInput!): TenantApplication
     }
 
 `;
