@@ -64,7 +64,7 @@ mutation( $cloudinaryId: String) {
 
 export const ADD_PROPERTY_IMAGE = gql`
 mutation($_id: ID!, $cloudinaryId: String) {
-  addPropertyImages(_id: $_id image: $cloudinaryId)
+  addPropertyImages(_id: $_id, cloudinaryId: $cloudinaryId)
 }`;
 
 export const UPLOAD_IMAGE = gql`
