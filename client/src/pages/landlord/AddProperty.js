@@ -24,12 +24,12 @@ const AddProperty = () => {
 
     // set initial values so react doesn't get mad at me
     const [formState, setFormState] = useState({
-        email: '',
-        password: '',
-        password_2: '',
-        firstName: '',
-        lastName: '',
-        is_landlord: false
+        addressStreet: '',
+        addressCity: '',
+        addressState: '',
+        addressZip: '',
+        rent: 0,
+        description: ''
     });
 
     const [displayError, setDisplayError] = useState(null);
@@ -42,54 +42,17 @@ const AddProperty = () => {
 
         // destructure state
         const {
-            email,
-            password,
-            password_2,
-            firstName,
-            lastName,
-            is_landlord
+            addressStreet,
+            addressCity,
+            addressState,
+            addressZip,
+            rent,
+            description
         } = formState;
 
         // make sure values are filled in and valid
-        if(email === '' || password === '' || password_2 === '' || firstName === '' || lastName === '') {
+        if(addressStreet === '' || addressCity === '' || addressState === '' || addressZip === '' || rent === '' || description === '') {
             return setDisplayError('Please enter all information!');
-        }
-
-        if(password !== password_2) {
-            return setDisplayError('Passwords don\'t match!');
-        }
-
-        console.log(is_landlord);
-
-        // if the input is valid, send it to server
-        try {
-            const userData = await signUp({
-                variables: {
-                    password: password,
-                    email: email,
-                    firstName: firstName,
-                    lastName: lastName,
-                    username: `test${Date.now()}`,
-                    is_landlord: is_landlord
-                }
-            });
-
-            const token = userData.data.signUp.token;
-
-            // save token to LocalStorage
-            saveToken(token);
-
-            // send user data to redux so all components can see it
-            // do not send password
-            const reduxData = { firstName, lastName, email, ...userData.data.signUp.user };
-
-            dispatch({
-                type: 'LOG_IN',
-                payload: { ...reduxData }
-            });
-        }
-        catch(err) {
-            return setDisplayError(`${err}`);
         }
 
         history.push('/');
@@ -206,28 +169,22 @@ const AddProperty = () => {
                   <label htmlFor="email-address">
                   <span class="m-2 text-sm">Property description</span> 
                   </label>
-                  <input
+                  <textarea 
                     name="description"
                     type="textarea"
-                    rows="10"
+                    class="form-textarea mt-1 block w-full" 
+                    rows="10" 
+                    placeholder="Enter a property description here"
                     className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                    placeholder="Description"
-                    autoComplete="description"
                     value={formState.description}
                     onChange={handleInput}
-                  />
+                  >
+                  </textarea>
                 </div>
                 </div>
 
-                <div>
-                    <input 
-                              className="form-checkbox my-2"
-                              type="checkbox" 
-                              name="is_landlord"
-                              value={formState.is_landlord}
-                              onChange={handleInput}
-                    />
-                    <span class="m-2 text-sm">I am a landlord</span> 
+                <div className="mt-5">
+                    <span class="mx-2 text-sm">Cloudinary goes here!</span> 
                 </div>
     
               </div>

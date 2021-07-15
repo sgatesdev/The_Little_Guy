@@ -160,7 +160,7 @@ const resolvers = {
         updateProperties: async (parent, args, context) => {
             if (context.user) {
                 const property = await Property.findOneAndUpdate({ _id: args.id }, { $set: args.input });
-                return property
+                return property;
             }
             throw new AuthenticationError('Not Logged In')
         },
@@ -206,7 +206,6 @@ const resolvers = {
             }
         },
         deleteProperty: async (parent, { _id }, context) => {
-
             try {
                 if (context.user) {
                     const user = await User.findOneDelete({ owned_properties: context.user._id });
@@ -245,8 +244,7 @@ const resolvers = {
             } catch (error) {
                 throw new Error
             }
-        }
-
+        },
     }
 };
 

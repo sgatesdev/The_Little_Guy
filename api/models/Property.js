@@ -3,7 +3,7 @@ const { Schema, model } = require('mongoose');
 const propertySchema = new Schema({
     type: {
         type: String,
-        required: true,
+        required: false,
     },
     addressStreet: {
         type: String,
