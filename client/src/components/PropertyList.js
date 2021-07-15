@@ -4,10 +4,10 @@ import LandlordPropertyCard from './LandlordPropertyCard';
 
 const PropertyList = ({ properties, isLandlord }) => {
     return properties.length ? (
-        <div class="flex flex-wrap -mx-4">
+        <div className="flex flex-wrap -mx-4">
             {
                 properties.map((property) => {
-                    return isLandlord ? <LandlordPropertyCard property={ property } /> : <UserPropertyCard property={ property } />
+                    return isLandlord ? <LandlordPropertyCard property={ property } key={ property._id } /> : <UserPropertyCard property={ property } key={ property._id } />
                 })                
             }
         </div>

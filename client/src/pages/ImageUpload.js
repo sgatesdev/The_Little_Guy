@@ -7,6 +7,9 @@ import { UPLOAD_IMAGE, ADD_USER_IMAGE, ADD_PROPERTY_IMAGE } from '../apollo-clie
 // bring in redux action
 import { EDIT_MY_PROPERTY } from '../store/actions';
 
+// import history object
+import history from '../config/history';
+
 const ImageUpload = (props) => {
     // initialize state variables for handling data/upload
     const [fileInputState, setFileInputState] = useState('');
@@ -25,6 +28,9 @@ const ImageUpload = (props) => {
     // for debugging
     console.log(imageTargetId);
     console.log(typeOfImage);
+
+    // redux
+    const dispatch = useDispatch();
 
     // calls previewUploadedFile, sets state var to prepare file to be uploaded
     const handleFileUpload = (event) => {
@@ -62,23 +68,44 @@ const ImageUpload = (props) => {
             });
 
             // get cloudinary URL for stored image, log for debugging
-            const imageString = data.uploadImage;
+            const imageString = data.uploadImage || 'test';
             console.log(imageString);
 
             // once we have the cloudinary URL, look at route variables (url string for this page) to see where we want to store ref to image in our database
             // once we know if it's user or property, send the cloudinary URL string to graphQL to store it in our database with the correct user or property record!
             if (imageString) {
+                // reset variables
+                // TODO: remove this since we are redirecting
                 setFileInputState('');
                 setPreviewSource('');
-                if (typeOfImage === 'user') {
-                    const { data } = await addUserImage({ variables: { cloudinaryId: imageString } });
-                    console.log(data)
-                    return;
-                }
 
-                await addPropertyImage({
-                    variables: { _id: imageTargetId, cloudinaryId: imageString }
-                })
+                // if type is user, add user image
+                // juan already has context adding user id on the backend
+                if (typeOfImage === 'user') {
+                    await addUserImage({ variables: { cloudinaryId: imageString } });
+                    
+                    // dispatch cloudinary URL to redux
+                    dispatch({
+                        type: 'UPDATE_USER',
+                        payload: { image: imageString }
+                    });
+                }
+                else {
+                    // send property image to mongo document for that property
+                    await addPropertyImage({
+                        variables: { _id: imageTargetId, cloudinaryId: imageString }
+                    })
+
+                    // dispatch cloudinary URL to redux
+                    // FOR NOW: replacing the entire array, IN THE FUTURE would update to account for adding multiple images - this is a FUTURE feature
+                    dispatch({
+                        type: 'EDIT_MY_PROPERTY',
+                        payload: { _id: imageTargetId, images: [imageString] }
+                    });
+                }
+              
+                // redirect user back to landlord page
+                history.push('/landlord');
             }
         } catch (err) {
             throw err;

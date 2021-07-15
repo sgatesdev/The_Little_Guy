@@ -16,7 +16,10 @@ const propertyReducer = (state = {}, action) => {
         case ADD_MY_PROPERTY:
             return { ...state, [action.payload._id]: action.payload }
         case EDIT_MY_PROPERTY:
-            return { ...state, [action.payload._id]: action.payload }
+            let currentValues = state[action.payload._id];
+            let updatedValues = { ...currentValues, ...action.payload };
+
+            return { ...state, [action.payload._id]: updatedValues }
         case DELETE_MY_PROPERTY:
             return _.omit(...state, action.payload);
         default: 

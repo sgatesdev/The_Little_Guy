@@ -16,7 +16,7 @@ const LandlordPropertyCard = ({ property }) => {
     } = property;
       
     return(
-<div class="width-100 mt-10 wrapper bg-gray-400 antialiased text-gray-900" key= {`${_id}`}>
+<div class="mt-10 wrapper bg-gray-400 antialiased text-gray-900">
 <div> 
  <div class="relative px-4 -mt-16  ">
    <div class="bg-white p-6 rounded-lg shadow-lg">

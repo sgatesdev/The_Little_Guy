@@ -17,9 +17,9 @@ const UserPropertyCard = ({ property }) => {
     const { firstName, lastName } = property.owner;
       
     return(
-<div className="width-100 mt-10 wrapper bg-gray-400 antialiased text-gray-900" key= {`${_id}`}>
+<div className="w-full wrapper bg-gray-400 antialiased text-gray-900">
 <div> 
- <div className="relative px-4 -mt-16  ">
+ <div className="relative px-4 -mt-16">
    <div className="bg-white p-6 rounded-lg shadow-lg">
    <Image cloudName="drcmojwwk" publicId={images[0]} width="150" height="150" />
     <div className="flex items-baseline">

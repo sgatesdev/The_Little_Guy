@@ -11,6 +11,7 @@ mutation login($email: String!, $password: String!) {
         lastName
         username
         is_landlord
+        image
         current_property {
             owner {
                 firstName
