@@ -31,6 +31,9 @@ import Profile from './pages/profile';
 import Password from './pages/profile/UpdatePassword';
 import Update from './pages/profile/UpdateProfile';
 
+// testing application page styling
+import Application from './pages/Application';
+
 // header
 import Header from './components/Header';
 
@@ -62,6 +65,8 @@ const App = () => {
             { /* TENANT PATHS */ }
             <Route exact path="/tenant" component={Tenant} />
             <Route path="/tenant/saved" component={TenantSaved} />
+
+            <Route exact path="/application" component={Application} />
           </Switch>
         </Router>
       </StoreProvider>
