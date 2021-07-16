@@ -6,7 +6,7 @@ import { useMutation } from '@apollo/client';
 import { LockClosedIcon } from '@heroicons/react/solid'
 
 // new stuff for redux 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 // import history
 import history from '../../config/history';
@@ -15,7 +15,7 @@ import history from '../../config/history';
 import { ADD_PROPERTY } from '../../apollo-client/mutations';
 
 const AddProperty = () => {
-
+    const { firstName, lastName } = useSelector((state) => state.user);
     const dispatch = useDispatch();
 
     // apollo client
@@ -77,6 +77,12 @@ const AddProperty = () => {
               payload: { ...buildInput, ['_id']: propertyId }
           });
     
+          // update redux store, add in property ID to object          
+          dispatch({
+              type: 'ADD_PROPERTY',
+              payload: { ...buildInput, _id: propertyId, images: [], owner: {firstName, lastName }}
+          });
+
           history.push(`/image/property/${propertyId}`);
       }
       catch(err) {

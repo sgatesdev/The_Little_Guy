@@ -15,7 +15,10 @@ const propertyReducer = (state = {}, action) => {
         case FETCH_ALL_PROPERTIES: 
             return { ...state, ..._.mapKeys(action.payload, '_id') };
         case EDIT_PROPERTY:
-            return { ...state, [action.payload._id]: action.payload }
+            let currentValues = state[action.payload._id];
+            let updatedValues = { ...currentValues, ...action.payload };
+
+            return { ...state, [action.payload._id]: updatedValues }
         case DELETE_PROPERTY:
             return _.omit(...state, action.payload);
         case ADD_PROPERTY:
