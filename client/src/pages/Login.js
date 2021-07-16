@@ -55,7 +55,7 @@ const Login = () => {
             //  send user data to redux so all components can see it
             dispatch({
                 type: 'LOG_IN',
-                payload: { ...userDataRes, email }
+                payload: { ...userDataRes }
             });
         }
         catch(err) {
