@@ -104,7 +104,7 @@ const typeDefs = gql`
         uploadImage(image:String!):ID
         addUserImage(cloudinaryId: String): String
         addPropertyImage(_id: ID!, cloudinaryId: String): String
-        updateProperties(_id: ID!, input: UpdatePropertyInput!): Property
+        updateProperty(_id: ID, input: UpdatePropertyInput): Property
         deleteProperty(_id: ID!): Property
         deleteUser: Auth
         addProperty(input: UpdatePropertyInput!): Property
