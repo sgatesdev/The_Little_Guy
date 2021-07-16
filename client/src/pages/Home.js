@@ -32,8 +32,8 @@ const Home = () => {
 
     return (
         <>
-        <h1 className="flex items-center justify-center font-bold text-3xl my-4">{ user ? `Welcome back, ${user.firstName}!` : null }</h1>
-        <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+        <h1 className="flex justify-center bg-CPgray font-bold text-2xl py-2">{ user ? `Welcome back, ${user.firstName}!` : null }</h1>
+        <div className="min-h-screen flex  justify-center py-20 bg-CPgray py-12 px-4 sm:px-6 lg:px-8">
         <div>
         <PropertyList properties={properties}/>                
         </div>
