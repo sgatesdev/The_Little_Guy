@@ -19,7 +19,9 @@ const About = () => {
     </p>
     <ul class="list-disc list-inside">
     <li class="text-center m-4 text-xl font-light"> Messaging</li>
+    <li class="text-center m-4 text-xl font-light"> Save Properties</li>
     <li class="text-center m-4 text-xl font-light"> Rent Pay Portal</li>
+    <li class="text-center m-4 text-xl font-light"> Mobile Version</li>
     </ul>
 </div>
 <div class="p-8 bg-white rounded-lg shadow">
