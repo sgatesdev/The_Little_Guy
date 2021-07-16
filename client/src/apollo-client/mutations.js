@@ -95,7 +95,8 @@ mutation(
     $price: Int,
     $description: String,
 ) {
-  addProperty(input: {
+  addProperty(
+    input: {
     addressStreet: $addressStreet,
     addressCity: $addressCity,
     addressState: $addressState,
@@ -111,26 +112,19 @@ mutation(
 
 export const UPDATE_PROPERTY = gql`
 mutation(
-    $addressStreet: String,
-    $addressCity: String,
-    $addressState: String,
-    $addressZip: String,
-    $price: Int,
-    $description: String,
+    $_id: ID,
+    $input: UpdatePropertyInput
 ) {
-  updateProperty(input: {
-    addressStreet: $addressStreet,
-    addressCity: $addressCity,
-    addressState: $addressState,
-    addressZip: $addressZip,
-    price: $price,
-    description: $description
-  }) {
+  updateProperty(
+    _id: $_id,
+    input: $input
+    ) {
     _id
   }
+}
 `;
 
-/** 
+/**
 export const DELETE_PROPERTY = gql`
 
 `;
