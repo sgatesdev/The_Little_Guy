@@ -89,6 +89,9 @@ const ImageUpload = (props) => {
                         type: 'UPDATE_USER',
                         payload: { image: imageString }
                     });
+
+                    // redirect user back to landlord page
+                    history.push('/profile');
                 }
                 else {
                     // send property image to mongo document for that property
@@ -102,10 +105,11 @@ const ImageUpload = (props) => {
                         type: EDIT_MY_PROPERTY,
                         payload: { _id: imageTargetId, images: [imageString] }
                     });
+
+                    // redirect user back to landlord page
+                    history.push('/landlord');
                 }
               
-                // redirect user back to landlord page
-                history.push('/landlord');
             }
         } catch (err) {
             throw err;
