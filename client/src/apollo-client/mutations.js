@@ -109,23 +109,30 @@ mutation(
 }
 `;
 
-
 export const UPDATE_PROPERTY = gql`
 mutation(
-    $_id: ID,
-    $input: UpdatePropertyInput
-) {
-  updateProperty(
+    $_id: ID!,
+    $addressStreet: String,
+    $addressCity: String,
+    $addressState: String,
+    $addressZip: String,
+    $price: Int,
+    $description: String
+ ) {
+  updateProperty(input: {
     _id: $_id,
-    input: $input
-    ) {
+    addressStreet: $addressStreet,
+    addressCity: $addressCity,
+    addressState: $addressState,
+    addressZip: $addressZip,
+    price: $price,
+    description: $description
+  }) {
     _id
   }
-}
-`;
+ }`;
 
-/**
-export const DELETE_PROPERTY = gql`
+// 
+// export const DELETE_PROPERTY = gql`
 
-`;
-*/
+// `;

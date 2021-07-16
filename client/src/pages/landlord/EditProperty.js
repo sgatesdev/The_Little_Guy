@@ -14,10 +14,12 @@ import { EDIT_MY_PROPERTY } from '../../store/actions';
 const EditProperty = (props) => {
     // get dispatcher for redux
     const dispatch = useDispatch();
-    const oldInfo = useSelector((state) => state.properties[props.match.params.id]);
+    const oldInfo = useSelector((state) => state.landlord[props.match.params.id]);
     //console.log(oldInfo)
+
     // apollo client
     const [updateProperty, { error }] = useMutation(UPDATE_PROPERTY);
+
     // set initial values so react doesn't get mad at me
     const [formState, setFormState] = useState({
         addressStreet: oldInfo.addressStreet,
@@ -55,22 +57,24 @@ const EditProperty = (props) => {
           price: parseInt(rent),
           description: description
         };
+
+
         console.log({ ...buildInput, _id: oldInfo._id });
+
         // if the input is valid, send it to server
         // server side takes two args _id and input
         try {
           const propertyData = await updateProperty({
               variables: {
-                   _id: oldInfo._id,
-                   input: buildInput
+                  ...buildInput, _id: oldInfo._id
               }
           });
           // update redux store, add in property ID to object
           dispatch({
               type: 'EDIT_MY_PROPERTY',
-              payload: { _id: oldInfo._id , input: buildInput}
+              payload: {...buildInput, _id: oldInfo._id }
           });
-          //history.push(`/image/property/${oldInfo._id}`);
+          history.push(`/image/property/${oldInfo._id}`);
       }
       catch(err) {
           return setDisplayError(`${err}`);
