@@ -17,16 +17,16 @@ const UserPropertyCard = ({ property }) => {
     const { firstName, lastName } = property.owner;
       
     return(
-<div class="width-100 mt-10 m-4 bg-CPgray antialiased text-gray-900" key= {`${_id}`}>
+<div class="width-100 mt-10 m-4 bg-CPgray antialiased text-gray-900">
 <div> 
  <div class="relative px-4 -mt-16 ">
    <div class="bg-white p-6 m-4 rounded-lg shadow-lg">
-   <Image cloudName="drcmojwwk" publicId={images[0]} width="150" height="150" class="object-cover object-center rounded-lg shadow-md" alt="property"/>  
+   <Image cloudName="drcmojwwk" publicId={images[0]} width="150" height="150" class="object-cover object-center rounded-lg shadow-md m-1.5" alt="property"/>  
     <div class="flex items-baseline">
       <span class="bg-teal-200 text-teal-800 text-xs p inline-block rounded-full  uppercase font-semibold tracking-wide">
         {!firstName ? null : `${firstName} ${lastName}` }
       </span>
-      <div class="ml-2 text-teal-600 uppercase text-xs font-semibold tracking-wider">
+      <div class="ml-2 bg-TLGOrange p-0.5 rounded-full uppercase text-xs text-white font-semibold tracking-wider">
     {formatPrice(price)}/month
   </div>  
     </div>
@@ -46,3 +46,4 @@ const UserPropertyCard = ({ property }) => {
 };
 
 export default UserPropertyCard;
+ 
