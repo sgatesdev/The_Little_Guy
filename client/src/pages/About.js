@@ -26,7 +26,7 @@ const About = () => {
 </div>
 <div class="p-8 bg-white rounded-lg shadow">
     <p class="text-center text-2xl font-bold text-TLGOrange">
-        Meet the developers
+        Meet the Team
     </p>
     <div class="flex items-center md:flex-row justify-evenly">
         <div class="p-4">
