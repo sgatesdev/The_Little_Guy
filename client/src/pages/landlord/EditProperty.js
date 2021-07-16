@@ -13,17 +13,17 @@ import history from '../../config/history';
 
 // import apollo query
 // called EDIT_PROPERTY on client side updateProperties server side
-import { EDIT_PROPERTY } from '../../apollo-client/mutations';
+import { UPDATE_PROPERTY } from '../../apollo-client/mutations';
 import { EDIT_MY_PROPERTY } from '../../store/actions';
 
 const EditProperty = (props) => {
     // get dispatcher for redux 
     const dispatch = useDispatch();
     const oldInfo = useSelector((state) => state.properties[props.match.params.id]);
-    console.log(oldInfo)
+    //console.log(oldInfo)
 
     // apollo client
-    const [editProperty, { error }] = useMutation(EDIT_PROPERTY);
+    const [updateProperty, { error }] = useMutation(UPDATE_PROPERTY);
 
     // set initial values so react doesn't get mad at me
     const [formState, setFormState] = useState({
@@ -58,7 +58,7 @@ const EditProperty = (props) => {
             return setDisplayError('Please enter all information!');
         }
 
-        /** make sure price is used when sending - that's what data field is in database */
+        /** make sure PRICE is used when sending - that's what data field is in database */
         const buildInput = {
           addressStreet: addressStreet,
           addressCity: addressCity,
@@ -68,23 +68,25 @@ const EditProperty = (props) => {
           description: description
         };
 
+
+        console.log({ ...buildInput, _id: oldInfo._id });
+
         // if the input is valid, send it to server
         // server side takes two args _id and input
         try {
-          const propertyData = await editProperty({
+          const propertyData = await updateProperty({
               variables: {
-                  _id: oldInfo._id,
-                  input: buildInput
+                  ...buildInput, _id: oldInfo._id
               }
           });
 
           // update redux store, add in property ID to object          
           dispatch({
               type: 'EDIT_MY_PROPERTY',
-              payload: { ...buildInput, ['_id']: propertyId }
+              payload: { ...buildInput, _id: oldInfo._id }
           });
     
-          history.push(`/image/property/${propertyId}`);
+          history.push(`/image/property/${oldInfo._id}`);
       }
       catch(err) {
           return setDisplayError(`${err}`);
