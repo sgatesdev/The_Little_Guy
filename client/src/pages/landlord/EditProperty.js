@@ -1,30 +1,23 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
-
 // tailwind
 import { LockClosedIcon } from '@heroicons/react/solid'
-
-// new stuff for redux 
+// new stuff for redux
 import { useDispatch, useSelector } from 'react-redux';
-
 // import history
 import history from '../../config/history';
-
 // import apollo query
 // called EDIT_PROPERTY on client side updateProperties server side
-import { EDIT_PROPERTY } from '../../apollo-client/mutations';
+import { UPDATE_PROPERTY } from '../../apollo-client/mutations';
 import { EDIT_MY_PROPERTY } from '../../store/actions';
-
 const EditProperty = (props) => {
-    // get dispatcher for redux 
+    // get dispatcher for redux
     const dispatch = useDispatch();
     const oldInfo = useSelector((state) => state.properties[props.match.params.id]);
-    console.log(oldInfo)
-
+    //console.log(oldInfo)
     // apollo client
-    const [editProperty, { error }] = useMutation(EDIT_PROPERTY);
-
+    const [updateProperty, { error }] = useMutation(UPDATE_PROPERTY);
     // set initial values so react doesn't get mad at me
     const [formState, setFormState] = useState({
         addressStreet: oldInfo.addressStreet,
@@ -34,15 +27,12 @@ const EditProperty = (props) => {
         rent: oldInfo.price,
         description: oldInfo.description
     });
-
     const [displayError, setDisplayError] = useState(null);
-
     const handleForm = async (e) => {
         e.preventDefault();
         console.log(formState)
         // check for for errors
         setDisplayError(null);
-
         // destructure state
         const {
             addressStreet,
@@ -52,13 +42,11 @@ const EditProperty = (props) => {
             rent,
             description
         } = formState;
-
         // make sure values are filled in and valid
         if(addressStreet === '' || addressCity === '' || addressState === '' || addressZip === '' || rent === '' || description === '') {
             return setDisplayError('Please enter all information!');
         }
-
-        /** make sure price is used when sending - that's what data field is in database */
+        /** make sure PRICE is used when sending - that's what data field is in database */
         const buildInput = {
           addressStreet: addressStreet,
           addressCity: addressCity,
@@ -67,39 +55,34 @@ const EditProperty = (props) => {
           price: parseInt(rent),
           description: description
         };
-
+        console.log({ ...buildInput, _id: oldInfo._id });
         // if the input is valid, send it to server
         // server side takes two args _id and input
         try {
-          const propertyData = await editProperty({
+          const propertyData = await updateProperty({
               variables: {
-                  _id: oldInfo._id,
-                  input: buildInput
+                   _id: oldInfo._id,
+                   input: buildInput
               }
           });
-
-          // update redux store, add in property ID to object          
+          // update redux store, add in property ID to object
           dispatch({
               type: 'EDIT_MY_PROPERTY',
-              payload: { ...buildInput, ['_id']: propertyId }
+              payload: { _id: oldInfo._id , input: buildInput}
           });
-    
-          history.push(`/image/property/${propertyId}`);
+          //history.push(`/image/property/${oldInfo._id}`);
       }
       catch(err) {
           return setDisplayError(`${err}`);
       }
     }
-
     const handleInput = (e) => {
         let { name, value } = e.target;
-
         setFormState({
-            ...formState, 
+            ...formState,
             [name]: value
         });
     }
-
     return (
         <div className=" flex items-center justify-center bg-gray-50 px-4 sm:px-6 lg:px-8">
           <div className="max-w-md w-full space-y-8">
@@ -113,11 +96,10 @@ const EditProperty = (props) => {
             </div>
             <form className="mt-8 space-y-6" onSubmit={handleForm}>
               <input type="hidden" name="remember" defaultValue="true" />
-    
               <div className="rounded-md shadow-sm -space-y-px">
                 <div>
                   <label htmlFor="email-address">
-                  <span className="m-2 text-sm">Street Address</span> 
+                  <span className="m-2 text-sm">Street Address</span>
                   </label>
                   <input
                     name="addressStreet"
@@ -129,11 +111,10 @@ const EditProperty = (props) => {
                     onChange={handleInput}
                   />
                 </div>
-
                 <div className="rounded-md shadow-sm -space-y-px">
                 <div>
                   <label htmlFor="email-address">
-                  <span className="m-2 text-sm">City</span> 
+                  <span className="m-2 text-sm">City</span>
                   </label>
                   <input
                     name="addressCity"
@@ -146,11 +127,10 @@ const EditProperty = (props) => {
                   />
                 </div>
                 </div>
-
                 <div className="rounded-md shadow-sm -space-y-px">
                 <div>
                   <label htmlFor="email-address">
-                  <span className="m-2 text-sm">State</span> 
+                  <span className="m-2 text-sm">State</span>
                   </label>
                   <input
                     name="addressState"
@@ -163,11 +143,10 @@ const EditProperty = (props) => {
                   />
                 </div>
                 </div>
-
                 <div className="rounded-md shadow-sm -space-y-px">
                 <div>
                   <label htmlFor="email-address">
-                  <span className="m-2 text-sm">Zipcode</span> 
+                  <span className="m-2 text-sm">Zipcode</span>
                   </label>
                   <input
                     name="addressZip"
@@ -180,11 +159,10 @@ const EditProperty = (props) => {
                   />
                 </div>
                 </div>
-
                 <div className="rounded-md shadow-sm -space-y-px">
                 <div>
                   <label htmlFor="email-address">
-                  <span className="m-2 text-sm">Monthly rent</span> 
+                  <span className="m-2 text-sm">Monthly rent</span>
                   </label>
                   <input
                     name="rent"
@@ -197,17 +175,16 @@ const EditProperty = (props) => {
                   />
                 </div>
                 </div>
-
                 <div className="rounded-md shadow-sm -space-y-px">
                 <div>
                   <label htmlFor="email-address">
-                  <span className="m-2 text-sm">Property description</span> 
+                  <span className="m-2 text-sm">Property description</span>
                   </label>
-                  <textarea 
+                  <textarea
                     name="description"
                     type="textarea"
-                    className="form-textarea mt-1 block w-full" 
-                    rows="10" 
+                    className="form-textarea mt-1 block w-full"
+                    rows="10"
                     placeholder="Enter a property description here"
                     className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                     value={formState.description}
@@ -232,5 +209,20 @@ const EditProperty = (props) => {
           </div>
         );
 }
-
 export default EditProperty;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
