@@ -15,6 +15,10 @@ mutation login($email: String!, $password: String!) {
         email
         bio
         image
+        addressStreet
+        addressCity
+        addressState
+        addressZip
         current_property {
             owner {
                 firstName

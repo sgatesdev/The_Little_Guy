@@ -222,6 +222,9 @@ const EditProperty = (props) => {
                   </textarea>
                 </div>
                 </div>
+                <div>
+                    {oldInfo.tenant ? `Current tenant:  ${oldInfo.tenant.firstName} ${oldInfo.tenant.lastName}` : null} 
+                </div>
               </div>
               <div className="mb-10 text-center text-sm text-red-600">
                 { displayError ? displayError : null}</div>
