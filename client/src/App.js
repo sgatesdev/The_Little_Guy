@@ -12,6 +12,7 @@ import { client } from './config/apollo';
 /* MAIN PAGES */
 import Home from './pages/Home';
 import Login from './pages/Login';
+import About from './pages/About';
 import Signup from './pages/Signup';
 import Messages from './pages/Messages';
 
@@ -51,6 +52,7 @@ const App = () => {
           <Switch>
             { /* MAIN PATHS */ }
             <Route exact path="/" component={Home} />
+            <Route exact path='/about' component={About} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/signup" component={Signup} />
             <Route exact path="/messages" component={Messages} />

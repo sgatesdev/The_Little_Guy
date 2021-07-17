@@ -157,6 +157,46 @@ const resolvers = {
 
             return { token, user };
         },
+        changePasssword: async (parent, {email, password, newPassword}, context) => {
+            const user = await User.findOne({ email: email }).populate();
+            console.log(user._id)
+            if (!user) {
+                throw new AuthenticationError('Incorrect Credentials');
+            };
+            const passCheck = await user.isCorrectPassword(password);
+
+            if (!passCheck) {
+                throw new AuthenticationError('Incorrect Credentials');
+            }
+            if(user._id === context.user._id) {
+                const updateUser = User.findOneAndUpdate({email: email}, {password: newPassword})
+                return updateUser;
+            } throw new AuthenticationError('Contact Admin for help')
+
+
+        },
+        updateUser: async (parent, args, context) => {
+            if (context.user) {
+                try {
+                    const imageString = args.input.image;
+                    if (imageString.includes("the-little-guy/")) {
+                        const user = await User.findOneAndUpdate({ _id: context.user._id }, { $set: args.input }, {new: true});
+                     return user
+                    } else {
+                    const uploadedResponse = await cloudinary.uploader.
+                        upload(imageString, {
+                            upload_preset: 'usydr1v1'
+                        });
+                    const publicId = uploadedResponse.public_id;
+                    args.input.image = publicId;
+                    const user = await User.findOneAndUpdate({ _id: context.user._id }, { $set: args.input }, {new: true});
+                     return user }
+                } catch (error) {
+                    console.log(error)
+                }
+            }
+            throw new AuthenticationError('Not Logged In')
+        },
         updateProperty: async (parent, { input }, context) => {
            const { _id  } = input;
 
