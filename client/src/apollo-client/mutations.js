@@ -12,6 +12,13 @@ mutation login($email: String!, $password: String!) {
         username
         is_landlord
         image
+        email
+        bio
+        image
+        addressStreet
+        addressCity
+        addressState
+        addressZip
         current_property {
             owner {
                 firstName
@@ -73,12 +80,25 @@ export const UPLOAD_IMAGE = gql`
     uploadImage(image: $image)
   }`;
 
-/** 
+export const CHANGE_PASSWORD = gql`
+mutation($email: String, $password: String, $newPassword: String) {
+  changePasssword(email: $email, password: $password, newPassword: $newPassword) {
+    _id
+  }
+}`;
 
 export const UPDATE_USER = gql`
-
+mutation($firstName: String, $lastName: String, $bio: String, $image: String){
+  updateUser(input: {
+    firstName: $firstName, lastName: $lastName, bio: $bio, image: $image}) {
+      firstName
+      lastName
+      bio
+      image
+    }
+  }
 `;
-
+/**
 export const DELETE_USER = gql`
 
 `;
@@ -141,3 +161,13 @@ export const ADD_APPLICATION = gql`
 // export const DELETE_PROPERTY = gql`
 
 // `;
+
+
+export const DELETE_PROPERTY = gql`
+mutation(
+    $_id: ID!
+) {
+  deleteProperty(_id: $_id) {
+    _id
+  }
+}`;

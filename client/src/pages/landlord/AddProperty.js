@@ -6,7 +6,7 @@ import { useMutation } from '@apollo/client';
 import { LockClosedIcon } from '@heroicons/react/solid'
 
 // new stuff for redux 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 // import history
 import history from '../../config/history';
@@ -15,7 +15,7 @@ import history from '../../config/history';
 import { ADD_PROPERTY } from '../../apollo-client/mutations';
 
 const AddProperty = () => {
-
+    const { firstName, lastName } = useSelector((state) => state.user);
     const dispatch = useDispatch();
 
     // apollo client
@@ -77,6 +77,12 @@ const AddProperty = () => {
               payload: { ...buildInput, ['_id']: propertyId }
           });
     
+          // update redux store, add in property ID to object          
+          dispatch({
+              type: ADD_PROPERTY,
+              payload: { ...buildInput, _id: propertyId, images: [], owner: { firstName, lastName }}
+          });
+
           history.push(`/image/property/${propertyId}`);
       }
       catch(err) {
@@ -105,7 +111,7 @@ const AddProperty = () => {
               <div className="rounded-md shadow-sm -space-y-px">
                 <div>
                   <label htmlFor="email-address">
-                  <span class="m-2 text-sm">Street Address</span> 
+                  <span className="m-2 text-sm">Street Address</span> 
                   </label>
                   <input
                     name="addressStreet"
@@ -121,7 +127,7 @@ const AddProperty = () => {
                 <div className="rounded-md shadow-sm -space-y-px">
                 <div>
                   <label htmlFor="email-address">
-                  <span class="m-2 text-sm">City</span> 
+                  <span className="m-2 text-sm">City</span> 
                   </label>
                   <input
                     name="addressCity"
@@ -138,7 +144,7 @@ const AddProperty = () => {
                 <div className="rounded-md shadow-sm -space-y-px">
                 <div>
                   <label htmlFor="email-address">
-                  <span class="m-2 text-sm">State</span> 
+                  <span className="m-2 text-sm">State</span> 
                   </label>
                   <input
                     name="addressState"
@@ -155,7 +161,7 @@ const AddProperty = () => {
                 <div className="rounded-md shadow-sm -space-y-px">
                 <div>
                   <label htmlFor="email-address">
-                  <span class="m-2 text-sm">Zipcode</span> 
+                  <span className="m-2 text-sm">Zipcode</span> 
                   </label>
                   <input
                     name="addressZip"
@@ -172,7 +178,7 @@ const AddProperty = () => {
                 <div className="rounded-md shadow-sm -space-y-px">
                 <div>
                   <label htmlFor="email-address">
-                  <span class="m-2 text-sm">Monthly rent</span> 
+                  <span className="m-2 text-sm">Monthly rent</span> 
                   </label>
                   <input
                     name="rent"
@@ -189,12 +195,12 @@ const AddProperty = () => {
                 <div className="rounded-md shadow-sm -space-y-px">
                 <div>
                   <label htmlFor="email-address">
-                  <span class="m-2 text-sm">Property description</span> 
+                  <span className="m-2 text-sm">Property description</span> 
                   </label>
                   <textarea 
                     name="description"
                     type="textarea"
-                    class="form-textarea mt-1 block w-full" 
+                    className="form-textarea mt-1 block w-full" 
                     rows="10" 
                     placeholder="Enter a property description here"
                     className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"

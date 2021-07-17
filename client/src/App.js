@@ -12,6 +12,7 @@ import { client } from './config/apollo';
 /* MAIN PAGES */
 import Home from './pages/Home';
 import Login from './pages/Login';
+import About from './pages/About';
 import Signup from './pages/Signup';
 import Messages from './pages/Messages';
 
@@ -21,6 +22,7 @@ import AddProperty from './pages/landlord/AddProperty';
 import DeleteProperty from './pages/landlord/DeleteProperty';
 import EditProperty from './pages/landlord/EditProperty';
 import ReviewApplications from './pages/landlord/ReviewApplications';
+import SingleApplication from './pages/landlord/SingleApplication';
 
 /* TENANT PAGES */
 import Tenant from './pages/tenant';
@@ -51,6 +53,7 @@ const App = () => {
           <Switch>
             { /* MAIN PATHS */ }
             <Route exact path="/" component={Home} />
+            <Route exact path='/about' component={About} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/signup" component={Signup} />
             <Route exact path="/messages" component={Messages} />
@@ -60,7 +63,8 @@ const App = () => {
             <Route exact path="/landlord/add" component={AddProperty} />
             <Route exact path="/landlord/delete/:id" component={DeleteProperty} />
             <Route exact path="/landlord/edit/:id" component={EditProperty} />
-            <Route exact path="/landlord/applications/:id" component={ReviewApplications} />
+            <Route exact path="/landlord/applications" component={ReviewApplications} />
+            <Route exact path="/landlord/applications/:id" component={SingleApplication} />
             { /* USER PATHS */ }
             <Route exact path="/profile" component={Profile} />
             <Route exact path="/profile/update" component={Update} />

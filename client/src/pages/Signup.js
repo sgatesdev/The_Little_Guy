@@ -30,6 +30,7 @@ const Signup = () => {
     // set initial values so react doesn't get mad at me
     const [formState, setFormState] = useState({
         email: '',
+        username: '',
         password: '',
         password_2: '',
         firstName: '',
@@ -48,6 +49,7 @@ const Signup = () => {
         // destructure state
         const {
             email,
+            username,
             password,
             password_2,
             firstName,
@@ -56,7 +58,7 @@ const Signup = () => {
         } = formState;
 
         // make sure values are filled in and valid
-        if(email === '' || password === '' || password_2 === '' || firstName === '' || lastName === '') {
+        if(email === '' || username === '' || password === '' || password_2 === '' || firstName === '' || lastName === '') {
             return setDisplayError('Please enter all information!');
         }
 
@@ -82,7 +84,7 @@ const Signup = () => {
                     email: email,
                     firstName: firstName,
                     lastName: lastName,
-                    username: `test${Date.now()}`,
+                    username: username,
                     is_landlord: is_landlord
                 }
             });
@@ -105,7 +107,7 @@ const Signup = () => {
             return setDisplayError(`${err}`);
         }
 
-        history.push('/');
+        history.push('/profile/update');
     }
 
     const handleInput = (e) => {
@@ -122,7 +124,7 @@ const Signup = () => {
     }
 
     return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen flex  justify-center bg-CPgray py-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8">
         <div>
           <img
@@ -133,7 +135,7 @@ const Signup = () => {
           <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">Sign up for an account</h2>
           <p className="mt-2 text-center text-sm text-gray-600">
             or{' '}
-            <Link to="/login" className="font-medium text-indigo-600 hover:text-indigo-500">
+            <Link to="/login" className="font-medium text-indigo-600 hover:text-TLGOrange">
               Log In
             </Link>
           </p>
@@ -153,6 +155,22 @@ const Signup = () => {
                 placeholder="Email address"
                 autoComplete="email"
                 value={formState.email}
+                onChange={handleInput}
+              />
+            </div>
+
+            <div className="rounded-md shadow-sm -space-y-px">
+            <div>
+              <label htmlFor="email-address" className="sr-only">
+                Username
+              </label>
+              <input
+                name="username"
+                type="text"
+                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                placeholder="Username"
+                autoComplete="username"
+                value={formState.username}
                 onChange={handleInput}
               />
             </div>
@@ -181,7 +199,7 @@ const Signup = () => {
               <input
                 name="lastName"
                 type="text"
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                 placeholder="Last name"
                 autoComplete="lastName"
                 value={formState.lastName}
@@ -197,7 +215,7 @@ const Signup = () => {
                 name="password"
                 type="password"
                 autoComplete="current-password"
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                 placeholder="Password"
                 value={formState.password}
                 onChange={handleInput}
@@ -236,13 +254,14 @@ const Signup = () => {
           <label className="mt-2 text-center text-sm text-gray-600">{ displayError ? displayError : null}</label>
             <button
               type="submit"
-              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-TLGOrange hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
             >
               <span className="absolute left-0 inset-y-0 flex items-center pl-3">
                 <LockClosedIcon className="h-5 w-5 text-indigo-500 group-hover:text-indigo-400" aria-hidden="true" />
               </span>
               Sign up!
             </button>
+          </div>
           </div>
           </div>
           </div>

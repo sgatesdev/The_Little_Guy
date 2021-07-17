@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+
 import { useMutation } from '@apollo/client';
+
+import { Image } from 'cloudinary-react';
 
 import { UPLOAD_IMAGE, ADD_USER_IMAGE, ADD_PROPERTY_IMAGE } from '../apollo-client/mutations'
 
 // bring in redux action
-import { EDIT_MY_PROPERTY } from '../store/actions';
+import { EDIT_MY_PROPERTY, EDIT_PROPERTY } from '../store/actions';
 
 // import history object
 import history from '../config/history';
@@ -31,6 +34,8 @@ const ImageUpload = (props) => {
 
     // redux
     const dispatch = useDispatch();
+    const property = useSelector((state) => state.landlord[imageTargetId]);
+    const user = useSelector((state) => state.user);
 
     // calls previewUploadedFile, sets state var to prepare file to be uploaded
     const handleFileUpload = (event) => {
@@ -106,6 +111,31 @@ const ImageUpload = (props) => {
                         payload: { _id: imageTargetId, images: [imageString] }
                     });
 
+                    // destructure state
+                    const {
+                        addressStreet,
+                        addressCity,
+                        addressState,
+                        addressZip,
+                        price,
+                        description
+                    } = property;
+
+                    const buildInput = {
+                        _id: property._id,
+                        addressStreet: addressStreet,
+                        addressCity: addressCity,
+                        addressState: addressState,
+                        addressZip: addressZip,
+                        description: description,
+                        price: price
+                      };
+
+                    dispatch({
+                        type: EDIT_PROPERTY,
+                        payload: { ...buildInput, images: [imageString], owner: { firstName: user.firstName, lastName: user.lastName }}
+                    });
+
                     // redirect user back to landlord page
                     history.push('/landlord');
                 }
@@ -120,7 +150,11 @@ const ImageUpload = (props) => {
         <div className=" flex items-center justify-center bg-gray-50 px-4 sm:px-6 lg:px-8">
         <div className="max-w-md w-full space-y-8">
         <div>
-            <h2 className="text-center mt-6 text-3xl font-extrabold text-gray-900">Upload an Image!</h2>
+            <h2 className="text-center mt-6 text-3xl font-extrabold text-gray-900">
+            {
+                 property.images && property.images.length > 0 ? 'Update your image' : 'Upload an image!'   
+            }
+        </h2>
         </div>
         <form className="mt-8 space-y-6" onSubmit={handleSubmitFile}>
             <input type="hidden" name="remember" defaultValue="true" />
@@ -132,17 +166,39 @@ const ImageUpload = (props) => {
             </div>
             <div>
             <label className="mt-2 text-center text-sm text-gray-600">{ /** TODO: ERROR HANDLING HERE */}</label>
+            {/***** IMAGE PREVIEW HERE ****/
+            previewSource && (
+                        <img className="m-5" src={previewSource} alt='preview' />
+            )}
+
             <button
                 type="submit"
                 className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
             >
                 Upload Image
             </button>
+            <button
+                onClick={() => history.push('/landlord')}
+                className="mt-2 group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+            >
+                Continue without image
+            </button>
+            {/***** CURRENT IMAGE HERE ********/
+                property.images && property.images.length > 0 ? 
+                <>
+                <div>
+                <h2 className="text-center mt-6 text-3xl font-extrabold text-gray-900">Current image</h2>
+                </div>
+                <Image 
+                    cloudName="drcmojwwk" 
+                    publicId={property.images[0]} 
+                    className="mt-5"
+                />
+                </> : null
+
+            }
             </div>
         </form>
-        {previewSource && (
-                        <img src={previewSource} alt='preview' />
-        )}
         </div>
         </div>
     )

@@ -12,7 +12,12 @@ const typeDefs = gql`
         image: String
         rating: [Int]
         avarage: Int
+        bio: String
         current_property: Property
+        addressStreet: String
+        addressCity: String
+        addressState: String
+        addressZip: String
     }
     type Property {
         _id: ID
@@ -91,6 +96,12 @@ const typeDefs = gql`
         typeOfEmployment: String
         pets: [String]
     }
+    input UpdateUserInput {
+        firstName: String
+        lastName: String
+        bio: String
+        image: String
+    }
     type Query {
         user(id:ID!): User
         me:User
@@ -107,6 +118,8 @@ const typeDefs = gql`
         uploadImage(image:String!):ID
         addUserImage(cloudinaryId: String): String
         addPropertyImage(_id: ID!, cloudinaryId: String): String
+        updateUser(input: UpdateUserInput!): User
+        changePasssword(email:String!, password:String!, newPassword: String!): User
         updateProperty(input: UpdatePropertyInput!): Property
         deleteProperty(_id: ID!): Property
         deleteUser: Auth

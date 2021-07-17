@@ -10,11 +10,13 @@ import history from '../../config/history';
 // import apollo query
 // called EDIT_PROPERTY on client side updateProperties server side
 import { UPDATE_PROPERTY } from '../../apollo-client/mutations';
-import { EDIT_MY_PROPERTY } from '../../store/actions';
+import { EDIT_MY_PROPERTY, EDIT_PROPERTY } from '../../store/actions';
+
 const EditProperty = (props) => {
     // get dispatcher for redux
     const dispatch = useDispatch();
     const oldInfo = useSelector((state) => state.landlord[props.match.params.id]);
+    const { firstName, lastName } = useSelector((state) => state.user);
     //console.log(oldInfo)
 
     // apollo client
@@ -64,16 +66,23 @@ const EditProperty = (props) => {
         // if the input is valid, send it to server
         // server side takes two args _id and input
         try {
-          const propertyData = await updateProperty({
+          await updateProperty({
               variables: {
                   ...buildInput, _id: oldInfo._id
               }
           });
           // update redux store, add in property ID to object
           dispatch({
-              type: 'EDIT_MY_PROPERTY',
-              payload: {...buildInput, _id: oldInfo._id }
+              type: EDIT_MY_PROPERTY,
+              payload: { _id: oldInfo._id, ...buildInput }
           });
+    
+          // update redux store, add in property ID to object          
+          dispatch({
+            type: EDIT_PROPERTY,
+            payload: { ...buildInput, _id: oldInfo._id, owner: { firstName, lastName }}
+          });
+
           history.push(`/image/property/${oldInfo._id}`);
       }
       catch(err) {
@@ -92,11 +101,8 @@ const EditProperty = (props) => {
           <div className="max-w-md w-full space-y-8">
             <div>
               <h2 className="text-center mt-6 text-3xl font-extrabold text-gray-900">
-                  {oldInfo.addressStreet}
+                  Edit Your Property
               </h2>
-              <h6 className="text-center mt-6 text-xl font-extrabold text-gray-900">
-                  {`${oldInfo.addressCity}, ${oldInfo.addressState} ${oldInfo.addressZip}`}
-              </h6>
             </div>
             <form className="mt-8 space-y-6" onSubmit={handleForm}>
               <input type="hidden" name="remember" defaultValue="true" />
@@ -197,6 +203,9 @@ const EditProperty = (props) => {
                   </textarea>
                 </div>
                 </div>
+                <div>
+                    {oldInfo.tenant ? `Current tenant:  ${oldInfo.tenant.firstName} ${oldInfo.tenant.lastName}` : null} 
+                </div>
               </div>
               <div className="mb-10 text-center text-sm text-red-600">
                 { displayError ? displayError : null}</div>
@@ -206,6 +215,12 @@ const EditProperty = (props) => {
                   className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                 >
                   Next
+                </button>
+                <button
+                  onClick={() => history.push('/landlord')}
+                  className="mt-2 group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                >
+                  Back
                 </button>
               </div>
             </form>

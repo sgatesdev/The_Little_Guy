@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 // apollo imports
-import { useQuery } from '@apollo/client';
+import { useQuery, useLazyQuery } from '@apollo/client';
 import { QUERY_MY_PROPERTIES } from '../../apollo-client/queries';
 
 // get redux action def 
@@ -20,17 +20,19 @@ const Landlord = () => {
     const dispatch = useDispatch();
 
     // apollo
-    const { loading, data } = useQuery(QUERY_MY_PROPERTIES);
+    const [fetchProperties, { loading, data }] = useLazyQuery(QUERY_MY_PROPERTIES);
 
     // pull property data on load, send to redux store
     useEffect(() => {
+      fetchProperties();
+
         if(data) {
             dispatch({
                 type: FETCH_MY_PROPERTIES,
                 payload: data.myProperties
             })
         }
-    }, [data, loading, dispatch]); 
+    }, [loading]); 
 
     return(
         <>
