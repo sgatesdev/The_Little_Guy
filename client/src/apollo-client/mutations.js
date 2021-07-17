@@ -15,6 +15,10 @@ mutation login($email: String!, $password: String!) {
         email
         bio
         image
+        addressStreet
+        addressCity
+        addressState
+        addressZip
         current_property {
             owner {
                 firstName
@@ -168,4 +172,13 @@ mutation(
   }) {
     _id
   }
-}`
+}`;
+
+export const DELETE_PROPERTY = gql`
+mutation(
+    $_id: ID!
+) {
+  deleteProperty(_id: $_id) {
+    _id
+  }
+}`;

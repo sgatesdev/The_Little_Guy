@@ -22,6 +22,7 @@ import AddProperty from './pages/landlord/AddProperty';
 import DeleteProperty from './pages/landlord/DeleteProperty';
 import EditProperty from './pages/landlord/EditProperty';
 import ReviewApplications from './pages/landlord/ReviewApplications';
+import SingleApplication from './pages/landlord/SingleApplication';
 
 /* TENANT PAGES */
 import Tenant from './pages/tenant';
@@ -62,7 +63,8 @@ const App = () => {
             <Route exact path="/landlord/add" component={AddProperty} />
             <Route exact path="/landlord/delete/:id" component={DeleteProperty} />
             <Route exact path="/landlord/edit/:id" component={EditProperty} />
-            <Route exact path="/landlord/applications/:id" component={ReviewApplications} />
+            <Route exact path="/landlord/applications" component={ReviewApplications} />
+            <Route exact path="/landlord/applications/:id" component={SingleApplication} />
             { /* USER PATHS */ }
             <Route exact path="/profile" component={Profile} />
             <Route exact path="/profile/update" component={Update} />

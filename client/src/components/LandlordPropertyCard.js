@@ -35,6 +35,9 @@ const LandlordPropertyCard = ({ property }) => {
   </div>
   <Link to={`/landlord/edit/${_id}`}>
   <button className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">Manage</button>  
+  </Link> 
+  <Link to={`/landlord/delete/${_id}`}>
+  <button className="bg-white ml-1 hover:bg-gray-100 text-red-800 font-semibold py-2 px-4 border border-red-400 rounded shadow">Delete</button>  
   </Link>
   </div>
  </div> 

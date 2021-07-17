@@ -14,6 +14,10 @@ const typeDefs = gql`
         avarage: Int
         bio: String
         current_property: Property
+        addressStreet: String
+        addressCity: String
+        addressState: String
+        addressZip: String
     }
     type Property {
         _id: ID
