@@ -2,29 +2,29 @@ const { Schema, model } = require('mongoose');
 
 const applicationSchema = new Schema({
 
-    applicantFirstName: {
-        type: String,
-        required: true,
-        trim: true
-    },
-    applicantMiddleInitial: {
-        type: String,
-        required: true,
-        trim: true,
-        maxlength: 3,
-    },
-    applicantLastName: {
-        type: String,
-        required: true,
-        trim: true
+    applicant: {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
     },
     grossAnnualIncome: {
         type: Number,
         required: true,
     },
-    applicantCurrentAddress: {
-        type: Schema.Types.ObjectId,
-        ref: 'User'
+    addressStreet: {
+        type: String,
+        required: false
+    },
+    addressCity: {
+        type: String,
+        required: false
+    },
+    addressState: {
+        type: String,
+        required: false
+    },
+    addressZip: {
+        type: String,
+        required: false
     },
     // applicantNewAddress: {
     //     type: [
@@ -37,11 +37,9 @@ const applicationSchema = new Schema({
     //     ],
     //     validate: [1, 'applicantNewAddress has an address set for this user']
     // },
-    otherTenants: [
-        {
-            type: String
-        }
-    ],
+    otherTenants: {
+        type: Number
+    },
     creditScore: {
         type: Number,
         required: true,

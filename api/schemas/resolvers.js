@@ -313,7 +313,8 @@ const resolvers = {
         newApplication: async (parent, { input}, context) => {
             try {
                 const application = await Application.create({...input});
-                return application
+                if(application) return true
+                return false
             } catch (error) {
                 throw new Error
             }

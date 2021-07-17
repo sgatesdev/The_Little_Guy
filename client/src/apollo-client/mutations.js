@@ -115,7 +115,8 @@ mutation(
     $price: Int,
     $description: String,
 ) {
-  addProperty(input: {
+  addProperty(
+    input: {
     addressStreet: $addressStreet,
     addressCity: $addressCity,
     addressState: $addressState,
@@ -137,7 +138,7 @@ mutation(
     $addressZip: String,
     $price: Int,
     $description: String
-) {
+ ) {
   updateProperty(input: {
     _id: $_id,
     addressStreet: $addressStreet,
@@ -149,7 +150,18 @@ mutation(
   }) {
     _id
   }
-}`;
+ }`;
+
+export const ADD_APPLICATION = gql`
+  mutation($input: NewApplicationInput!){
+    newApplication(input:$input)
+  }
+`;
+// 
+// export const DELETE_PROPERTY = gql`
+
+// `;
+
 
 export const DELETE_PROPERTY = gql`
 mutation(
