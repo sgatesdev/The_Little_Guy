@@ -169,8 +169,9 @@ const resolvers = {
                 throw new AuthenticationError('Incorrect Credentials');
             }
             if(user._id === context.user._id) {
-                const updateUser = User.findOneAndUpdate({email: email}, {password: newPassword})
-                return updateUser;
+                await user.changePassword(newPassword);
+                const updatedUser = user.save();
+                return updatedUser;
             } throw new AuthenticationError('Contact Admin for help')
 
 
