@@ -79,16 +79,19 @@ const typeDefs = gql`
         email: String
         password: String
         username: String
+        image: String
         is_landlord: Boolean
     }
     input NewApplicationInput {
+        applicant: ID,
+        addressStreet: String
+        addressCity: String
+        addressState: String
+        addressZip: String
         applicantFirstName: String!
-        applicantMiddleInitial: String!
         applicantLastName: String!
-        grossAnnualIncome: Int,!
-        applicantCurrentAddress: String
-        # applicantNewAddress: [String]
-        otherTenants: [String]
+        grossAnnualIncome: Int
+        otherTenants: Int
         creditScore: Int!
         employer: String
         typeOfEmployment: String
@@ -122,9 +125,8 @@ const typeDefs = gql`
         deleteProperty(_id: ID!): Property
         deleteUser: Auth
         addProperty(input: UpdatePropertyInput!): Property
-        newApplication(input: NewApplicationInput!): TenantApplication
+        newApplication(input: NewApplicationInput!): Boolean
     }
-
 `;
 
 module.exports = typeDefs;

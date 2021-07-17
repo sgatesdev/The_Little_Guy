@@ -32,7 +32,8 @@ const tenantMenu = [
     { name: 'About', to: '/about' },
     { name: 'My Property', to: '/tenant' },
     {name: 'Profile', to: '/profile' },
-    // {name: 'Messages', to: '/messages' }
+    {name: 'Messages', to: '/messages' },
+    { name: 'Application', to: '/application' }
   ]
   const landlordMenu = [
     { name: 'Home', to: '/' },

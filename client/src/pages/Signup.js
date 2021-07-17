@@ -85,6 +85,7 @@ const Signup = () => {
                     firstName: firstName,
                     lastName: lastName,
                     username: username,
+                    image: 'the-little-guy/default_profile_pic_m1vhsn',
                     is_landlord: is_landlord
                 }
             });
