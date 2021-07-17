@@ -14,12 +14,13 @@ import history from '../../config/history';
 // import apollo query
 // called EDIT_PROPERTY on client side updateProperties server side
 import { UPDATE_PROPERTY } from '../../apollo-client/mutations';
-import { EDIT_MY_PROPERTY } from '../../store/actions';
+import { EDIT_MY_PROPERTY, EDIT_PROPERTY } from '../../store/actions';
 
 const EditProperty = (props) => {
     // get dispatcher for redux 
     const dispatch = useDispatch();
     const oldInfo = useSelector((state) => state.landlord[props.match.params.id]);
+    const { firstName, lastName } = useSelector((state) => state.user);
     //console.log(oldInfo)
 
     // apollo client
@@ -86,6 +87,12 @@ const EditProperty = (props) => {
               payload: { _id: oldInfo._id, ...buildInput }
           });
     
+          // update redux store, add in property ID to object          
+          dispatch({
+            type: EDIT_PROPERTY,
+            payload: { ...buildInput, _id: oldInfo._id, owner: { firstName, lastName }}
+          });
+
           history.push(`/image/property/${oldInfo._id}`);
       }
       catch(err) {
