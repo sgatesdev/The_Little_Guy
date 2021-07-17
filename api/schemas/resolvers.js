@@ -168,10 +168,12 @@ const resolvers = {
             if (!passCheck) {
                 throw new AuthenticationError('Incorrect Credentials');
             }
+
             if(user._id === context.user._id) {
-                const updateUser = User.findOneAndUpdate({email: email}, {password: newPassword})
+                const updateUser = User.findOneAndUpdate({_id: user._id}, {password: newPassword})
                 return updateUser;
-            } throw new AuthenticationError('Contact Admin for help')
+            } 
+            throw new AuthenticationError('Contact Admin for help')
 
 
         },
@@ -240,9 +242,20 @@ const resolvers = {
         },
         addPropertyImage: async (parent, { cloudinaryId, _id }) => {
             try {
+                /** HANDLE CLOUDINARY DELETE BEFORE UPDATING **/
+                const property = await Property.findOne({ _id: _id });
+
+                if(property.images.length > 0) {
+                    await cloudinary.uploader.destroy(property.images[0], (err, res) => {
+                        if(err) console.log(err);
+                        else console.log(res);
+                    });
+                }
+
                 /** TEMPORARILY ZERO OUT ARRAY, WILL IMPLEMENT MULTIPLE PICS AT A LATER DATE */
                 await Property.findOneAndUpdate({ _id: _id }, { images: [] } );
-                
+
+                /** INSERT NEW CLOUDINARY LINK  */
                 const image = await Property.findOneAndUpdate({ _id: _id }, { $push: { images: cloudinaryId } });
                 if (!image) {
                     throw new ApolloError('We could not Process your request at this time!')
@@ -254,12 +267,23 @@ const resolvers = {
             }
         },
         deleteProperty: async (parent, { _id }, context) => {
+            /*** THIS WILL ALSO HANDLE CLOUDINARY DELETE ****/
+
             try {
                 if (context.user) {
-                    const user = await User.findOneDelete({ owned_properties: context.user._id });
-                    const property = await Property.deleteOne({ _id: _id });
+                    //const user = await User.findOneDelete({ owned_properties: context.user._id });
+                    const property = await Property.findOne({ _id: _id });
 
-                    return property;
+                    if(property.images.length > 0) {
+                        await cloudinary.uploader.destroy(property.images[0], (err, res) => {
+                            if(err) console.log(err);
+                            else console.log(res);
+                        });
+                    }
+
+                    const deleteProp = await Property.deleteOne({ _id: _id });
+
+                    return deleteProp;
                 }
                 throw new AuthenticationError('Not Logged In')
             } catch (error) {

@@ -60,6 +60,8 @@ export const QUERY_ME = gql`
         email
         is_landlord
         image
+        bio
+        rating
         current_property {
             owner {
                 firstName

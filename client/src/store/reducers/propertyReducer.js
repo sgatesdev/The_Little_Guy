@@ -20,7 +20,7 @@ const propertyReducer = (state = {}, action) => {
 
             return { ...state, [action.payload._id]: updatedValues }
         case DELETE_PROPERTY:
-            return _.omit(...state, action.payload);
+            return _.omit(state, action.payload._id);
         case ADD_PROPERTY:
             return { ...state, [action.payload._id]: action.payload };
         default: 
