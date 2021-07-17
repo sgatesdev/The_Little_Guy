@@ -168,10 +168,12 @@ const resolvers = {
             if (!passCheck) {
                 throw new AuthenticationError('Incorrect Credentials');
             }
+
             if(user._id === context.user._id) {
-                const updateUser = User.findOneAndUpdate({email: email}, {password: newPassword})
+                const updateUser = User.findOneAndUpdate({_id: user._id}, {password: newPassword})
                 return updateUser;
-            } throw new AuthenticationError('Contact Admin for help')
+            } 
+            throw new AuthenticationError('Contact Admin for help')
 
 
         },
