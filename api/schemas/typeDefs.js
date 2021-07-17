@@ -75,6 +75,7 @@ const typeDefs = gql`
         email: String
         password: String
         username: String
+        image: String
         is_landlord: Boolean
     }
     input NewApplicationInput {

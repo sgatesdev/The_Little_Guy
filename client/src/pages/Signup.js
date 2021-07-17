@@ -85,6 +85,7 @@ const Signup = () => {
                     firstName: firstName,
                     lastName: lastName,
                     username: username,
+                    image: 'the-little-guy/default_profile_pic_m1vhsn',
                     is_landlord: is_landlord
                 }
             });
@@ -96,7 +97,7 @@ const Signup = () => {
 
             // send user data to redux so all components can see it
             // do not send password
-            const reduxData = { firstName, lastName, email, ...userData.data.signUp.user };
+            const reduxData = { ...userData.data.signUp.user };
 
             dispatch({
                 type: 'LOG_IN',
