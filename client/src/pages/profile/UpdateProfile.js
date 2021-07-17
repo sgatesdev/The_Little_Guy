@@ -71,11 +71,14 @@ useEffect(() => {
                 image: fileInputState? fileInputState : user.image
             }
         }); console.log(userData)
-        const reduxData = { ...userData.data.updateUser.user };
-        dispatch({
-          type: 'UPDATE_USER',
-          payload: { ...reduxData }
-                  });
+
+        const reduxData = { ...userData.data.updateUser };
+
+        console.log(reduxData)
+            dispatch({
+              type: 'UPDATE_USER',
+              payload: { ...reduxData }
+            });
           }
           catch(err) {
               return setDisplayError(`${err}`);
