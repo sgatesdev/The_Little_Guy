@@ -76,12 +76,25 @@ export const UPLOAD_IMAGE = gql`
     uploadImage(image: $image)
   }`;
 
-/** 
+export const CHANGE_PASSWORD = gql`
+mutation($email: String, $password: String, $newPassword: String) {
+  changePasssword(email: $email, password: $password, newPassword: $newPassword) {
+    _id
+  }
+}`;
 
 export const UPDATE_USER = gql`
-
+mutation($firstName: String, $lastName: String, $bio: String, $image: String){
+  updateUser(input: {
+    firstName: $firstName, lastName: $lastName, bio: $bio, image: $image}) {
+      firstName
+      lastName
+      bio
+      image
+    }
+  }
 `;
-
+/**
 export const DELETE_USER = gql`
 
 `;
