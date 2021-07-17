@@ -132,6 +132,11 @@ mutation(
   }
  }`;
 
+export const ADD_APPLICATION = gql`
+  mutation($input: NewApplicationInput!){
+    newApplication(input:$input)
+  }
+`;
 // 
 // export const DELETE_PROPERTY = gql`
 
