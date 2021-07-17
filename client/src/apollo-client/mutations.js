@@ -138,9 +138,7 @@ export const DELETE_PROPERTY = gql`
 mutation(
     $_id: ID!
 ) {
-  deleteProperty(input: {
-    _id: $_id
-  }) {
+  deleteProperty(_id: $_id) {
     _id
   }
 }`;

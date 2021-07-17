@@ -22,7 +22,7 @@ const Home = () => {
     useEffect(() => {
         //fetchProperties();
 
-        if(data) {
+        if(properties.length === 0 && data) {
             dispatch({
                 type: FETCH_ALL_PROPERTIES,
                 payload: data.allProperties

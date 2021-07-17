@@ -8,27 +8,22 @@ import { useMutation } from '@apollo/client';
 import { Image } from 'cloudinary-react';
 
 // apollo mutations
-import { DELETE_IMAGE, DELETE_PROPERTY } from '../../apollo-client/mutations'
+import { DELETE_PROPERTY } from '../../apollo-client/mutations'
+
+// redux action
+import { DELETE_MY_PROPERTY, DELETE_PROPERTY as DELETE_FROM_MAIN } from '../../store/actions';
 
 // helper formatPrice
 import { formatPrice} from '../../utils/helpers';
+
+// history object
+import history from '../../config/history';
 
 const DeleteProperty = (props) => {
     const dispatch = useDispatch();
     const property = useSelector((state) => state.landlord[props.match.params.id]);
     // apollo client
     const [deleteProperty, { error }] = useMutation(DELETE_PROPERTY);
-
-    const {
-        _id,
-        addressStreet,
-        addressCity,
-        addressState,
-        addressZip,
-        price,
-        images,
-        description   
-    } = property;
 
     const deleteProp = async () => {
         await deleteProperty({
@@ -37,31 +32,37 @@ const DeleteProperty = (props) => {
             }
         })
 
-        // TODO: cloudinary
+        dispatch({
+            type: DELETE_MY_PROPERTY,
+            payload: { _id: property._id }
+        });
 
-        // TODO: redux
+        dispatch({
+            type: DELETE_FROM_MAIN,
+            payload: { _id: property._id }
+        })
 
-        // add in redirect
+        history.push('/landlord');
     }
 
-    return (
+    return property ? (
         <div className="text-center p-6  border-b">
         <div className="mt-10 wrapper bg-gray-400 antialiased text-gray-900">
         <div> 
         <div className="relative px-4 -mt-16  ">
         <div className="bg-white p-6 rounded-lg shadow-lg content-center">
         <div className="flex justify-center">
-        <Image className="flex" cloudName="drcmojwwk" publicId={images[0]} width="150" height="150" />
+        <Image className="flex" cloudName="drcmojwwk" publicId={property.images[0]} width="150" height="150" />
         </div>
         <div className="ml-2 text-teal-600 uppercase text-xs font-semibold tracking-wider">
-        {formatPrice(price)}/month
+        {formatPrice(property.price)}/month
         </div>  
-        <h4 className="mt-1 text-l font-semibold uppercase leading-tight truncate">{ addressStreet}</h4>
+        <h4 className="mt-1 text-l font-semibold uppercase leading-tight truncate">{ property.addressStreet}</h4>
         <div className="mt-1">
-        <span className="text-gray-600 text-sm">{`${addressCity}, ${addressState} ${addressZip}`}</span>
+        <span className="text-gray-600 text-sm">{`${property.addressCity}, ${property.addressState} ${property.addressZip}`}</span>
         </div>
         <div className="mt-4">
-        <span className="text-sm text-gray-600">{description}</span>
+        <span className="text-sm text-gray-600">{property.description}</span>
         </div>
         <button 
             onClick={() => deleteProp()}
@@ -75,7 +76,7 @@ const DeleteProperty = (props) => {
         </div>
         </div>
         </div>
-    )
+    ) : null;
 }
 
 export default DeleteProperty;

@@ -35,6 +35,7 @@ const ImageUpload = (props) => {
     // redux
     const dispatch = useDispatch();
     const property = useSelector((state) => state.landlord[imageTargetId]);
+    const user = useSelector((state) => state.user);
 
     // calls previewUploadedFile, sets state var to prepare file to be uploaded
     const handleFileUpload = (event) => {
@@ -110,9 +111,29 @@ const ImageUpload = (props) => {
                         payload: { _id: imageTargetId, images: [imageString] }
                     });
 
+                    // destructure state
+                    const {
+                        addressStreet,
+                        addressCity,
+                        addressState,
+                        addressZip,
+                        price,
+                        description
+                    } = property;
+
+                    const buildInput = {
+                        _id: property._id,
+                        addressStreet: addressStreet,
+                        addressCity: addressCity,
+                        addressState: addressState,
+                        addressZip: addressZip,
+                        description: description,
+                        price: price
+                      };
+
                     dispatch({
                         type: EDIT_PROPERTY,
-                        payload: { _id: imageTargetId, images: [imageString] }
+                        payload: { ...buildInput, images: [imageString], owner: { firstName: user.firstName, lastName: user.lastName }}
                     });
 
                     // redirect user back to landlord page
