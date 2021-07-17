@@ -170,10 +170,11 @@ const resolvers = {
             }
 
             if(user._id === context.user._id) {
-                const updateUser = User.findOneAndUpdate({_id: user._id}, {password: newPassword})
-                return updateUser;
-            } 
-            throw new AuthenticationError('Contact Admin for help')
+
+                await user.changePassword(newPassword);
+                const updatedUser = user.save();
+                return updatedUser;
+            } throw new AuthenticationError('Contact Admin for help')
 
 
         },
