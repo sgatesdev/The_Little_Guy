@@ -57,6 +57,7 @@ const App = () => {
             <Route exact path="/login" component={Login} />
             <Route exact path="/signup" component={Signup} />
             <Route exact path="/messages" component={Messages} />
+            <Route exact path="/application/:id" component={Application} />
             <Route path="/image/:type/:id" component={ImageUpload} />
             { /* LANDLORD PATHS */ }
             <Route exact path="/landlord" component={Landlord} />
@@ -72,8 +73,6 @@ const App = () => {
             { /* TENANT PATHS */ }
             <Route exact path="/tenant" component={Tenant} />
             <Route path="/tenant/saved" component={TenantSaved} />
-
-            <Route exact path="/application/:id" component={Application} />
           </Switch>
         </Router>
       </StoreProvider>

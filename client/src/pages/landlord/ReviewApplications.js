@@ -14,7 +14,6 @@ const ReviewApplications = () => {
     const { loading, data } = useQuery( QUERY_APPLICATIONS );
 
     useEffect(() => {
-
         if(applications.length === 0 && data) {
             dispatch({
                 type: FETCH_APPLICATIONS,
@@ -50,6 +49,48 @@ const ReviewApplications = () => {
         <div className="bg-gray-400 p-2 rounded-md text-center col-span-5">Pending Applications</div>
         { /* RENDER CONTENT HERE */ }
         { applications ? renderApplications() : null }
+
+        {/* MAKING THIS EASY FOR YOU ZOE! - SAMPLE DATA BELOW */}
+        <>
+                <div className="p-2 text-center" >Sam Gates</div>
+                <div className=" p-2 text-center col-span-2">101 Maple St</div>
+                <div className=" p-2 text-center">
+                    Pending
+                </div>
+                <div className=" p-2 text-center">
+                <button className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">View</button>
+                </div>
+        </> 
+        <>
+                <div className="p-2 text-center" >Sam Gates</div>
+                <div className=" p-2 text-center col-span-2">101 Maple St</div>
+                <div className=" p-2 text-center">
+                    Pending
+                </div>
+                <div className=" p-2 text-center">
+                <button className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">View</button>
+                </div>
+        </> 
+        <>
+                <div className="p-2 text-center" >Sam Gates</div>
+                <div className=" p-2 text-center col-span-2">101 Maple St</div>
+                <div className=" p-2 text-center">
+                    Pending
+                </div>
+                <div className=" p-2 text-center">
+                <button className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">View</button>
+                </div>
+        </> 
+        <>
+                <div className="p-2 text-center" >Sam Gates</div>
+                <div className=" p-2 text-center col-span-2">101 Maple St</div>
+                <div className=" p-2 text-center">
+                    Pending
+                </div>
+                <div className=" p-2 text-center">
+                <button className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">View</button>
+                </div>
+        </> 
         </div>
         </div>
     )
