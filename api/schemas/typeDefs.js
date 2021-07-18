@@ -57,6 +57,7 @@ const typeDefs = gql`
         employer: String
         typeOfEmployment: String
         pets: [String]
+        propertyId: Property 
     }
 
     input UpdatePropertyInput {
@@ -112,6 +113,7 @@ const typeDefs = gql`
         allProperties: [Property]
         getRating(id: ID!): Float 
         findLandlord(input: UpdatePropertyInput!): User
+        myApplications: [TenantApplication]
     }
     type Mutation {
         login(email:String!, password:String!): Auth
