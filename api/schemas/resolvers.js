@@ -112,6 +112,9 @@ const resolvers = {
         myApplications: async (parent, args, context) => {
             if (context.user) {
                 const allApplications = await Application.find({}).populate({
+                    path: 'applicant',
+                    populate: 'User'
+                }).populate({
                     path: 'propertyId',
                     populate: 'Property',
                     populate: {

@@ -1,31 +1,55 @@
-import React from 'react'
-import { useMutation } from '@apollo/client';
+import React, { useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux';
+import { useQuery } from '@apollo/client';
 
-import { FETCH_APPLICATIONS } from '../../apollo-client/mutations'
+import { QUERY_APPLICATIONS } from '../../apollo-client/queries'
 
-const renderApplications = () => {
-    
-}
+import { FETCH_APPLICATIONS } from '../../store/actions';
 
 const ReviewApplications = () => {
+    const dispatch = useDispatch();
+
+    const applications = useSelector((state) => Object.values(state.applications));
+
+    const { loading, data } = useQuery( QUERY_APPLICATIONS );
+
     useEffect(() => {
-        // fetch applications here 
 
-        // dispatch to redux 
+        if(applications.length === 0 && data) {
+            dispatch({
+                type: FETCH_APPLICATIONS,
+                payload: data.myApplications
+            })
+        }
+    }, [loading, data, dispatch]);
 
-        // display all of them below 
-    });
+    const renderApplications = () => {
+        console.log(applications)
+            return applications.map(app => {
+                return (
+                <>
+                <div className="p-2 text-center" key={app._id}>{app.applicant.firstName} {app.applicant.lastName}</div>
+                <div className=" p-2 text-center col-span-2">{app.propertyId.addressStreet}</div>
+                <div className=" p-2 text-center">
+                    {
+                        app.status ? app.status : 'Pending'
+                    }
+                </div>
+                <div className=" p-2 text-center">
+                <button className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">View</button>
+                </div>
+                </> 
+            );
+        });
+    }
 
     return (
         <div className="w-full flex justify-center mt-2">
-        <div className="grid grid-cols-4 gap-1 w-1/2">
+        <div className="grid grid-cols-5 gap-1 sm:w-full lg:w-1/2">
         {/* COLUMN HEADERS */}
-        <div className="bg-gray-400 p-2 rounded-lg text-center">Date</div>
-        <div className="bg-gray-400 p-2 rounded-lg text-center">Name</div>
-        <div className="bg-gray-400 p-2 rounded-lg text-center">Address</div>
-        <div className="bg-gray-400 p-2 rounded-lg text-center">Controls</div>
+        <div className="bg-gray-400 p-2 rounded-md text-center col-span-5">Pending Applications</div>
         { /* RENDER CONTENT HERE */ }
-        { renderApplications() }
+        { applications ? renderApplications() : null }
         </div>
         </div>
     )

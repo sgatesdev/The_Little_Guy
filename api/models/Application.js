@@ -33,17 +33,6 @@ const applicationSchema = new Schema({
         type: String,
         required: false
     },
-    // applicantNewAddress: {
-    //     type: [
-    //         {
-    //             addressStreet: String,
-    //             addressCity: String,
-    //             addressState: String,
-    //             addressZip: String,
-    //         }
-    //     ],
-    //     validate: [1, 'applicantNewAddress has an address set for this user']
-    // },
     otherTenants: {
         type: Number
     },
@@ -74,6 +63,9 @@ const applicationSchema = new Schema({
         ],
         default: [null]
     }
+},
+{
+    timestamps: true
 });
 
 const Application = model('Application', applicationSchema);
