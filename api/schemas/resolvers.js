@@ -109,7 +109,25 @@ const resolvers = {
                 throw new AuthenticationError('No property found')
             }
         },
+        myApplications: async (parent, args, context) => {
+            if (context.user) {
+                const allApplications = await Application.find({}).populate({
+                    path: 'applicant',
+                    populate: 'User'
+                }).populate({
+                    path: 'propertyId',
+                    populate: 'Property',
+                    populate: {
+                        path: 'owner'
+                    }
+                });
 
+                let filtered = allApplications.filter(app => app.propertyId.owner._id == context.user._id);
+
+                return filtered;
+            }
+            throw new AuthenticationError('Not logged In!');
+        } 
     },
 
     Mutation: {

@@ -46,10 +46,11 @@ const typeDefs = gql`
 
     type TenantApplication {
         _id: ID
+        applicant: User
         applicantFirstName: String
         applicantMiddleInitial: String
         applicantLastName: String
-        grossAnnualIncome: Int,
+        grossAnnualIncome: Int
         applicantCurrentAddress: User
         applicantNewAddress: [Address]
         otherTenants: [String]
@@ -57,6 +58,8 @@ const typeDefs = gql`
         employer: String
         typeOfEmployment: String
         pets: [String]
+        propertyId: Property 
+        status: String
     }
 
     input UpdatePropertyInput {
@@ -112,6 +115,7 @@ const typeDefs = gql`
         allProperties: [Property]
         getRating(id: ID!): Float 
         findLandlord(input: UpdatePropertyInput!): User
+        myApplications: [TenantApplication]
     }
     type Mutation {
         login(email:String!, password:String!): Auth
