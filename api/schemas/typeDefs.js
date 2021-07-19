@@ -32,12 +32,6 @@ const typeDefs = gql`
         images:[String]
         description: String
     }
-    type Address {
-        addressStreet: String
-        addressCity: String
-        addressState: String
-        addressZip: String
-    }
 
     type Auth {
         token: ID
@@ -46,17 +40,18 @@ const typeDefs = gql`
 
     type TenantApplication {
         _id: ID
+        propertyId: Property
+        applicant: User
         applicantFirstName: String
         applicantMiddleInitial: String
         applicantLastName: String
         grossAnnualIncome: Int,
-        applicantCurrentAddress: User
-        applicantNewAddress: [Address]
-        otherTenants: [String]
+        otherTenants: Int
         creditScore: Int
         employer: String
         typeOfEmployment: String
         pets: [String]
+        status: String
     }
 
     input UpdatePropertyInput {
@@ -95,6 +90,8 @@ const typeDefs = gql`
         employer: String
         typeOfEmployment: String
         pets: [String]
+        propertyId: ID
+        status: String
     }
     input UpdateUserInput {
         firstName: String
