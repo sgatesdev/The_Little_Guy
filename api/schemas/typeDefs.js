@@ -38,21 +38,6 @@ const typeDefs = gql`
         user: User
     }
 
-    type TenantApplication {
-        _id: ID
-        applicant: User
-        propertyId: Property
-        status: String
-        applicantFirstName: String
-        applicantMiddleInitial: String
-        applicantLastName: String
-        grossAnnualIncome: Int,
-        otherTenants: Int
-        creditScore: Int
-        employer: String
-        typeOfEmployment: String
-    }
-
     input UpdatePropertyInput {
         _id: ID
         type: String
