@@ -1,7 +1,10 @@
 const { Schema, model } = require('mongoose');
 
 const applicationSchema = new Schema({
-
+    propertyId: {
+        type:Schema.Types.ObjectId,
+        ref: 'Property'
+    },
     applicant: {
         type: Schema.Types.ObjectId,
         ref: 'User'
@@ -26,17 +29,6 @@ const applicationSchema = new Schema({
         type: String,
         required: false
     },
-    // applicantNewAddress: {
-    //     type: [
-    //         {
-    //             addressStreet: String,
-    //             addressCity: String,
-    //             addressState: String,
-    //             addressZip: String,
-    //         }
-    //     ],
-    //     validate: [1, 'applicantNewAddress has an address set for this user']
-    // },
     otherTenants: {
         type: Number
     },
@@ -57,6 +49,10 @@ const applicationSchema = new Schema({
         type: String,
         enum: ['self-employed', 'employed', 'unemployed'],
         default: 'employed'
+    },
+    status: {
+        type: String,
+        trim: true,
     },
     pets: {
         type: [
