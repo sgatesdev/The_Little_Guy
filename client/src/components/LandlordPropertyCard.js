@@ -16,13 +16,13 @@ const LandlordPropertyCard = ({ property }) => {
     } = property;
       
     return(
-<div className="mt-10 wrapper bg-gray-400 antialiased text-gray-900">
+<div className="mt-10 wrapper m-4 bg-CPgray antialiased">
 <div> 
  <div className="relative px-4 -mt-16  ">
    <div className="bg-white p-6 rounded-lg shadow-lg">
-   <Image cloudName="drcmojwwk" publicId={images[0]} width="150" height="150" />
+   <Image cloudName="drcmojwwk" publicId={images[0]} width="150" height="150" class="object-cover object-center rounded-lg shadow-md m-1.5"/>
     <div className="flex items-baseline">
-      <div className="ml-2 text-teal-600 uppercase text-xs font-semibold tracking-wider">
+      <div className="ml-10 bg-TLGOrange p-0.5 rounded-full uppercase text-xs font-semibold tracking-wider">
     {formatPrice(price)}/month
   </div>  
     </div>

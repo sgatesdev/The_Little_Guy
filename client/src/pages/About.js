@@ -5,7 +5,8 @@ import { Link } from 'react-router-dom';
 const About = () => {
     return (
         <>
-<div class="p-8 mb-4 bg-white rounded-lg shadow">
+        <div className="bg-CPgray pt-4">
+<div class="p-8 mb-4 mx-4 bg-white rounded-lg shadow">
 <p class="text-center text-2xl font-bold text-TLGOrange ">
         The Why
     </p>
@@ -13,7 +14,7 @@ const About = () => {
     We made this app for the little guy because we think everyone should have access to something great. Many landlords only have a few properties that don't warrant paying the high price of most property hosting sites. We wanted those "little guys" to have a place to post their properties and connect with their tenants. 
     </p>
 </div>
-<div class="p-8 mb-4 bg-white rounded-lg shadow">
+<div class="p-8 m-4 bg-white rounded-lg shadow">
 <p class="text-center text-2xl font-bold text-TLGOrange ">
         Coming Soon
     </p>
@@ -21,10 +22,10 @@ const About = () => {
     <li class="text-center m-4 text-xl font-light"> Messaging</li>
     <li class="text-center m-4 text-xl font-light"> Save Properties</li>
     <li class="text-center m-4 text-xl font-light"> Rent Pay Portal</li>
-    <li class="text-center m-4 text-xl font-light"> Mobile Version</li>
+    <li class="text-center m-4 text-xl font-light"> Mobile App</li>
     </ul>
 </div>
-<div class="p-8 bg-white rounded-lg shadow">
+<div class="p-8 m-4 bg-white rounded-lg shadow">
     <p class="text-center text-2xl font-bold text-TLGOrange">
         Meet the Team
     </p>
@@ -119,6 +120,7 @@ const About = () => {
             </div>
         </div>
     </div>
+</div>
 </div>
 </>
 

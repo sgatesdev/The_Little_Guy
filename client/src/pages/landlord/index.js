@@ -36,20 +36,21 @@ const Landlord = () => {
 
     return(
         <>
-        <h1 className="text-2xl m-2 text-center font-bold leading-tight">
+        <div className="bg-HDgray">
+        <h1 className="text-2xl pt-4 text-center font-bold leading-tight">
             Manage Properties
         </h1>
-        <h1 className="p-5">
+        <h1 className="p-5 text-center">
             You can add a new property that you own, review applications for properties already on The Little Guy, or manage your properties below. 
-        </h1>
+        </h1></div>
           <div>
 
-          <div className="bg-white sm:max-w-full max-w-md rounded overflow-hidden shadow-lg">
-            <div className="border-b">
+          <div className="bg-HDgray sm:max-w-full max-w-md rounded shadow-md">
+            <div className="shadow-md">
               
-              <Link to="/landlord/add" className="px-6 py-3 hover:bg-gray-200 flex"> 
+              <Link to="/landlord/add" className="px-6 py-3 hover:bg-TLGOrange flex shadow-md"> 
                 <div>
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7" viewBox="0 0 20 20" fill="currentColor">
+                    <svg className="h-7 w-7" viewBox="0 0 20 20" fill="currentColor">
                     <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
                     </svg>        
                 </div>
@@ -60,9 +61,9 @@ const Landlord = () => {
                 </div>
               </Link>
   
-              <Link to="/landlord/applications" className="px-6 py-3 hover:bg-gray-200 flex"> 
+              <Link to="/landlord/applications" className="px-6 py-3 hover:bg-TLGOrange flex shadow-md"> 
                 <div>
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7" viewBox="0 0 20 20" fill="currentColor">
+                    <svg className="h-7 w-7" viewBox="0 0 20 20" fill="currentColor">
                     <path d="M2 6a2 2 0 012-2h5l2 2h5a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" />
                     </svg>
                 </div>
@@ -73,12 +74,12 @@ const Landlord = () => {
                 </div>
               </Link>
   
-            </div>
-            <div className="border-b">
+            </div >
+            <div className="">
             </div>
           </div>
 
-          <div className="text-center p-6  border-b">
+          <div className="text-center p-12 bg-white shadow-md">
               {
                   /** <PropertyList properties={properties} />  */
                   properties && !loading ? 

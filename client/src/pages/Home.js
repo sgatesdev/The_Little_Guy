@@ -7,6 +7,7 @@ import { QUERY_ALL_PROPERTIES } from '../apollo-client/queries';
 import { FETCH_ALL_PROPERTIES } from '../store/actions';
 
 import PropertyList from '../components/PropertyList';
+import Application from '../pages/Application';
 
 const Home = () => {
     // redux
@@ -35,7 +36,8 @@ const Home = () => {
         <h1 className="flex justify-center bg-CPgray font-bold text-2xl py-2">{ user ? `Welcome back, ${user.firstName}!` : null }</h1>
         <div className="min-h-screen flex  justify-center py-20 bg-CPgray py-12 px-4 sm:px-6 lg:px-8">
         <div>
-        <PropertyList properties={properties}/>                
+        {/* <PropertyList properties={properties}/>                 */}
+        <Application />
         </div>
         </div>
         </>
