@@ -90,7 +90,7 @@ const Application = ({ propertyId }) => {
               type="text"
               placeholder="First"
               value={formState.first}
-              onChange={inputChange}
+              readOnly
             />
           </div>
           <div className="grid grid-cols-1">
@@ -100,7 +100,7 @@ const Application = ({ propertyId }) => {
               type="text"
               placeholder="Last"
               value={formState.last}
-              onChange={inputChange}
+              readOnly
             />
           </div>
         </div>

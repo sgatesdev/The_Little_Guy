@@ -337,6 +337,22 @@ const resolvers = {
                 throw new Error
             }
         },
+        updateApplication: async (parent, { _id, status }, context) => {
+             if (context.user) {
+                 const application = await Application.findOneAndUpdate({ _id: _id }, { $set: { status }});
+ 
+                 return application;
+             }
+             throw new AuthenticationError('Not Logged In')
+         },
+         updateTenant: async (parent, { _id, tenant }, context) => {
+             if (context.user) {
+                 const property = await Property.findOneAndUpdate({ _id: _id }, { $set: { tenant: tenant }});
+ 
+                 return property;
+             }
+             throw new AuthenticationError('Not Logged In')
+         },
     }
 };
 

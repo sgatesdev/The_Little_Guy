@@ -44,24 +44,6 @@ const typeDefs = gql`
         user: User
     }
 
-    type TenantApplication {
-        _id: ID
-        applicant: User
-        applicantFirstName: String
-        applicantMiddleInitial: String
-        applicantLastName: String
-        grossAnnualIncome: Int
-        applicantCurrentAddress: User
-        applicantNewAddress: [Address]
-        otherTenants: [String]
-        creditScore: Int
-        employer: String
-        typeOfEmployment: String
-        pets: [String]
-        propertyId: Property 
-        status: String
-    }
-
     input UpdatePropertyInput {
         _id: ID
         type: String
@@ -85,21 +67,38 @@ const typeDefs = gql`
         image: String
         is_landlord: Boolean
     }
-    input NewApplicationInput {
-        applicant: ID,
+
+    type TenantApplication {
+        _id: ID
+        applicant: User
+        propertyId: Property 
+        status: String
         addressStreet: String
         addressCity: String
         addressState: String
         addressZip: String
-        applicantFirstName: String!
-        applicantLastName: String!
+        grossAnnualIncome: Int
+        otherTenants: Int
+        creditScore: Int
+        employer: String
+        typeOfEmployment: String
+    }
+
+
+    input NewApplicationInput {
+        applicant: ID,
+        propertyId: ID,
+        addressStreet: String
+        addressCity: String
+        addressState: String
+        addressZip: String
         grossAnnualIncome: Int
         otherTenants: Int
         creditScore: Int!
         employer: String
         typeOfEmployment: String
-        pets: [String]
     }
+
     input UpdateUserInput {
         firstName: String
         lastName: String
@@ -130,6 +129,8 @@ const typeDefs = gql`
         deleteUser: Auth
         addProperty(input: UpdatePropertyInput!): Property
         newApplication(input: NewApplicationInput!): Boolean
+        updateApplication(_id: ID!, status: String!): TenantApplication
+        updateTenant(_id: ID!, tenant: ID!): Property
     }
 `;
 

@@ -1,4 +1,6 @@
 import React, { useEffect } from 'react'
+import { Link } from 'react-router-dom';
+
 import { useSelector, useDispatch } from 'react-redux';
 import { useQuery } from '@apollo/client';
 
@@ -35,7 +37,9 @@ const ReviewApplications = () => {
                     }
                 </div>
                 <div className=" p-2 text-center">
+                    <Link to={`/landlord/applications/${app._id}`}>
                 <button className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">View</button>
+                    </Link>
                 </div>
                 </> 
             );

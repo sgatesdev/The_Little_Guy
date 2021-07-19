@@ -55,13 +55,7 @@ const applicationSchema = new Schema({
         default: 'employed'
     },
     pets: {
-        type: [
-            {
-                type: String,
-                trim: true
-            }
-        ],
-        default: [null]
+        type: Number
     }
 },
 {
