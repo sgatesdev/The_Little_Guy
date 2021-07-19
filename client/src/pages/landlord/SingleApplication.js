@@ -35,24 +35,27 @@ const SingleApplication = (props) => {
                 payload: { _id: application._id, status: newStatus }
             });
 
+            // ONLY IF APPROVED
             // update property records and state 
-            await updateTenant({
-                variables: { 
-                    _id: application.propertyId._id, 
-                    tenant: application.applicant._id
-                }
-            });
-
-            dispatch({
-                type: EDIT_MY_PROPERTY,
-                payload: { 
-                    _id: application.propertyId._id, 
-                    tenant: {
-                        firstName: application.applicant.firstName,
-                        lastName: application.applicant.lastName
+            if(newStatus === 'Approved') {
+                await updateTenant({
+                    variables: { 
+                        _id: application.propertyId._id, 
+                        tenant: application.applicant._id
                     }
-                }
-            })
+                });
+
+                dispatch({
+                    type: EDIT_MY_PROPERTY,
+                    payload: { 
+                        _id: application.propertyId._id, 
+                        tenant: {
+                            firstName: application.applicant.firstName,
+                            lastName: application.applicant.lastName
+                        }
+                    }
+                })
+            }
 
             // redirect user
             history.push('/landlord/applications');
