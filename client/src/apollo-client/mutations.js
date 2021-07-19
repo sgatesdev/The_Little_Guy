@@ -180,17 +180,27 @@ export const ADD_APPLICATION = gql`
     newApplication(input:$input)
   }
 `;
-// 
-// export const DELETE_PROPERTY = gql`
 
-// `;
-
+export const UPDATE_APPLICATION = gql`
+  mutation($_id: ID!, $status: String!){
+    updateApplication(_id: $_id, status: $status) {
+      _id
+    }
+  }
+`;
 
 export const DELETE_PROPERTY = gql`
 mutation(
     $_id: ID!
 ) {
   deleteProperty(_id: $_id) {
+    _id
+  }
+}`;
+
+export const UPDATE_TENANT = gql`
+mutation($_id: ID!, $tenant: ID!) {
+  updateTenant(_id: $_id, tenant: $tenant) {
     _id
   }
 }`;
