@@ -98,8 +98,12 @@ export const QUERY_APPLICATIONS = gql`
         creditScore
         employer
         typeOfEmployment
-        pets
+        addressStreet
+        addressCity
+        addressState
+        addressZip
         propertyId {
+            _id
             addressStreet
             addressCity
             addressState
