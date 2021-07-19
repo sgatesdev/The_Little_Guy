@@ -109,7 +109,25 @@ const resolvers = {
                 throw new AuthenticationError('No property found')
             }
         },
+        myApplications: async (parent, args, context) => {
+            if (context.user) {
+                const allApplications = await Application.find({}).populate({
+                    path: 'applicant',
+                    populate: 'User'
+                }).populate({
+                    path: 'propertyId',
+                    populate: 'Property',
+                    populate: {
+                        path: 'owner'
+                    }
+                });
 
+                let filtered = allApplications.filter(app => app.propertyId.owner._id == context.user._id);
+
+                return filtered;
+            }
+            throw new AuthenticationError('Not logged In!');
+        } 
     },
 
     Mutation: {
@@ -319,6 +337,22 @@ const resolvers = {
                 throw new Error
             }
         },
+        updateApplication: async (parent, { _id, status }, context) => {
+             if (context.user) {
+                 const application = await Application.findOneAndUpdate({ _id: _id }, { $set: { status }});
+ 
+                 return application;
+             }
+             throw new AuthenticationError('Not Logged In')
+         },
+         updateTenant: async (parent, { _id, tenant }, context) => {
+             if (context.user) {
+                 const property = await Property.findOneAndUpdate({ _id: _id }, { $set: { tenant: tenant }});
+ 
+                 return property;
+             }
+             throw new AuthenticationError('Not Logged In')
+         },
     }
 };
 

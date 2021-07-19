@@ -1,8 +1,12 @@
 const { Schema, model } = require('mongoose');
 
 const applicationSchema = new Schema({
+    status: {
+        type: String, 
+        required: false
+    },
     propertyId: {
-        type:Schema.Types.ObjectId,
+        type: Schema.Types.ObjectId,
         ref: 'Property'
     },
     applicant: {
@@ -55,14 +59,11 @@ const applicationSchema = new Schema({
         trim: true,
     },
     pets: {
-        type: [
-            {
-                type: String,
-                trim: true
-            }
-        ],
-        default: [null]
+        type: Number
     }
+},
+{
+    timestamps: true
 });
 
 const Application = model('Application', applicationSchema);

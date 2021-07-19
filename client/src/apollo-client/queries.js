@@ -83,21 +83,36 @@ export const QUERY_ME = gql`
 }
 `;
 
-/** single user
-export const QUERY_USER = gql`
-    
+// get my applications
+export const QUERY_APPLICATIONS = gql`
+{
+    myApplications {
+        _id
+        applicant {
+          _id
+          firstName
+          lastName
+        }
+        grossAnnualIncome
+        otherTenants
+        creditScore
+        employer
+        typeOfEmployment
+        addressStreet
+        addressCity
+        addressState
+        addressZip
+        propertyId {
+            _id
+            addressStreet
+            addressCity
+            addressState
+            addressZip
+            price
+            images
+            description
+        }
+        status
+    }
+}
 `;
-
-// multiple users
-export const QUERY_USERS = gql`
-    
-`;
-*/
-
-/**
- * 
- * Additional models/collections:
- * 1. Documents (lease, etc)
- * 2. Pictures
- * 
- */

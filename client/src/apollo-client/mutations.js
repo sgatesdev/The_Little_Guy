@@ -47,6 +47,7 @@ export const SIGN_UP = gql`
    $email: String!,
    $password: String!,
    $username: String!,
+   $image: String,
    $is_landlord: Boolean
    ){
     signUp(input: {
@@ -55,11 +56,33 @@ export const SIGN_UP = gql`
       email: $email,
       password: $password,
       username: $username,
+      image: $image,
       is_landlord: $is_landlord
     }) {
       token
       user {
         _id
+        firstName
+        lastName
+        username
+        bio
+        email
+        image
+        is_landlord
+        current_property {
+            owner {
+                firstName
+                lastName
+                username
+            }
+            addressStreet
+            addressCity
+            addressState
+            addressZip
+            price
+            images
+            description
+        }
       }
     }
   }
@@ -157,17 +180,27 @@ export const ADD_APPLICATION = gql`
     newApplication(input:$input)
   }
 `;
-// 
-// export const DELETE_PROPERTY = gql`
 
-// `;
-
+export const UPDATE_APPLICATION = gql`
+  mutation($_id: ID!, $status: String!){
+    updateApplication(_id: $_id, status: $status) {
+      _id
+    }
+  }
+`;
 
 export const DELETE_PROPERTY = gql`
 mutation(
     $_id: ID!
 ) {
   deleteProperty(_id: $_id) {
+    _id
+  }
+}`;
+
+export const UPDATE_TENANT = gql`
+mutation($_id: ID!, $tenant: ID!) {
+  updateTenant(_id: $_id, tenant: $tenant) {
     _id
   }
 }`;
