@@ -1,25 +1,26 @@
 import React, { useState, useEffect } from 'react'
 import { useMutation, useQuery } from '@apollo/client';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import {ADD_APPLICATION} from '../apollo-client/mutations'
+import history from '../config/history';
 
-const Application = ({ propertyId }) => {
-  const dispatch = useDispatch();
+const Application = (props) => {
   const user = useSelector((state) => state.user);
+  const propertyId = props.match.params.id ;
 
   const initialState = {
-    applicant: user._id,
-    first: user.firstName,
-    last: user.lastName,
-    income: null,
+    applicant: user?._id,
+    first: user?.firstName,
+    last: user?.lastName,
+    income: '',
     street: 'street',
     city: 'city',
     state: 'null',
     zip: 'null',
-    otherTenants: null,
-    creditScore: null,
-    employer: null,
-    typeOfEmployment: null,
+    otherTenants: '',
+    creditScore: '',
+    employer: '',
+    typeOfEmployment: '',
     pets: []
   }
   const typeOfEmployment = [
@@ -45,11 +46,11 @@ const Application = ({ propertyId }) => {
     const { name, value } = e.target
     setFormState({ ...formState, [name]: value });
   }
-  // adds tenants to the array of tenants to be used on submit to add to the form state before sending it to the backend
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     const applicationInput = {
+      propertyId: propertyId,
       applicant: formState.applicant,
       addressStreet: formState.street,
       addressCity: formState.city,
@@ -64,14 +65,14 @@ const Application = ({ propertyId }) => {
       typeOfEmployment: formState.typeOfEmployment,
     }
     const res = await newApplication({ variables: {input: applicationInput}});
-    console.log(res);
+    history.push('/');
   }
   return (
     <div className="flex h-screen bg-white-200 items-center justify-center  mt-32 mb-32">
       <form className="grid bg-whitesmoke rounded-lg shadow-xl w-11/12 md:w-9/12 lg:w-1/2" onSubmit={handleFormSubmit}>
         <div className="flex justify-center py-4">
           <div className="flex bg-purple-200 rounded-full md:p-4 p-2 border-2 border-purple-300">
-            <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path></svg>
+            <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path></svg>
           </div>
         </div>
 
@@ -200,11 +201,11 @@ const Application = ({ propertyId }) => {
               Type of Employment
             </label>
             <select className="py-2 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
-              value={typeOfEmployment}
+              value={formState.typeOfEmployment}
               name='typeOfEmployment'
               onChange={inputChange}>
-              {typeOfEmployment.map(option => (
-                <option className="py-2 px-3 rounded-lg border-2 border-purple-300 " value={option.value}>{option.label}</option>
+              {typeOfEmployment.map((option, idx) => (
+                <option key={idx}className="py-2 px-3 rounded-lg border-2 border-purple-300 " value={option.value}>{option.label}</option>
               ))}
             </select>
           </div>
