@@ -5,9 +5,8 @@
   "scripts": {
     "start": "node api/server.js",
     "develop": "concurrently \"cd api && npm run watch\" \"cd client && npm start\"",
-    "install": "cd api && npm i && cd ../client && npm i",
-    "seed": "cd api && npm run seed",
-    "build": "cd client && npm run build"
+    "install": "cd api && npm i",
+    "seed": "cd api && npm run seed"
   },
   "keywords": [],
   "author": "",
