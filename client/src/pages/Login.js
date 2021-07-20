@@ -67,71 +67,70 @@ const Login = () => {
         history.push('/');
     }
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full space-y-8">
-        <div>
-          <img
-            className="mx-auto h-64 w-auto"
-            src={`${process.env.PUBLIC_URL}/assets/theLittleGuyCrop.png`}
-            alt="TLG"
-          />
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">Log in to your account</h2>
-          <p className="mt-2 text-center text-sm text-gray-600">
-            or{' '}
-            <Link to="/signup" className="font-medium text-indigo-600 hover:text-indigo-500">
-              sign up
-            </Link>
-          </p>
-        </div>
-        <form className="mt-8 space-y-6" onSubmit={handleForm}>
-          <input type="hidden" name="remember" defaultValue="true" />
-          <div className="rounded-md shadow-sm -space-y-px">
-            <div>
-              <label htmlFor="email-address" className="sr-only">
-                Email address
-              </label>
-              <input
-                name="email"
-                type="text"
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                placeholder="Email address"
-                autoComplete="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </div>
-            <div>
-              <label htmlFor="password" className="sr-only">
-                Password
-              </label>
-              <input
-                name="password"
-                type="password"
-                autoComplete="current-password"
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </div>
+    <div className="min-h-screen flex justify-center bg-CPgray py-20 px-4 sm:px-6 lg:px-8">
+    <div className="max-w-md w-full space-y-8">
+      <div>
+        <img
+          className="mx-auto h-64 w-auto"
+          src={`${process.env.PUBLIC_URL}/assets/theLittleGuyCrop.png`}
+          alt="TLG"
+        />
+        <h2 className="mt-6 text-center text-3xl font-extrabold ">Log in to your account</h2>
+        <p className="mt-2 text-center text-sm">
+          or{' '}
+          <Link to="/signup" className="font-medium hover:text-TLGOrange">
+            sign up
+          </Link>
+        </p>
+      </div>
+      <form className="mt-8 space-y-6" onSubmit={handleForm}>
+        <div className="rounded-md shadow-sm -space-y-px">
+          <div>
+            <label htmlFor="email-address" className="sr-only">
+              Email address
+            </label>
+            <input
+              name="email"
+              type="text"
+              className="appearance-none rounded-none relative block w-full px-3 py-2 border rounded-t-md focus:outline-none focus:ring-TLGOrange focus:border-TLGOrange focus:z-10 sm:text-sm"
+              placeholder="Email address"
+              autoComplete="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
           </div>
           <div>
-          <label className="mt-2 text-center text-sm text-gray-600">{ displayError ? displayError : null}</label>
-            <button
-              type="submit"
-              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-            >
-              <span className="absolute left-0 inset-y-0 flex items-center pl-3">
-                <LockClosedIcon className="h-5 w-5 text-indigo-500 group-hover:text-indigo-400" aria-hidden="true" />
-              </span>
-              Sign in
-            </button>
+            <label htmlFor="password" className="sr-only">
+              Password
+            </label>
+            <input
+              name="password"
+              type="password"
+              autoComplete="current-password"
+              className="appearance-none rounded-none relative block w-full px-3 py-2 border rounded-b-md focus:outline-none focus:ring-TLGOrange focus:border-TLGOrange focus:z-10 sm:text-sm"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
           </div>
-        </form>
-        <h1 className="mt-6 text-center text-3xl font-extrabold text-gray-900">{state.user ? state.user.firstName : null}</h1>
-      </div>
+        </div>
+        <div>
+        <label className="mt-2 text-center text-sm">{ displayError ? displayError : null}</label>
+          <button
+            type="submit"
+            className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-TLGOrange hover:bg-white hover:text-TLGOrange"
+          >
+            <span className="absolute left-0 inset-y-0 flex items-center pl-3">
+              <LockClosedIcon className="h-5 w-5 text-white group-hover:text-TLGOrange" aria-hidden="true" />
+            </span>
+            Sign in
+          </button>
+        </div>
+      </form>
+      <h1 className="mt-6 text-center text-3xl font-extrabold text-gray-900">{state.user ? state.user.firstName : null}</h1>
     </div>
-  )
+  </div>
+)
 }
 
 export default Login;

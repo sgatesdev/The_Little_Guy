@@ -54,6 +54,10 @@ const applicationSchema = new Schema({
         enum: ['self-employed', 'employed', 'unemployed'],
         default: 'employed'
     },
+    status: {
+        type: String,
+        trim: true,
+    },
     pets: {
         type: Number
     }

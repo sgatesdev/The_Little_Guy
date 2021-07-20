@@ -133,10 +133,10 @@ const Signup = () => {
             src={`${process.env.PUBLIC_URL}/assets/theLittleGuyCrop.png`}
             alt="TLG"
           />
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">Sign up for an account</h2>
-          <p className="mt-2 text-center text-sm text-gray-600">
+          <h2 className="mt-6 text-center text-3xl font-extrabold">Sign up for an account</h2>
+          <p className="mt-2 text-center text-sm">
             or{' '}
-            <Link to="/login" className="font-medium text-indigo-600 hover:text-TLGOrange">
+            <Link to="/login" className="font-medium hover:text-TLGOrange">
               Log In
             </Link>
           </p>
@@ -152,7 +152,7 @@ const Signup = () => {
               <input
                 name="email"
                 type="text"
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                className="appearance-none rounded-none relative block w-full px-3 py-2 border rounded-t-md focus:outline-none focus:ring-TLGOrange focus:border-TLGOrange focus:z-10 sm:text-sm"
                 placeholder="Email address"
                 autoComplete="email"
                 value={formState.email}
@@ -168,7 +168,7 @@ const Signup = () => {
               <input
                 name="username"
                 type="text"
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                className="appearance-none rounded-none relative block w-full px-3 py-2 border rounded-b-md focus:outline-none focus:ring-TLGOrange focus:border-TLGOrange focus:z-10 sm:text-sm"
                 placeholder="Username"
                 autoComplete="username"
                 value={formState.username}
@@ -184,7 +184,7 @@ const Signup = () => {
               <input
                 name="firstName"
                 type="text"
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                className="appearance-none rounded-none relative block w-full px-3 py-2 border rounded-t-md focus:outline-none focus:ring-TLGOrange focus:border-TLGOrange focus:z-10 sm:text-sm"
                 placeholder="First name"
                 autoComplete="firstName"
                 value={formState.firstName}
@@ -200,7 +200,7 @@ const Signup = () => {
               <input
                 name="lastName"
                 type="text"
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                className="appearance-none rounded-none relative block w-full px-3 py-2 border rounded-b-md focus:outline-none focus:ring-TLGOrange focus:border-TLGOrange focus:z-10 sm:text-sm"
                 placeholder="Last name"
                 autoComplete="lastName"
                 value={formState.lastName}
@@ -216,7 +216,7 @@ const Signup = () => {
                 name="password"
                 type="password"
                 autoComplete="current-password"
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                className="appearance-none rounded-none relative block w-full px-3 py-2 border rounded-t-md focus:outline-none focus:ring-TLGOrange focus:border-TLGOrange focus:z-10 sm:text-sm"
                 placeholder="Password"
                 value={formState.password}
                 onChange={handleInput}
@@ -232,7 +232,7 @@ const Signup = () => {
                 name="password_2"
                 type="password"
                 autoComplete="current-password"
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                className="appearance-none rounded-none relative block w-full px-3 py-2 border rounded-b-md focus:outline-none focus:ring-TLGOrange focus:border-TLGOrange focus:z-10 sm:text-sm"
                 placeholder="Re-enter Password"
                 value={formState.password_2}
                 onChange={handleInput}
@@ -241,7 +241,7 @@ const Signup = () => {
 
             <div>
                 <input 
-                          className="form-checkbox my-2"
+                          className="form-checkbox my-2 text-TLGOrange focus:ring-TLGOrange focus:border-TLGOrange rounded-md"
                           type="checkbox" 
                           name="is_landlord"
                           value={formState.is_landlord}
@@ -255,10 +255,10 @@ const Signup = () => {
           <label className="mt-2 text-center text-sm text-gray-600">{ displayError ? displayError : null}</label>
             <button
               type="submit"
-              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-TLGOrange hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-TLGOrange hover:bg-white hover:text-TLGOrange"
             >
               <span className="absolute left-0 inset-y-0 flex items-center pl-3">
-                <LockClosedIcon className="h-5 w-5 text-indigo-500 group-hover:text-indigo-400" aria-hidden="true" />
+                <LockClosedIcon className="h-5 w-5 text-white group-hover:text-TLGOrange" aria-hidden="true" />
               </span>
               Sign up!
             </button>
