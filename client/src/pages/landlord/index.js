@@ -79,7 +79,7 @@ const Landlord = () => {
             </div>
           </div>
 
-          <div className="text-center p-12 bg-white shadow-md">
+          <div className="text-center p-12 bg-CPgray shadow-md">
               {
                   /** <PropertyList properties={properties} />  */
                   properties && !loading ? 
