@@ -1,7 +1,7 @@
 import React from 'react';
 import {Image} from 'cloudinary-react';
-
 import { formatPrice} from '../utils/helpers';
+import {Link} from 'react-router-dom';
 const UserPropertyCard = ({ property }) => {
     const {
         _id,
@@ -13,9 +13,7 @@ const UserPropertyCard = ({ property }) => {
         images,
         description   
     } = property;
-    
     const { firstName, lastName } = property.owner;
-      
     return(
 <div className="width-100 mt-10 m-4 bg-CPgray antialiased">
 <div> 
@@ -37,6 +35,9 @@ const UserPropertyCard = ({ property }) => {
   <div className="mt-4">
     <span className="text-sm text-gray-600">{description}</span>
   </div>  
+  <Link to={`/application/${_id}`} >
+      <button className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-TLGOrange hover:bg-white hover:text-TLGOrange"> Apply Now</button>
+    </ Link>
   </div>
  </div> 
 </div>
@@ -44,6 +45,22 @@ const UserPropertyCard = ({ property }) => {
 
     );
 };
-
 export default UserPropertyCard;
  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

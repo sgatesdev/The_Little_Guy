@@ -1,25 +1,26 @@
 import React, { useState, useEffect } from 'react'
 import { useMutation, useQuery } from '@apollo/client';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import {ADD_APPLICATION} from '../apollo-client/mutations'
+import history from '../config/history';
 
-const Application = ({ propertyId }) => {
-  const dispatch = useDispatch();
+const Application = (props) => {
   const user = useSelector((state) => state.user);
+  const propertyId = props.match.params.id ;
 
   const initialState = {
     applicant: user?._id,
     first: user?.firstName,
     last: user?.lastName,
-    income: null,
+    income: '',
     street: 'street',
     city: 'city',
     state: 'null',
     zip: 'null',
-    otherTenants: null,
-    creditScore: null,
-    employer: null,
-    typeOfEmployment: null,
+    otherTenants: '',
+    creditScore: '',
+    employer: '',
+    typeOfEmployment: '',
     pets: []
   }
   const typeOfEmployment = [
@@ -45,11 +46,11 @@ const Application = ({ propertyId }) => {
     const { name, value } = e.target
     setFormState({ ...formState, [name]: value });
   }
-  // adds tenants to the array of tenants to be used on submit to add to the form state before sending it to the backend
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     const applicationInput = {
+      propertyId: propertyId,
       applicant: formState.applicant,
       addressStreet: formState.street,
       addressCity: formState.city,
@@ -64,11 +65,9 @@ const Application = ({ propertyId }) => {
       typeOfEmployment: formState.typeOfEmployment,
     }
     const res = await newApplication({ variables: {input: applicationInput}});
-    console.log(res);
+    history.push('/');
   }
   return (
-    <>
-
           <div className="min-h-screen flex  justify-center py-20 bg-CPgray py-12 px-4 sm:px-6 lg:px-8">
           <div className="md:grid md:grid-cols-3 md:gap-6 ">
             <div className="md:col-span-1">
@@ -230,13 +229,13 @@ const Application = ({ propertyId }) => {
                         Type of Employment
                       </label>
                       <select
-                        value={typeOfEmployment}
+                        value={formState.typeOfEmployment}
                         name='typeOfEmployment'
                         onChange={inputChange}
                         className="mt-1 block w-full py-2 px-3 border  bg-white rounded-md shadow-sm focus:outline-none focus:ring-TLGOrange focus:border-TLGOrange sm:text-sm"
                       >
-                        {typeOfEmployment.map(option => (
-                            <option  value={option.value}>{option.label}</option>
+                        {typeOfEmployment.map((option, idx) => (
+                            <option  key={idx} value={option.value}>{option.label}</option>
               ))}
                       </select>
                     </div>
@@ -256,8 +255,6 @@ const Application = ({ propertyId }) => {
           </div>
         </div>
       </div>
-
-    </>
   )
 };
 

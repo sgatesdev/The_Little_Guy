@@ -32,12 +32,6 @@ const typeDefs = gql`
         images:[String]
         description: String
     }
-    type Address {
-        addressStreet: String
-        addressCity: String
-        addressState: String
-        addressZip: String
-    }
 
     type Auth {
         token: ID
