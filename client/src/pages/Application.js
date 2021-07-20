@@ -229,13 +229,13 @@ const Application = (props) => {
                         Type of Employment
                       </label>
                       <select
-                        value={typeOfEmployment}
+                        value={formState.typeOfEmployment}
                         name='typeOfEmployment'
                         onChange={inputChange}
                         className="mt-1 block w-full py-2 px-3 border  bg-white rounded-md shadow-sm focus:outline-none focus:ring-TLGOrange focus:border-TLGOrange sm:text-sm"
                       >
-                        {typeOfEmployment.map(option => (
-                            <option  value={option.value}>{option.label}</option>
+                        {typeOfEmployment.map((option, idx) => (
+                            <option  key={idx} value={option.value}>{option.label}</option>
               ))}
                       </select>
                     </div>
