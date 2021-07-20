@@ -35,8 +35,8 @@ const UserPropertyCard = ({ property }) => {
   <div className="mt-4">
     <span className="text-sm text-gray-600">{description}</span>
   </div>  
-  <Link to={`/landlord/${_id}`} >
-      <button className="bg-white"> Apply Now</button>
+  <Link to={`/application/${_id}`} >
+      <button className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-TLGOrange hover:bg-white hover:text-TLGOrange"> Apply Now</button>
     </ Link>
   </div>
  </div> 
