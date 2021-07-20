@@ -19,7 +19,7 @@ const UserPropertyCard = ({ property }) => {
 <div> 
  <div className="relative px-4 -mt-16 ">
    <div className="bg-white p-6 m-4 rounded-lg shadow-lg">
-   <Image cloudName="drcmojwwk" publicId={images[0]} width="150" height="150" className="object-cover object-center rounded-lg shadow-md m-1.5" alt="property"/>  
+   <Image cloudName="drcmojwwk" publicId={images[0]} className="w-52 h-52 object-cover object-center rounded-lg shadow-md m-1.5" alt="property"/>  
     <div className="flex items-baseline">
       <span className="text-xs p inline-block rounded-full uppercase font-semibold tracking-wide">
         {!firstName ? null : `${firstName} ${lastName}` }
@@ -42,6 +42,7 @@ const UserPropertyCard = ({ property }) => {
  </div> 
 </div>
 </div>
+
     );
 };
 export default UserPropertyCard;

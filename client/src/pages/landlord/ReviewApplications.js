@@ -38,7 +38,7 @@ const ReviewApplications = () => {
                 </div>
                 <div className=" p-2 text-center">
                     <Link to={`/landlord/applications/${app._id}`}>
-                <button className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">View</button>
+                <button className="bg-TLGOrange text-white m-1 hover:bg-white hover:text-TLGOrange font-semibold py-2 px-4 rounded">View</button>
                     </Link>
                 </div>
                 </> 
@@ -56,13 +56,14 @@ const ReviewApplications = () => {
 
         {/* MAKING THIS EASY FOR YOU ZOE! - SAMPLE DATA BELOW */}
         <>
+                
                 <div className="p-2 text-center" >Sam Gates</div>
                 <div className=" p-2 text-center col-span-2">101 Maple St</div>
                 <div className=" p-2 text-center">
                     Pending
                 </div>
                 <div className=" p-2 text-center">
-                <button className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">View</button>
+                <button className="bg-TLGOrange text-white hover:bg-white hover:text-TLGOrange font-semibold py-2 px-4 rounded">View</button>
                 </div>
         </> 
         <>
@@ -72,7 +73,7 @@ const ReviewApplications = () => {
                     Pending
                 </div>
                 <div className=" p-2 text-center">
-                <button className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">View</button>
+                <button className="bg-TLGOrange text-white hover:bg-white hover:text-TLGOrange font-semibold py-2 px-4 rounded">View</button>
                 </div>
         </> 
         <>
@@ -82,7 +83,7 @@ const ReviewApplications = () => {
                     Pending
                 </div>
                 <div className=" p-2 text-center">
-                <button className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">View</button>
+                <button className="bg-TLGOrange text-white hover:bg-white hover:text-TLGOrange font-semibold py-2 px-4 rounded">View</button>
                 </div>
         </> 
         <>
@@ -92,7 +93,7 @@ const ReviewApplications = () => {
                     Pending
                 </div>
                 <div className=" p-2 text-center">
-                <button className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">View</button>
+                <button className="bg-TLGOrange text-white hover:bg-white hover:text-TLGOrange font-semibold py-2 px-4 rounded">View</button>
                 </div>
         </> 
         </div>

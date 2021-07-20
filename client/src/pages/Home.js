@@ -8,6 +8,7 @@ import { FETCH_ALL_PROPERTIES } from '../store/actions';
 
 import PropertyList from '../components/PropertyList';
 
+
 const Home = () => {
     // redux
     const dispatch = useDispatch();
