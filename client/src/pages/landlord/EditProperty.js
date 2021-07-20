@@ -135,9 +135,9 @@ const EditProperty = (props) => {
                       name="addressCity"
                       type="text"
                       placeholder="Address City"
-                  autoComplete="addressCity"
-                  value={formState.addressCity}
-                  onChange={handleInput}
+                    autoComplete="addressCity"
+                    value={formState.addressCity}
+                    onChange={handleInput}
                       className="mt-1 focus:ring-TLGOrange focus:border-TLGOrange block w-full shadow-sm sm:text-sm rounded-md"
                     />
                   </div>
