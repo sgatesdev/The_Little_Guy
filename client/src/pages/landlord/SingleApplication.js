@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react'
 import { useMutation } from '@apollo/client';
 import { useDispatch, useSelector } from 'react-redux';
@@ -66,7 +67,8 @@ const SingleApplication = (props) => {
     }
 
     return !application ? null : (
-    <div className="flex h-screen bg-white-200 items-center justify-center  mt-32 mb-32">
+        <>
+    {/* <div className="flex h-screen bg-white-200 items-center justify-center  mt-32 mb-32">
         <form className="grid bg-whitesmoke rounded-lg shadow-xl w-11/12 md:w-9/12 lg:w-1/2" onSubmit={(e) => e.preventDefault()}>
         <div className="flex justify-center py-4">
             <div className="flex bg-purple-200 rounded-full md:p-4 p-2 border-2 border-purple-300">
@@ -155,7 +157,7 @@ const SingleApplication = (props) => {
             type="text"
             placeholder=""
             value={application.creditScore}
-                readOnly
+            readOnly
             />
         </div>
 
@@ -207,28 +209,229 @@ const SingleApplication = (props) => {
         </div>
         <div className='flex items-center justify-center  md:gap-8 gap-4 pt-5 pb-5'>
             <button 
-            className='w-auto bg-gray-500 hover:bg-gray-700 rounded-lg shadow-xl font-medium text-white px-4 py-2'
+            className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-TLGOrange hover:bg-white hover:text-TLGOrange"
             onClick={() => history.push('/landlord/applications')}
             >
                 Back
             </button>
 
             <button 
-            className='w-auto bg-green-500 hover:bg-green-700 rounded-lg shadow-xl font-medium text-white px-4 py-2' 
+            className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-TLGOrange hover:bg-white hover:text-TLGOrange" 
             onClick={() => handleApplication('Approved')}
             >
                 Approve</button>
             <button 
-            className='w-auto bg-red-500 hover:bg-red-700 rounded-lg shadow-xl font-medium text-white px-4 py-2' 
+            className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-TLGOrange hover:bg-white hover:text-TLGOrange" 
             onClick={() => handleApplication('Denied')}
             >
                 Deny</button>
         </div>
         <h6 className="text-center text-red-500 mb-2">{ displayError }</h6>
         </form>
-    </div>
+    </div> */}
+
+
+
+
+
+    
+
+          <div className="min-h-screen flex  justify-center py-20 bg-CPgray py-12 px-4 sm:px-6 lg:px-8">
+          <div className="md:grid md:grid-cols-3 md:gap-6 ">
+            <div className="md:col-span-1">
+              <div className="px-4 sm:px-0">
+              <h3 className="text-lg font-medium leading-6">Tenant Application</h3>
+              <p className="mt-1 text-sm">Use a permanent address where you can receive mail.</p>
+            </div>
+          </div>
+          <div className="mt-5 md:mt-0 md:col-span-2">
+            <form onSubmit={(e) => e.preventDefault()}>
+              <div className="shadow overflow-hidden sm:rounded-md">
+                <div className="px-4 py-5 bg-white sm:p-6">
+                  <div className="grid grid-cols-6 gap-6">
+                    <div className="col-span-6 sm:col-span-3">
+                      <label className="block text-sm font-medium text-gray-700">
+                        First name
+                      </label>
+                      <input
+                        name="first"
+                        type="text"
+                        placeholder="First"
+                        value={application.applicant.firstName}
+                        readOnly
+                        className="mt-1 focus:ring-TLGOrange focus:border-TLGOrange block w-full shadow-sm sm:text-sm rounded-md"
+                      />
+                    </div>
+
+                    <div className="col-span-6 sm:col-span-3">
+                      <label className="block text-sm font-medium text-gray-700">
+                        Last name
+                      </label>
+                      <input
+                         name="last"
+                         type="text"
+                         placeholder="Last"
+                         value={application.applicant.lastName}
+                         readOnly
+                        className="mt-1 focus:ring-TLGOrange focus:border-TLGOrange block w-full shadow-sm sm:text-sm rounded-md"
+                      />
+                    </div>
+
+                    <div className="col-span-6">
+                      <label className="block text-sm font-medium">
+                        Street address
+                      </label>
+                      <input
+                        name="street"
+                        type="text"
+                        placeholder=""
+                        value={application.addressStreet}
+                        readOnly
+                        className="mt-1 focus:ring-TLGOrange focus:border-TLGOrange block w-full shadow-sm sm:text-sm rounded-md"
+                      />
+                    </div>
+
+                    <div className="col-span-6 sm:col-span-6 lg:col-span-2">
+                      <label className="block text-sm font-medium">
+                        City
+                      </label>
+                      <input
+                        name="city"
+                        type="text"
+                        placeholder=""
+                        value={application.addressCity}
+                        readOnly
+                        className="mt-1 focus:ring-TLGOrange focus:border-TLGOrange block w-full shadow-sm sm:text-sm rounded-md"
+                      />
+                    </div>
+
+                    <div className="col-span-6 sm:col-span-3 lg:col-span-2">
+                      <label className="block text-sm font-medium">
+                        State
+                      </label>
+                      <input
+                        name="state"
+                        type="text"
+                        placeholder=""
+                        value={application.addressState}
+                        readOnly
+                        className="mt-1 focus:ring-TLGOrange focus:border-TLGOrange block w-full shadow-sm sm:text-sm rounded-md"
+                      />
+                    </div>
+
+                    <div className="col-span-6 sm:col-span-3 lg:col-span-2">
+                      <label className="block text-sm font-medium">
+                        ZIP code
+                      </label>
+                      <input
+                        name="zip"
+                        type="text"
+                        placeholder=""
+                        value={application.addressZip}
+                        readOnly
+                        className="mt-1 focus:ring-TLGOrange focus:border-TLGOrange block w-full shadow-sm sm:text-sm rounded-md"
+                      />
+                    </div>
+                    <div className="col-span-6 sm:col-span-6 lg:col-span-2">
+                      <label className="block text-sm font-medium">
+                        Credit Score
+                      </label>
+                      <input
+                        name="creditScore"
+                        type="text"
+                        placeholder=""
+                        value={application.creditScore}
+                        readOnly
+                        className="mt-1 focus:ring-TLGOrange focus:border-TLGOrange block w-full shadow-sm sm:text-sm rounded-md"
+                      />
+                    </div>
+
+                    <div className="col-span-6 sm:col-span-3 lg:col-span-2">
+                      <label className="block text-sm font-medium">
+                        Annual Gross Income
+                      </label>
+                      <input
+                        name="income"
+                        type="text"
+                        placeholder=""
+                        value={application.grossAnnualIncome}
+                        readOnly
+                        className="mt-1 focus:ring-TLGOrange focus:border-TLGOrange block w-full shadow-sm sm:text-sm rounded-md"
+                      />
+                    </div>
+
+                    <div className="col-span-6 sm:col-span-3 lg:col-span-2">
+                      <label className="block text-sm font-medium">
+                        Other Tenants
+                      </label>
+                      <input
+                        name="otherTenants"
+                        type="text"
+                        placeholder=""
+                        value={application.otherTenants}
+                        readOnly
+                        className="mt-1 focus:ring-TLGOrange focus:border-TLGOrange block w-full shadow-sm sm:text-sm rounded-md"
+                      />
+                    </div>
+                    <div className="col-span-6 sm:col-span-3">
+                      <label className="block text-sm font-medium">
+                        Employer
+                      </label>
+                      <input
+                        name="employer"
+                        type="text"
+                        placeholder=""
+                        value={application.employer}
+                        readOnly
+                        className="mt-1 focus:ring-TLGOrange focus:border-TLGOrange block w-full shadow-sm sm:text-sm rounded-md"
+                      />
+                    </div>
+
+                    <div className="col-span-6 sm:col-span-3">
+                      <label className="block text-sm font-medium">
+                        Type of Employment
+                      </label>
+                      <input
+                        name="typeOfEmployment"
+                        type="text"
+                        placeholder=""
+                        value={application.typeOfEmployment}
+                        readOnly
+                        className="mt-1 focus:ring-TLGOrange focus:border-TLGOrange block w-full shadow-sm sm:text-sm rounded-md"
+                      />
+                    </div>
+                    
+                  </div>
+                </div>
+                <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
+                <button 
+            className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-TLGOrange hover:bg-white hover:text-TLGOrange"
+            onClick={() => history.push('/landlord/applications')}
+            >
+                Back
+            </button>
+
+            <button 
+            className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-TLGOrange hover:bg-white hover:text-TLGOrange" 
+            onClick={() => handleApplication('Approved')}
+            >
+                Approve</button>
+            <button 
+            className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-TLGOrange hover:bg-white hover:text-TLGOrange" 
+            onClick={() => handleApplication('Denied')}
+            >
+                Deny</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+    </>
 
     )
     };
 
     export default SingleApplication;
+

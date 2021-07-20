@@ -94,8 +94,8 @@ useEffect(() => {
           <div className="md:grid md:grid-cols-3 md:gap-6 ">
             <div className="md:col-span-1">
               <div className="px-4 sm:px-0">
-                <h3 className="text-lg font-medium leading-6 text-gray-900">Profile</h3>
-                <p className="mt-1 text-sm text-gray-600">
+                <h3 className="text-lg font-medium leading-6 ">Profile</h3>
+                <p className="mt-1 text-sm">
                   This information will be displayed publicly so be careful what you share.
                 </p>
               </div>
@@ -105,7 +105,7 @@ useEffect(() => {
                 <div className="shadow sm:rounded-md sm:overflow-hidden">
                   <div className="px-4 py-5 bg-white space-y-6 sm:p-6">
                   <div className="col-span-6 sm:col-span-3">
-                        <label htmlFor="first-name" className="block text-sm font-medium text-gray-700">
+                        <label htmlFor="first-name" className="block text-sm font-medium ">
                           First name
                         </label>
                         <input
@@ -115,12 +115,12 @@ useEffect(() => {
                           autoComplete="given-name"
                           value={formState.firstName}
                           onChange={handleInput}
-                          className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                          className="mt-1 focus:ring-TLGOrange focus:border-TLGOrange block w-full shadow-sm sm:text-sm rounded-md"
                         />
                       </div>
   
                       <div className="col-span-6 sm:col-span-3">
-                        <label htmlFor="last-name" className="block text-sm font-medium text-gray-700">
+                        <label htmlFor="last-name" className="block text-sm font-medium">
                           Last name
                         </label>
                         <input
@@ -130,12 +130,12 @@ useEffect(() => {
                           autoComplete="family-name"
                           value={formState.lastName}
                           onChange={handleInput}
-                          className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                          className="mt-1 focus:ring-TLGOrange focus:border-TLGOrange block w-full shadow-sm sm:text-sm rounded-md"
                         />
                       </div>
   
                     <div>
-                      <label htmlFor="bio" className="block text-sm font-medium text-gray-700">
+                      <label htmlFor="bio" className="block text-sm font-medium">
                         Bio
                       </label>
                       <div className="mt-1">
@@ -143,7 +143,7 @@ useEffect(() => {
                           id="bio"
                           name="bio"
                           rows={3}
-                          className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
+                          className="shadow-sm focus:ring-TLGOrange focus:border-TLGOrange mt-1 block w-full sm:text-sm border rounded-md"
                           placeholder="Help others get to know you"
                           defaultValue={''}
                           value={formState.bio}
@@ -153,11 +153,11 @@ useEffect(() => {
                     
                     </div>
                     <div>
-                        <label className="block text-sm font-medium text-gray-700">Profile photo</label>
-                        <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+                        <label className="block text-sm font-medium">Profile photo</label>
+                        <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-borderGray border-dashed rounded-md">
                           <div className="space-y-1 text-center">
                             <svg
-                              className="mx-auto h-12 w-12 text-gray-400"
+                              className="mx-auto h-12 w-12"
                               stroke="currentColor"
                               fill="none"
                               viewBox="0 0 48 48"
@@ -170,17 +170,17 @@ useEffect(() => {
                                 strokeLinejoin="round"
                               />
                             </svg>
-                            <div className="flex text-sm text-gray-600">
+                            <div className="flex text-sm">
                               <label
                                 htmlFor="file-upload"
-                                className="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500"
+                                className="relative cursor-pointer bg-white rounded-md font-medium hover:text-TLGOrange"
                               >
                                 <span>Upload a file</span>
                                 <input id="file-upload" name="image" type="file" className="sr-only"  onChange={handleFileUpload} />
                               </label>
                               <p className="pl-1">or drag and drop</p>
                             </div>
-                            <p className="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</p>
+                            <p className="text-xs">PNG, JPG, GIF up to 10MB</p>
                           </div>
                         </div>
                       </div>
@@ -189,7 +189,7 @@ useEffect(() => {
                   <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
                     <button
                       type="submit"
-                      className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-TLGOrange hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                      className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-TLGOrange hover:bg-white hover:text-TLGOrange"
                     >
                       Save
                     </button>

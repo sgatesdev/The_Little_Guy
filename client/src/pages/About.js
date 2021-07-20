@@ -5,7 +5,8 @@ import { Link } from 'react-router-dom';
 const About = () => {
     return (
         <>
-<div class="p-8 mb-4 bg-white rounded-lg shadow">
+        <div className="bg-CPgray pt-4">
+<div class="p-8 mb-4 mx-4 bg-white rounded-lg shadow">
 <p class="text-center text-2xl font-bold text-TLGOrange ">
         The Why
     </p>
@@ -13,7 +14,7 @@ const About = () => {
     We made this app for the little guy because we think everyone should have access to something great. Many landlords only have a few properties that don't warrant paying the high price of most property hosting sites. We wanted those "little guys" to have a place to post their properties and connect with their tenants. 
     </p>
 </div>
-<div class="p-8 mb-4 bg-white rounded-lg shadow">
+<div class="p-8 m-4 bg-white rounded-lg shadow">
 <p class="text-center text-2xl font-bold text-TLGOrange ">
         Coming Soon
     </p>
@@ -21,10 +22,10 @@ const About = () => {
     <li class="text-center m-4 text-xl font-light"> Messaging</li>
     <li class="text-center m-4 text-xl font-light"> Save Properties</li>
     <li class="text-center m-4 text-xl font-light"> Rent Pay Portal</li>
-    <li class="text-center m-4 text-xl font-light"> Mobile Version</li>
+    <li class="text-center m-4 text-xl font-light"> Mobile App</li>
     </ul>
 </div>
-<div class="p-8 bg-white rounded-lg shadow">
+<div class="p-8 m-4 bg-white rounded-lg shadow">
     <p class="text-center text-2xl font-bold text-TLGOrange">
         Meet the Team
     </p>
@@ -60,8 +61,8 @@ const About = () => {
         </div>
         <div class="p-4">
             <div class="text-center mb-4 opacity-90">
-                <a href="#" class="block relative">
-                    <img alt="profil" src="/images/person/4.jpg" class="mx-auto object-cover rounded-full h-40 w-40 "/>
+                <a href="https://juawito.github.io/Portfolio-W2/" class="block relative">
+                    <img alt="juanProfile" src={`${process.env.PUBLIC_URL}/assets/headshot-juan.jpg`} class="mx-auto object-cover rounded-full h-40 w-40 "/>
                 </a>
             </div>
             <div class="text-center">
@@ -79,7 +80,7 @@ const About = () => {
                         </path>
                     </svg>
                 </a>
-                <a href="#">
+                <a href="https://www.linkedin.com/in/juan-santiago-a87473192/">
                     <svg width="30" height="30" fill="currentColor" class="text-xl hover:text-TLGOrange" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
                         <path d="M477 625v991h-330v-991h330zm21-306q1 73-50.5 122t-135.5 49h-2q-82 0-132-49t-50-122q0-74 51.5-122.5t134.5-48.5 133 48.5 51 122.5zm1166 729v568h-329v-530q0-105-40.5-164.5t-126.5-59.5q-63 0-105.5 34.5t-63.5 85.5q-11 30-11 81v553h-329q2-399 2-647t-1-296l-1-48h329v144h-2q20-32 41-56t56.5-52 87-43.5 114.5-15.5q171 0 275 113.5t104 332.5z">
                         </path>
@@ -119,6 +120,7 @@ const About = () => {
             </div>
         </div>
     </div>
+</div>
 </div>
 </>
 
