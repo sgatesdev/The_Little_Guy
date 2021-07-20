@@ -73,8 +73,6 @@ const App = () => {
             { /* TENANT PATHS */ }
             <Route exact path="/tenant" component={Tenant} />
             <Route path="/tenant/saved" component={TenantSaved} />
-            
-            <Route exact path="/application/:id" component={Application} />
           </Switch>
         </Router>
       </StoreProvider>
