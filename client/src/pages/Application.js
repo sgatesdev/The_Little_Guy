@@ -112,6 +112,7 @@ const Application = ({ propertyId }) => {
                       />
                     </div>
 
+
                     <div className="col-span-6">
                       <label className="block text-sm font-medium">
                         Street address
