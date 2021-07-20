@@ -405,19 +405,19 @@ const SingleApplication = (props) => {
                 </div>
                 <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
                 <button 
-            className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-TLGOrange hover:bg-white hover:text-TLGOrange"
+            className="inline-flex m-2 justify-between py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-TLGOrange hover:bg-white hover:text-TLGOrange"
             onClick={() => history.push('/landlord/applications')}
             >
                 Back
             </button>
 
             <button 
-            className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-TLGOrange hover:bg-white hover:text-TLGOrange" 
+            className="inline-flex m-2 justify-between py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-TLGOrange hover:bg-white hover:text-TLGOrange" 
             onClick={() => handleApplication('Approved')}
             >
                 Approve</button>
             <button 
-            className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-TLGOrange hover:bg-white hover:text-TLGOrange" 
+            className="inline-flex m-2 justify-between py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-TLGOrange hover:bg-white hover:text-TLGOrange" 
             onClick={() => handleApplication('Denied')}
             >
                 Deny</button>

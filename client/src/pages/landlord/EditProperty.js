@@ -204,7 +204,9 @@ const EditProperty = (props) => {
                 </div>
               </div>
               <div>
+                <label className="ml-6 block text-sm font-medium ">
                     {oldInfo.tenant ? `Current tenant:  ${oldInfo.tenant.firstName} ${oldInfo.tenant.lastName}` : null} 
+                </label>
                 </div>
               <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
                 <button

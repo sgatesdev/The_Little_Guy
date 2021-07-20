@@ -2,9 +2,6 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 
-// tailwind
-import { LockClosedIcon } from '@heroicons/react/solid'
-
 // new stuff for redux 
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -60,7 +57,8 @@ const AddProperty = () => {
           addressState: addressState,
           addressZip: addressZip,
           price: parseInt(rent),
-          description: description
+          description: description,
+          images: ['the-little-guy/fauxhaus_whjtnp']
         };
 
         // if the input is valid, send it to server
@@ -74,13 +72,13 @@ const AddProperty = () => {
           // update redux store, add in property ID to object          
           dispatch({
               type: 'ADD_MY_PROPERTY',
-              payload: { ...buildInput, ['_id']: propertyId }
+              payload: { ...buildInput, _id: propertyId, images: ['the-little-guy/fauxhaus_whjtnp'] }
           });
     
           // update redux store, add in property ID to object          
           dispatch({
-              type: ADD_PROPERTY,
-              payload: { ...buildInput, _id: propertyId, images: [], owner: { firstName, lastName }}
+              type: 'ADD_PROPERTY',
+              payload: { ...buildInput, _id: propertyId, images: ['the-little-guy/fauxhaus_whjtnp'], owner: { firstName, lastName }}
           });
 
           history.push(`/image/property/${propertyId}`);
@@ -106,8 +104,7 @@ const AddProperty = () => {
           <div className="md:grid md:grid-cols-3 md:gap-6 ">
             <div className="md:col-span-1">
               <div className="px-4 sm:px-0">
-              <h3 className="text-lg font-medium leading-6">Tenant Application</h3>
-              <p className="mt-1 text-sm">Use a permanent address where you can receive mail.</p>
+              <h3 className="text-lg font-medium leading-6">Add Property</h3>
             </div>
           </div>
           <div className="mt-5 md:mt-0 md:col-span-2">

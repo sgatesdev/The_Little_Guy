@@ -2,6 +2,7 @@ import React from 'react';
 import {Image} from 'cloudinary-react';
 import { formatPrice} from '../utils/helpers';
 import {Link} from 'react-router-dom';
+
 const UserPropertyCard = ({ property }) => {
     const {
         _id,
@@ -13,13 +14,15 @@ const UserPropertyCard = ({ property }) => {
         images,
         description   
     } = property;
+    
     const { firstName, lastName } = property.owner;
+
     return(
 <div className="width-100 mt-10 m-4 bg-CPgray antialiased">
 <div> 
  <div className="relative px-4 -mt-16 ">
    <div className="bg-white p-6 m-4 rounded-lg shadow-lg">
-   <Image cloudName="drcmojwwk" publicId={images[0]} className="w-52 h-52 object-cover object-center rounded-lg shadow-md m-1.5" alt="property"/>  
+   <Image cloudName="drcmojwwk" publicId={images[0] ? images[0] : 'the-little-guy/fauxhaus_whjtnp'} className="w-52 h-52 object-cover object-center rounded-lg shadow-md m-1.5" alt="property"/>  
     <div className="flex items-baseline">
       <span className="text-xs p inline-block rounded-full uppercase font-semibold tracking-wide">
         {!firstName ? null : `${firstName} ${lastName}` }

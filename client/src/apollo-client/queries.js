@@ -38,6 +38,7 @@ export const QUERY_MY_PROPERTIES = gql`
             addressCity
             addressState
             addressZip
+            description
             tenant {
                 firstName
                 lastName
