@@ -21,7 +21,7 @@ const UserPropertyCard = ({ property }) => {
 <div> 
  <div class="relative px-4 -mt-16 ">
    <div class="bg-white p-6 m-4 rounded-lg shadow-lg">
-   <Image cloudName="drcmojwwk" publicId={images[0]} width="150" height="150" class="object-cover object-center rounded-lg shadow-md m-1.5" alt="property"/>  
+   <Image cloudName="drcmojwwk" publicId={images[0] ? images[0] : 'the-little-guy/fauxhaus_whjtnp'} width="150" height="150" class="object-cover object-center rounded-lg shadow-md m-1.5" alt="property"/>  
     <div class="flex items-baseline">
       <span class="bg-teal-200 text-teal-800 text-xs p inline-block rounded-full  uppercase font-semibold tracking-wide">
         {!firstName ? null : `${firstName} ${lastName}` }

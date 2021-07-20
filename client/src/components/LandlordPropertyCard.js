@@ -20,7 +20,7 @@ const LandlordPropertyCard = ({ property }) => {
 <div> 
  <div className="relative px-4 -mt-16  ">
    <div className="bg-white p-6 rounded-lg shadow-lg">
-   <Image cloudName="drcmojwwk" publicId={images[0]} width="150" height="150" />
+   <Image cloudName="drcmojwwk" publicId={images[0] ? images[0] : 'the-little-guy/fauxhaus_whjtnp'} width="150" height="150" />
     <div className="flex items-baseline">
       <div className="ml-2 text-teal-600 uppercase text-xs font-semibold tracking-wider">
     {formatPrice(price)}/month

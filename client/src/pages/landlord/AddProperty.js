@@ -60,7 +60,8 @@ const AddProperty = () => {
           addressState: addressState,
           addressZip: addressZip,
           price: parseInt(rent),
-          description: description
+          description: description,
+          images: ['the-little-guy/fauxhaus_whjtnp']
         };
 
         // if the input is valid, send it to server
@@ -74,13 +75,13 @@ const AddProperty = () => {
           // update redux store, add in property ID to object          
           dispatch({
               type: 'ADD_MY_PROPERTY',
-              payload: { ...buildInput, ['_id']: propertyId }
+              payload: { ...buildInput, _id: propertyId, images: ['the-little-guy/fauxhaus_whjtnp'] }
           });
     
           // update redux store, add in property ID to object          
           dispatch({
-              type: ADD_PROPERTY,
-              payload: { ...buildInput, _id: propertyId, images: [], owner: { firstName, lastName }}
+              type: 'ADD_PROPERTY',
+              payload: { ...buildInput, _id: propertyId, images: ['the-little-guy/fauxhaus_whjtnp'], owner: { firstName, lastName }}
           });
 
           history.push(`/image/property/${propertyId}`);
