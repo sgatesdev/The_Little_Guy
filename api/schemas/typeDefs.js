@@ -80,8 +80,8 @@ const typeDefs = gql`
 
 
     input NewApplicationInput {
-        applicant: ID,
-        propertyId: ID,
+        applicant: ID
+        propertyId: ID
         addressStreet: String
         addressCity: String
         addressState: String

@@ -9,19 +9,17 @@ const Application = (props) => {
   const propertyId = props.match.params.id ;
 
   const initialState = {
-    applicant: user?._id,
     first: user?.firstName,
     last: user?.lastName,
     income: '',
-    street: 'street',
-    city: 'city',
-    state: 'null',
-    zip: 'null',
+    street: user?.addressStreet,
+    city: user?.addressCity,
+    state: user?.addressState,
+    zip: user?.addressZip,
     otherTenants: '',
     creditScore: '',
     employer: '',
     typeOfEmployment: '',
-    pets: []
   }
   const typeOfEmployment = [
     {
@@ -51,13 +49,11 @@ const Application = (props) => {
     e.preventDefault();
     const applicationInput = {
       propertyId: propertyId,
-      applicant: formState.applicant,
+      applicant: user._id,
       addressStreet: formState.street,
       addressCity: formState.city,
       addressState: formState.state,
-      addressZip: formState.addressZip,
-      applicantFirstName: formState.first,
-      applicantLastName: formState.last,
+      addressZip: formState.zip,
       grossAnnualIncome: parseInt(formState.income),
       otherTenants: parseInt(formState.otherTenants),
       creditScore: parseInt(formState.creditScore),
@@ -93,6 +89,7 @@ const Application = (props) => {
                         onChange={inputChange}
                         autoComplete="given-name"
                         className="mt-1 focus:ring-TLGOrange focus:border-TLGOrange block w-full shadow-sm sm:text-sm rounded-md"
+                        readOnly
                       />
                     </div>
 
@@ -108,6 +105,7 @@ const Application = (props) => {
                         onChange={inputChange}
                         autoComplete="family-name"
                         className="mt-1 focus:ring-TLGOrange focus:border-TLGOrange block w-full shadow-sm sm:text-sm rounded-md"
+                        readOnly
                       />
                     </div>
 

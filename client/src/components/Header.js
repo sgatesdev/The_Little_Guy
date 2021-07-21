@@ -32,15 +32,12 @@ const tenantMenu = [
     { name: 'About', to: '/about' },
     { name: 'My Property', to: '/tenant' },
     {name: 'Profile', to: '/profile' },
-    // {name: 'Messages', to: '/messages' },
-    { name: 'Application', to: '/application' }
   ]
   const landlordMenu = [
     { name: 'Home', to: '/' },
     { name: 'About', to: '/about' },
     { name: 'Manage Properties', to: '/landlord' },
     {name: 'Profile', to: '/profile' },
-    // {name: 'Messages', to: '/messages' }
   ]
 
 function classNames(...classes) {
