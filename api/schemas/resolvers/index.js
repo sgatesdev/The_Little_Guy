@@ -1,19 +1,15 @@
-/**
- * 
- * 
- * If we decide to split files up, they will be merged here as follows...
- * 
- * // ./graphql/resolvers/index.js
+/** COMBINE RESOLVERS HERE FOR EXPORT */
+
 const { mergeResolvers } = require('@graphql-tools/merge');
-const clientResolver = require('./clientResolver');
-const productResolver = require('./productResolver');
+
+const applicationResolvers = require('./applicationResolvers');
+const imageResolvers = require('./imageResolvers');
+const propertyResolvers = require('./propertyResolvers');
+const userResolvers = require('./userResolvers');
 
 const resolvers = [
-  clientResolver,
-  productResolver,
+  applicationResolvers,
+  imageResolvers,
+  propertyResolvers,
+  userResolvers
 ];
-
-module.exports = mergeResolvers(resolvers);
- * 
- * 
- */

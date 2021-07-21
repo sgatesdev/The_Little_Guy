@@ -3,25 +3,21 @@ import { useMutation, useQuery } from '@apollo/client';
 import { useSelector } from 'react-redux';
 import {ADD_APPLICATION} from '../apollo-client/mutations'
 import history from '../config/history';
-
 const Application = (props) => {
   const user = useSelector((state) => state.user);
   const propertyId = props.match.params.id ;
-
   const initialState = {
-    applicant: user?._id,
     first: user?.firstName,
     last: user?.lastName,
     income: '',
-    street: 'street',
-    city: 'city',
-    state: 'null',
-    zip: 'null',
+    street: user?.addressStreet,
+    city: user?.addressCity,
+    state: user?.addressState,
+    zip: user?.addressZip,
     otherTenants: '',
     creditScore: '',
     employer: '',
     typeOfEmployment: '',
-    pets: []
   }
   const typeOfEmployment = [
     {
@@ -37,27 +33,22 @@ const Application = (props) => {
       value: "unemployed",
     },
   ];
- 
   const [formState, setFormState] = useState(initialState);
   const [displayError, setDisplayError] = useState(null);
   const [newApplication] = useMutation(ADD_APPLICATION);
-
   const inputChange = async (e) => {
     const { name, value } = e.target
     setFormState({ ...formState, [name]: value });
   }
-
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     const applicationInput = {
       propertyId: propertyId,
-      applicant: formState.applicant,
+      applicant: user._id,
       addressStreet: formState.street,
       addressCity: formState.city,
       addressState: formState.state,
-      addressZip: formState.addressZip,
-      applicantFirstName: formState.first,
-      applicantLastName: formState.last,
+      addressZip: formState.zip,
       grossAnnualIncome: parseInt(formState.income),
       otherTenants: parseInt(formState.otherTenants),
       creditScore: parseInt(formState.creditScore),
@@ -93,9 +84,9 @@ const Application = (props) => {
                         onChange={inputChange}
                         autoComplete="given-name"
                         className="mt-1 focus:ring-TLGOrange focus:border-TLGOrange block w-full shadow-sm sm:text-sm rounded-md"
+                        readOnly
                       />
                     </div>
-
                     <div className="col-span-6 sm:col-span-3">
                       <label className="block text-sm font-medium text-gray-700">
                         Last name
@@ -108,10 +99,9 @@ const Application = (props) => {
                         onChange={inputChange}
                         autoComplete="family-name"
                         className="mt-1 focus:ring-TLGOrange focus:border-TLGOrange block w-full shadow-sm sm:text-sm rounded-md"
+                        readOnly
                       />
                     </div>
-
-
                     <div className="col-span-6">
                       <label className="block text-sm font-medium">
                         Street address
@@ -126,7 +116,6 @@ const Application = (props) => {
                         className="mt-1 focus:ring-TLGOrange focus:border-TLGOrange block w-full shadow-sm sm:text-sm rounded-md"
                       />
                     </div>
-
                     <div className="col-span-6 sm:col-span-6 lg:col-span-2">
                       <label className="block text-sm font-medium">
                         City
@@ -140,7 +129,6 @@ const Application = (props) => {
                         className="mt-1 focus:ring-TLGOrange focus:border-TLGOrange block w-full shadow-sm sm:text-sm rounded-md"
                       />
                     </div>
-
                     <div className="col-span-6 sm:col-span-3 lg:col-span-2">
                       <label className="block text-sm font-medium">
                         State
@@ -154,7 +142,6 @@ const Application = (props) => {
                         className="mt-1 focus:ring-TLGOrange focus:border-TLGOrange block w-full shadow-sm sm:text-sm rounded-md"
                       />
                     </div>
-
                     <div className="col-span-6 sm:col-span-3 lg:col-span-2">
                       <label className="block text-sm font-medium">
                         ZIP code
@@ -182,7 +169,6 @@ const Application = (props) => {
                         className="mt-1 focus:ring-TLGOrange focus:border-TLGOrange block w-full shadow-sm sm:text-sm rounded-md"
                       />
                     </div>
-
                     <div className="col-span-6 sm:col-span-3 lg:col-span-2">
                       <label className="block text-sm font-medium">
                         Annual Gross Income
@@ -196,7 +182,6 @@ const Application = (props) => {
                         className="mt-1 focus:ring-TLGOrange focus:border-TLGOrange block w-full shadow-sm sm:text-sm rounded-md"
                       />
                     </div>
-
                     <div className="col-span-6 sm:col-span-3 lg:col-span-2">
                       <label className="block text-sm font-medium">
                         Other Tenants
@@ -223,7 +208,6 @@ const Application = (props) => {
                         className="mt-1 focus:ring-TLGOrange focus:border-TLGOrange block w-full shadow-sm sm:text-sm rounded-md"
                       />
                     </div>
-
                     <div className="col-span-6 sm:col-span-3">
                       <label className="block text-sm font-medium">
                         Type of Employment
@@ -239,7 +223,6 @@ const Application = (props) => {
               ))}
                       </select>
                     </div>
-                    
                   </div>
                 </div>
                 <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
@@ -257,5 +240,4 @@ const Application = (props) => {
       </div>
   )
 };
-
 export default Application;
