@@ -331,8 +331,8 @@ const resolvers = {
         newApplication: async (parent, { input}, context) => {
             try {
                 const application = await Application.create({...input});
-                if(application) return true
-                return false
+                console.log(input)
+                return application;
             } catch (error) {
                 throw new Error
             }
@@ -347,6 +347,8 @@ const resolvers = {
          },
          updateTenant: async (parent, { _id, tenant }, context) => {
              if (context.user) {
+                 const userUpdate = await User.findOneAndUpdate({ _id: tenant }, { $set: { current_property: _id } });
+
                  const property = await Property.findOneAndUpdate({ _id: _id }, { $set: { tenant: tenant }});
  
                  return property;

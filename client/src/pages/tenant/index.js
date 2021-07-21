@@ -15,7 +15,7 @@ const Tenant = () => {
           <div class="text-center p-6  border-b">
             {
                 state.user && state.user.current_property ? 
-                <UserPropertyCard property={state.user.current_property} /> : (<h1>You don't have a home yet!</h1>)
+                <UserPropertyCard property={state.user.current_property} button={false}/> : (<h1>You don't have a home yet!</h1>)
             }
           </div>
           <div class="border-b">

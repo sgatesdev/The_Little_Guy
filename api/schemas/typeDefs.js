@@ -122,7 +122,7 @@ const typeDefs = gql`
         deleteProperty(_id: ID!): Property
         deleteUser: Auth
         addProperty(input: UpdatePropertyInput!): Property
-        newApplication(input: NewApplicationInput!): Boolean
+        newApplication(input: NewApplicationInput!): TenantApplication
         updateApplication(_id: ID!, status: String!): TenantApplication
         updateTenant(_id: ID!, tenant: ID!): Property
     }

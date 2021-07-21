@@ -177,7 +177,9 @@ mutation(
 
 export const ADD_APPLICATION = gql`
   mutation($input: NewApplicationInput!){
-    newApplication(input:$input)
+    newApplication(input:$input) {
+      _id
+    }
   }
 `;
 

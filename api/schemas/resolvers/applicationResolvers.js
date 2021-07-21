@@ -1,4 +1,4 @@
-/** IMAGE RESOLVERS */
+/** APPLICATION RESOLVERS */
 
 module.exports = {
     Query: {
