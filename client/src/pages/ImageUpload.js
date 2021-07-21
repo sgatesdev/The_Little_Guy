@@ -16,7 +16,6 @@ import history from '../config/history';
 const ImageUpload = (props) => {
     // initialize state variables for handling data/upload
     const [fileInputState, setFileInputState] = useState('');
-    const [selectedFile, setSelectedFile] = useState('');
     const [previewSource, setPreviewSource] = useState('');
 
     // set up mutations for graphQL
@@ -42,7 +41,6 @@ const ImageUpload = (props) => {
         const file = event.target.files[0];
         console.log(file)
         setFileInputState(event.target.value);
-        setSelectedFile(file);
         previewUploadedFile(file);
     }
 

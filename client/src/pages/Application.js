@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react'
-import { useMutation, useQuery } from '@apollo/client';
+import React, { useState} from 'react'
+import { useMutation } from '@apollo/client';
 import { useSelector } from 'react-redux';
 import {ADD_APPLICATION} from '../apollo-client/mutations'
 import history from '../config/history';
@@ -41,7 +41,6 @@ const Application = (props) => {
     },
   ];
   const [formState, setFormState] = useState(initialState);
-  const [displayError, setDisplayError] = useState(null);
   const [newApplication] = useMutation(ADD_APPLICATION);
   const inputChange = async (e) => {
     const { name, value } = e.target

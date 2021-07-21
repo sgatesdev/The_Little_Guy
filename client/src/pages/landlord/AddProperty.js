@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 
 // new stuff for redux 
@@ -16,7 +15,7 @@ const AddProperty = () => {
     const dispatch = useDispatch();
 
     // apollo client
-    const [addProperty, { error }] = useMutation(ADD_PROPERTY);
+    const [addProperty] = useMutation(ADD_PROPERTY);
 
     // set initial values so react doesn't get mad at me
     const [formState, setFormState] = useState({
@@ -200,7 +199,9 @@ const AddProperty = () => {
                         onChange={handleInput}
                       />
                     </div>
-                    
+                    <label className="block text-sm font-medium ">
+                        { displayError }
+                    </label>
                   </div>
                 </div>
                 <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">

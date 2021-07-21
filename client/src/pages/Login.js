@@ -29,7 +29,7 @@ const Login = () => {
     const [displayError, setDisplayError] = useState(null);
 
     // apollo client
-    const [login, { error }] = useMutation(LOGIN);
+    const [login] = useMutation(LOGIN);
 
     const handleForm = async (e) => {
         e.preventDefault();

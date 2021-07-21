@@ -25,7 +25,7 @@ const Signup = () => {
     const dispatch = useDispatch();
 
     // apollo client
-    const [signUp, { error }] = useMutation(SIGN_UP);
+    const [signUp] = useMutation(SIGN_UP);
 
     // set initial values so react doesn't get mad at me
     const [formState, setFormState] = useState({

@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { useMutation } from '@apollo/client';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -236,6 +236,9 @@ const SingleApplication = (props) => {
                   </div>
                 </div>
                 <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
+                <label className="block text-sm font-medium">
+                        { displayError }
+                  </label>
                 <button 
             className="inline-flex m-2 justify-between py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-TLGOrange hover:bg-white hover:text-TLGOrange"
             onClick={() => history.push('/landlord/applications')}

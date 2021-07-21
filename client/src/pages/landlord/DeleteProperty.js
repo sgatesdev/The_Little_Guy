@@ -23,7 +23,7 @@ const DeleteProperty = (props) => {
     const dispatch = useDispatch();
     const property = useSelector((state) => state.landlord[props.match.params.id]);
     // apollo client
-    const [deleteProperty, { error }] = useMutation(DELETE_PROPERTY);
+    const [deleteProperty] = useMutation(DELETE_PROPERTY);
 
     const deleteProp = async () => {
         await deleteProperty({

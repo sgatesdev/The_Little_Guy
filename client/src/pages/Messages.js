@@ -1,3 +1,7 @@
+/**
+ * THIS FEATURE IS IN DEVELOPMENT! NOT CURRENTLY BEING USED (YET)
+ */
+
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import MessageList from '../components/MessageList';

@@ -88,23 +88,8 @@ export const SIGN_UP = gql`
   }
 `;
 
-export const ADD_USER_IMAGE = gql`
-mutation( $cloudinaryId: String) {
-  addUserImage(cloudinaryId: $cloudinaryId)
-}`;
-
-export const ADD_PROPERTY_IMAGE = gql`
-mutation($_id: ID!, $cloudinaryId: String) {
-  addPropertyImage(_id: $_id, cloudinaryId: $cloudinaryId)
-}`;
-
-export const UPLOAD_IMAGE = gql`
-  mutation($image:String!){
-    uploadImage(image: $image)
-  }`;
-
 export const CHANGE_PASSWORD = gql`
-mutation($email: String, $password: String, $newPassword: String) {
+mutation($email: String!, $password: String!, $newPassword: String!) {
   changePasssword(email: $email, password: $password, newPassword: $newPassword) {
     _id
   }
@@ -121,13 +106,25 @@ mutation($firstName: String, $lastName: String, $bio: String, $image: String){
     }
   }
 `;
-/**
-export const DELETE_USER = gql`
 
-`;
-**/
+/** IMAGE MUTATIONS */
 
-/** PROPERTY MUTATIONS **/
+export const ADD_USER_IMAGE = gql`
+mutation( $cloudinaryId: String) {
+  addUserImage(cloudinaryId: $cloudinaryId)
+}`;
+
+export const ADD_PROPERTY_IMAGE = gql`
+mutation($_id: ID!, $cloudinaryId: String) {
+  addPropertyImage(_id: $_id, cloudinaryId: $cloudinaryId)
+}`;
+
+export const UPLOAD_IMAGE = gql`
+  mutation($image:String!){
+    uploadImage(image: $image)
+  }`;
+
+/** PROPERTY MUTATIONS */
 
 export const ADD_PROPERTY = gql`
 mutation(
@@ -175,22 +172,6 @@ mutation(
   }
  }`;
 
-export const ADD_APPLICATION = gql`
-  mutation($input: NewApplicationInput!){
-    newApplication(input:$input) {
-      _id
-    }
-  }
-`;
-
-export const UPDATE_APPLICATION = gql`
-  mutation($_id: ID!, $status: String!){
-    updateApplication(_id: $_id, status: $status) {
-      _id
-    }
-  }
-`;
-
 export const DELETE_PROPERTY = gql`
 mutation(
     $_id: ID!
@@ -206,3 +187,21 @@ mutation($_id: ID!, $tenant: ID!) {
     _id
   }
 }`;
+
+/** APPLICATION MUTATIONS */
+
+export const ADD_APPLICATION = gql`
+  mutation($input: NewApplicationInput!){
+    newApplication(input:$input) {
+      _id
+    }
+  }
+`;
+
+export const UPDATE_APPLICATION = gql`
+  mutation($_id: ID!, $status: String!){
+    updateApplication(_id: $_id, status: $status) {
+      _id
+    }
+  }
+`;
