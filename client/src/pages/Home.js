@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { useQuery, useLazyQuery } from '@apollo/client';
+import { useQuery } from '@apollo/client';
 import { QUERY_ALL_PROPERTIES } from '../apollo-client/queries';
 
 import { FETCH_ALL_PROPERTIES } from '../store/actions';

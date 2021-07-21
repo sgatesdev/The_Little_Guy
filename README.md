@@ -30,6 +30,10 @@ Clone the repo and install all dependencies listed in the package.json files. Yo
 
 Sign up for an account - either as a landlord or tenant - and log in! You will see a full menu of options at the top in the navbar. As a tenant you can look for and apply for live at certain properties. As a landlord, you can add, modify, or delete property listings and review incoming applications for your properties. Both account types have access to a profile page where they can update their profile information, including an image, and change their password.
 
+![screenshot 1](readme/screen1.png)
+![screenshot 2](readme/screen2.png)
+![screenshot 3](readme/screen3.png)
+
 ## Contribute
 
 We are open to constructive criticism of the app! We have many features planned. Please reach out and let us know what you think.

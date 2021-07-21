@@ -147,5 +147,19 @@
         "lastName": "Rolfson",
         "username": "sherita.rolfson",
         "email": "sherita.rolfson@email.com"
+    },
+    {
+        "password": "pass123",
+        "firstName": "testing",
+        "lastName": "login",
+        "username": "loginUsername",
+        "email": "testingLogin@email.com"
+    },
+    {
+        "password": "password",
+        "firstName": "Test",
+        "lastName": "Tenant",
+        "username": "testT",
+        "email": "testT@test.com"
     }
 ]

@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
-// tailwind
-import { LockClosedIcon } from '@heroicons/react/solid'
+
 // new stuff for redux
 import { useDispatch, useSelector } from 'react-redux';
+
 // import history
 import history from '../../config/history';
+
 // import apollo query
 // called EDIT_PROPERTY on client side updateProperties server side
 import { UPDATE_PROPERTY } from '../../apollo-client/mutations';
@@ -20,7 +20,7 @@ const EditProperty = (props) => {
     //console.log(oldInfo)
 
     // apollo client
-    const [updateProperty, { error }] = useMutation(UPDATE_PROPERTY);
+    const [updateProperty] = useMutation(UPDATE_PROPERTY);
 
     // set initial values so react doesn't get mad at me
     const [formState, setFormState] = useState({
@@ -209,6 +209,9 @@ const EditProperty = (props) => {
                 </label>
                 </div>
               <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
+              <label className="ml-6 block text-sm font-medium ">
+                    { displayError }
+                </label>
                 <button
                   type="submit"
                   className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-TLGOrange hover:bg-white hover:text-TLGOrange"

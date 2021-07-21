@@ -1,7 +1,8 @@
 const db = require('./config');
-const { User, Property, Image } = require('../models')
+const { User } = require('../models')
 const userData = require('./users.json');
-const propertyData = require('./properties.json')
+
+/** SEEDER FILE - JUST DOING USERS FOR NOW */
 
 db.once('open', async () => {
     await User.deleteMany({});
@@ -9,43 +10,6 @@ db.once('open', async () => {
 
     const allUsers = await User.create(userData);
     console.log('Users inserted! :)');
-
-    for (let i = 0; i < allUsers.length; i++) {
-        const user = allUsers[i];
-        console.log(user._id);
-        propertyData[i].owner = user._id;
-        propertyData[10].tenant = allUsers[3]._id;
-        propertyData[11].tenant = user._id;
-        propertyData[12].tenant = user._id;
-        propertyData[0].owner = allUsers[0]._id;
-    }
-   
-    console.log('Users inserted! :)');
-
-    await Property.insertMany(propertyData);
-    
-    console.log('Properties Inserted! :)');
-
-    await User.create( {
-        "password": "pass123",
-        "firstName": "testing",
-        "lastName": "login",
-        "username": "loginUsername",
-        "email": "testingLogin@email.com"
-    })
-    
-    // grab all properties 
-    const sampleProperty = await Property.find({});
-
-    // simple test case
-    await User.create(    {
-        "password": "password",
-        "firstName": "Test",
-        "lastName": "Tenant",
-        "username": "testT",
-        "email": "testT@test.com",
-        "current_property": sampleProperty[0]._id
-    });
 
     process.exit();
 })

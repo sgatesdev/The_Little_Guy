@@ -11,8 +11,7 @@ const LandlordPropertyCard = ({ property }) => {
         addressState,
         addressZip,
         price,
-        images,
-        description   
+        images
     } = property;
       
     return(

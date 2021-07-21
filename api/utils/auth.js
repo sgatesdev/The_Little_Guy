@@ -1,3 +1,7 @@
+/**
+ * AUTHENTICATION CONFIG: JWT
+ */
+
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 

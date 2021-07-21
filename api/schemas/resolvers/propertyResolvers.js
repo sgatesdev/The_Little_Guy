@@ -38,7 +38,7 @@ module.exports = {
                 const allProperties = await Property.find().populate({
                     path: 'owner',
                     populate: 'User'
-                }).limit(20);
+                }).limit(20).sort({ _id: -1 });
 
                 return allProperties;
             } catch (error) {

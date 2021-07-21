@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { CHANGE_PASSWORD } from '../../apollo-client/mutations';
 import { LockClosedIcon } from '@heroicons/react/solid'
@@ -45,10 +45,12 @@ const Password = () => {
             return setDisplayError('Passwords don\'t match!');
         }
         try {
-            const userData = await changePassword({
+            await changePassword({
+              variables: {
                 email: email,
                 password: password,
                 newPassword: newPassword,
+              }
             })}
             catch (err) {
                 return setDisplayError(`${err}`);

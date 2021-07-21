@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 // apollo imports
-import { useQuery, useLazyQuery } from '@apollo/client';
+import { useLazyQuery } from '@apollo/client';
 import { QUERY_MY_PROPERTIES } from '../../apollo-client/queries';
 
 // get redux action def 

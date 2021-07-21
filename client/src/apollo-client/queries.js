@@ -1,15 +1,6 @@
 import { gql } from '@apollo/client';
 
-/**  single property
-export const QUERY_PROPERTY = gql`
-
-`;
-
-// multiple properties
-export const QUERY_PROPERTIES = gql`
-
-`;
-*/
+/** PROPERTY QUERIES */
 
 export const QUERY_ALL_PROPERTIES = gql`
    {
@@ -50,7 +41,8 @@ export const QUERY_MY_PROPERTIES = gql`
 }
 `;
 
-// query me
+/** USER QUERIES */
+
 export const QUERY_ME = gql`
 {
     me {
@@ -84,7 +76,8 @@ export const QUERY_ME = gql`
 }
 `;
 
-// get my applications
+/** APPLICATION QUERIES */
+
 export const QUERY_APPLICATIONS = gql`
 {
     myApplications {
