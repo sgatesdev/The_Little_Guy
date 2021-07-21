@@ -6,15 +6,20 @@ import history from '../config/history';
 
 const Application = (props) => {
   const user = useSelector((state) => state.user);
+
+  if(!user) {
+    history.push('/login');
+  }
+
   const propertyId = props.match.params.id ;
   const initialState = {
     first: user?.firstName,
     last: user?.lastName,
     income: '',
-    street: user.addressStreet ? user.addressStreet : '',
-    city: user.addressCity ? user.addressCity : '',
-    state: user.addressState ? user.addressState : '',
-    zip: user.addressZip ? user.addressZip : '',
+    street: user?.addressStreet ? user.addressStreet : '',
+    city: user?.addressCity ? user.addressCity : '',
+    state: user?.addressState ? user.addressState : '',
+    zip: user?.addressZip ? user.addressZip : '',
     otherTenants: '',
     creditScore: '',
     employer: '',
@@ -64,7 +69,7 @@ const Application = (props) => {
     history.push('/');
   }
 
-  return (
+  return user ? (
           <div className="min-h-screen flex  justify-center py-20 bg-CPgray py-12 px-4 sm:px-6 lg:px-8">
           <div className="md:grid md:grid-cols-3 md:gap-6 ">
             <div className="md:col-span-1">
@@ -243,6 +248,6 @@ const Application = (props) => {
           </div>
         </div>
       </div>
-  )
+  ) : null
 };
 export default Application;

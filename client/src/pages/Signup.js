@@ -247,7 +247,7 @@ const Signup = () => {
                           value={formState.is_landlord}
                           onChange={handleInput}
                 />
-                <span class="m-2 text-sm">I am a landlord</span> 
+                <span className="m-2 text-sm">I am a landlord</span> 
             </div>
 
           </div>

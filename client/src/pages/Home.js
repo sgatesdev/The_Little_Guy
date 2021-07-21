@@ -31,7 +31,7 @@ const Home = () => {
         }
     }, [loading, data, dispatch]); 
 
-    return user ? (
+    return (
         <>
         <h1 className="flex justify-center bg-CPgray font-bold text-2xl py-2">{ user ? `Welcome back, ${user.firstName}!` : null }</h1>
         <div className="min-h-screen flex  justify-center py-20 bg-CPgray py-12 px-4 sm:px-6 lg:px-8">
@@ -40,7 +40,7 @@ const Home = () => {
         </div>
         </div>
         </>
-    ) : null;
+    );
 }
 
 export default Home;
