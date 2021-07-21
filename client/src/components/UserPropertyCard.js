@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom';
 
 import { useSelector } from 'react-redux';
 
-const UserPropertyCard = ({ property }) => {
+const UserPropertyCard = ({ property, button }) => {
     const {
         _id,
         addressStreet,
@@ -42,7 +42,7 @@ const UserPropertyCard = ({ property }) => {
     <span className="text-sm text-gray-600">{description}</span>
   </div>  
   {
-  !user.is_landlord ? <Link to={`/application/${_id}`} >
+  !user.is_landlord && button ? <Link to={`/application/${_id}`} >
       <button className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-TLGOrange hover:bg-white hover:text-TLGOrange"> Apply Now</button>
     </ Link> : null
   }

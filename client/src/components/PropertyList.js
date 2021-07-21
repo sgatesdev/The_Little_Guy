@@ -7,7 +7,7 @@ const PropertyList = ({ properties, isLandlord }) => {
         <div className="flex flex-wrap -mx-4">
             {
                 properties.map((property) => {
-                    return isLandlord ? <LandlordPropertyCard property={ property } key={ property._id } /> : <UserPropertyCard property={ property } key={ property._id } />
+                    return isLandlord ? <LandlordPropertyCard property={ property } key={ property._id } /> : <UserPropertyCard property={ property } key={ property._id } button={true}/>
                 })                
             }
         </div>

@@ -1,10 +1,6 @@
 const { Schema, model } = require('mongoose');
 
 const applicationSchema = new Schema({
-    status: {
-        type: String, 
-        required: false
-    },
     propertyId: {
         type: Schema.Types.ObjectId,
         ref: 'Property'
@@ -37,12 +33,7 @@ const applicationSchema = new Schema({
         type: Number
     },
     creditScore: {
-        type: Number,
-        required: true,
-        min: 500,
-        max: 800,
-        default: 500,
-        trim: true,
+        type: Number
     },
     employer: {
         type: String,
@@ -50,9 +41,7 @@ const applicationSchema = new Schema({
         default: '',
     },
     typeOfEmployment: {
-        type: String,
-        enum: ['self-employed', 'employed', 'unemployed'],
-        default: 'employed'
+        type: String
     },
     status: {
         type: String,

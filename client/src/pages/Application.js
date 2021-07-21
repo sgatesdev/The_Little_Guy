@@ -3,6 +3,7 @@ import { useMutation, useQuery } from '@apollo/client';
 import { useSelector } from 'react-redux';
 import {ADD_APPLICATION} from '../apollo-client/mutations'
 import history from '../config/history';
+
 const Application = (props) => {
   const user = useSelector((state) => state.user);
   const propertyId = props.match.params.id ;
@@ -10,15 +11,16 @@ const Application = (props) => {
     first: user?.firstName,
     last: user?.lastName,
     income: '',
-    street: user?.addressStreet,
-    city: user?.addressCity,
-    state: user?.addressState,
-    zip: user?.addressZip,
+    street: user.addressStreet ? user.addressStreet : '',
+    city: user.addressCity ? user.addressCity : '',
+    state: user.addressState ? user.addressState : '',
+    zip: user.addressZip ? user.addressZip : '',
     otherTenants: '',
     creditScore: '',
     employer: '',
-    typeOfEmployment: '',
+    typeOfEmployment: 'Self-Employed',
   }
+
   const typeOfEmployment = [
     {
       label: "Self-Employed",
@@ -55,9 +57,13 @@ const Application = (props) => {
       employer: formState.employer,
       typeOfEmployment: formState.typeOfEmployment,
     }
-    const res = await newApplication({ variables: {input: applicationInput}});
+    await newApplication({ variables: {input: applicationInput}});
+
+    console.log(applicationInput)
+
     history.push('/');
   }
+
   return (
           <div className="min-h-screen flex  justify-center py-20 bg-CPgray py-12 px-4 sm:px-6 lg:px-8">
           <div className="md:grid md:grid-cols-3 md:gap-6 ">
@@ -81,7 +87,6 @@ const Application = (props) => {
                         type="text"
                         placeholder="First"
                         value={formState.first}
-                        onChange={inputChange}
                         autoComplete="given-name"
                         className="mt-1 focus:ring-TLGOrange focus:border-TLGOrange block w-full shadow-sm sm:text-sm rounded-md"
                         readOnly
@@ -123,7 +128,7 @@ const Application = (props) => {
                       <input
                         name="city"
                         type="text"
-                        placeholder="city"
+                        placeholder="City"
                         value={formState.city}
                         onChange={inputChange}
                         className="mt-1 focus:ring-TLGOrange focus:border-TLGOrange block w-full shadow-sm sm:text-sm rounded-md"
@@ -136,7 +141,7 @@ const Application = (props) => {
                       <input
                         name="state"
                         type="text"
-                        placeholder="state"
+                        placeholder="State"
                         value={formState.state}
                         onChange={inputChange}
                         className="mt-1 focus:ring-TLGOrange focus:border-TLGOrange block w-full shadow-sm sm:text-sm rounded-md"
@@ -149,7 +154,7 @@ const Application = (props) => {
                       <input
                         name="zip"
                         type="text"
-                        placeholder="111111"
+                        placeholder="Zip"
                         value={formState.zip}
                         onChange={inputChange}
                         autoComplete="postal-code"
@@ -163,7 +168,7 @@ const Application = (props) => {
                       <input
                         name="creditScore"
                         type="text"
-                        placeholder="680"
+                        placeholder="ex. 650"
                         value={formState.creditScore}
                         onChange={inputChange}
                         className="mt-1 focus:ring-TLGOrange focus:border-TLGOrange block w-full shadow-sm sm:text-sm rounded-md"
@@ -176,7 +181,7 @@ const Application = (props) => {
                       <input
                         name="income"
                         type="text"
-                        placeholder="ex.34,000"
+                        placeholder="ex. 34000"
                         value={formState.income}
                         onChange={inputChange}
                         className="mt-1 focus:ring-TLGOrange focus:border-TLGOrange block w-full shadow-sm sm:text-sm rounded-md"
@@ -202,7 +207,7 @@ const Application = (props) => {
                       <input
                         name="employer"
                         type="text"
-                        placeholder="IBM"
+                        placeholder="Employer"
                         value={formState.employer}
                         onChange={inputChange}
                         className="mt-1 focus:ring-TLGOrange focus:border-TLGOrange block w-full shadow-sm sm:text-sm rounded-md"
