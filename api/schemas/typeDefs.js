@@ -19,6 +19,7 @@ const typeDefs = gql`
         addressState: String
         addressZip: String
     }
+    
     type Property {
         _id: ID
         type: String!
@@ -78,7 +79,6 @@ const typeDefs = gql`
         typeOfEmployment: String
     }
 
-
     input NewApplicationInput {
         applicant: ID
         propertyId: ID
@@ -99,6 +99,7 @@ const typeDefs = gql`
         bio: String
         image: String
     }
+
     type Query {
         user(id:ID!): User
         me:User
@@ -110,6 +111,7 @@ const typeDefs = gql`
         findLandlord(input: UpdatePropertyInput!): User
         myApplications: [TenantApplication]
     }
+
     type Mutation {
         login(email:String!, password:String!): Auth
         signUp(input: NewUserInput!): Auth
