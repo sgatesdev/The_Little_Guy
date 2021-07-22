@@ -110,7 +110,28 @@ module.exports = {
             }
             throw new AuthenticationError('Not Logged In')
         },
+        changePasssword: async (parent, {email, password, newPassword}, context) => {
+            const user = await User.findOne({ email: email }).populate();
 
+            console.log(user._id)
+
+            if (!user) {
+                throw new AuthenticationError('Incorrect Credentials');
+            };
+            const passCheck = await user.isCorrectPassword(password);
+
+            if (!passCheck) {
+                throw new AuthenticationError('Incorrect Credentials');
+            }
+
+            if(user._id == context.user._id) {
+
+                await user.changePassword(newPassword);
+                const updatedUser = user.save();
+
+                return updatedUser;
+            } throw new AuthenticationError('Contact Admin for help')
+        },
         deleteUser: async (parent, context) => {
             try {
                 if (context.user) {
