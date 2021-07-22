@@ -3,6 +3,7 @@ import { useMutation } from '@apollo/client';
 import { CHANGE_PASSWORD } from '../../apollo-client/mutations';
 import { LockClosedIcon } from '@heroicons/react/solid'
 
+import history from '../../config/history';
 // password not stored in redux 
 
 const Password = () => {
@@ -51,7 +52,10 @@ const Password = () => {
                 password: password,
                 newPassword: newPassword,
               }
-            })}
+            })
+            
+            history.push('/');
+          }
             catch (err) {
                 return setDisplayError(`${err}`);
             }
