@@ -18,7 +18,7 @@ module.exports = {
                     }
                 });
 
-                let filtered = allApplications.filter((app) => app.propertyId.owner._id == context.user._id);
+                let filtered = allApplications.filter((app) => app.propertyId.owner && app.propertyId.owner._id == context.user._id);
 
                 return filtered;
             }

@@ -1,7 +1,7 @@
 /** PROPERTY RESOLVERS */
 
 const { AuthenticationError } = require('apollo-server-express');
-const { User, Property } = require('../../models');
+const { User, Property, Application } = require('../../models');
 const { cloudinary } = require('../../utils/cloudinary');
 
 module.exports = {
@@ -104,6 +104,10 @@ module.exports = {
                         });
                     }
 
+                    // delete all applications for that property
+                    await Application.deleteMany({ propertyId: _id });
+
+                    // delete the property entry
                     const deleteProp = await Property.deleteOne({ _id: _id });
 
                     return deleteProp;
